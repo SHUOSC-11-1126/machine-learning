@@ -5,9 +5,15 @@
 输出 Alpaca 格式的训练数据。
 
 使用方式:
+  # 方式1: 环境变量
   export ANTHROPIC_API_KEY=sk-ant-...
   python generate_data.py --count 100 --output train.json
-  python generate_data.py --count 20 --output eval.json
+
+  # 方式2: .env 文件 (同目录下创建 .env)
+  python generate_data.py --count 100 --output train.json
+
+  # 方式3: 命令行参数
+  python generate_data.py --api-key sk-ant- --base-url https://... --model claude-sonnet
 """
 
 import json
@@ -17,6 +23,22 @@ import time
 from pathlib import Path
 
 import anthropic
+
+
+def load_env(env_path: str = ".env") -> dict:
+    """简单加载 .env 文件 (key=value 格式)"""
+    env = {}
+    path = Path(env_path)
+    if not path.exists():
+        return env
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if "=" in line:
+            key, _, value = line.partition("=")
+            env[key.strip()] = value.strip()
+    return env
 
 # ─── Planner 系统提示词（精简版，用于生成训练数据） ───────────────────────
 
@@ -182,13 +204,13 @@ def random_fill(template: str, rng_seed: int) -> str:
     return result
 
 
-def generate_plan(client: anthropic.Anthropic, task: str, context: str) -> dict | None:
+def generate_plan(client: anthropic.Anthropic, task: str, context: str, model: str = "claude-sonnet-4-20250514") -> dict | None:
     """调用 Claude API 为任务生成结构化计划"""
     user_msg = f"任务：{task}\n\n项目上下文：\n{context}"
 
     try:
         response = client.messages.create(
-            model="claude-sonnet-4-20250514",
+            model=model,
             max_tokens=4096,
             system=PLANNER_SYSTEM,
             messages=[{"role": "user", "content": user_msg}],
@@ -257,14 +279,27 @@ def main():
     parser.add_argument("--count", type=int, default=100, help="生成数据条数")
     parser.add_argument("--output", type=str, default="train.json", help="输出文件名")
     parser.add_argument("--api-key", type=str, default=None, help="Anthropic API Key（也可用环境变量）")
+    parser.add_argument("--base-url", type=str, default=None, help="API Base URL")
+    parser.add_argument("--model", type=str, default=None, help="模型名称")
+    parser.add_argument("--env", type=str, default=str(Path(__file__).parent / ".env"), help=".env 文件路径")
     args = parser.parse_args()
 
-    api_key = args.api_key or os.environ.get("ANTHROPIC_API_KEY")
+    # 加载 .env
+    env = load_env(args.env)
+
+    api_key = args.api_key or os.environ.get("ANTHROPIC_API_KEY") or env.get("api_key")
+    base_url = args.base_url or os.environ.get("ANTHROPIC_BASE_URL") or env.get("base_url")
+    model = args.model or env.get("model", "claude-sonnet-4-20250514")
+
     if not api_key:
-        print("错误：请设置 ANTHROPIC_API_KEY 环境变量或传入 --api-key 参数")
+        print("错误：请设置 ANTHROPIC_API_KEY 环境变量、传入 --api-key 参数，或在 .env 中配置 api_key")
         return
 
-    client = anthropic.Anthropic(api_key=api_key)
+    client_kwargs = {"api_key": api_key}
+    if base_url:
+        client_kwargs["base_url"] = base_url
+    client = anthropic.Anthropic(**client_kwargs)
+    print(f"模型: {model}, Base URL: {base_url or '默认'}")
     output_path = Path(__file__).parent / args.output
 
     dataset = []
@@ -278,7 +313,7 @@ def main():
         task = random_fill(task_template, rng_seed=i * 1000 + i)
         print(f"[{i + 1}/{args.count}] 任务: {task[:60]}...")
 
-        plan = generate_plan(client, task, context)
+        plan = generate_plan(client, task, context, model=model)
         if plan is None:
             continue
 
