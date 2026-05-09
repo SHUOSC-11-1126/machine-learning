@@ -281,7 +281,7 @@ def main():
     parser.add_argument("--api-key", type=str, default=None, help="Anthropic API Key（也可用环境变量）")
     parser.add_argument("--base-url", type=str, default=None, help="API Base URL")
     parser.add_argument("--model", type=str, default=None, help="模型名称")
-    parser.add_argument("--env", type=str, default=str(Path(__file__).parent / ".env"), help=".env 文件路径")
+    parser.add_argument("--env", type=str, default=str(Path(__file__).parent.parent / ".env"), help=".env 文件路径")
     args = parser.parse_args()
 
     # 加载 .env
