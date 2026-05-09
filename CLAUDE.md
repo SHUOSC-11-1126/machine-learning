@@ -1,20 +1,23 @@
-# 工程简要描述
-
-这是一个机器学习课程仓库
+# 机器学习课程仓库
 
 ## 工程结构
 
-- wechat-session 存放课程群聊聊天记录
-- tasks/ 存放作业回答
-- tasks-list.md 存放待完成作业
+- wechat-session/ 课程群聊记录（MM-DD 目录）
+- tasks/ 作业回答
+- tasks-list.md 待完成作业
 
 ## 开发规范
 
-1. 不确定的问题一定要向用户提问，不要自行决定
+1. 不确定的问题一定要向用户提问
 2. 任务列表
-   1. 通过 wechat-session 解析新任务到 tasks-list.md ，注意标明任务序号，通过 [] 表示任务状态
-   2. 在完成任务后更新 tasks-list.md ，只需要标记任务状态完成即可，不需要删除
+   1. 从 wechat-session 解析任务到 tasks-list.md，**只有需要提交到微信群的才算任务**
+   2. 全局连续序号，完成只标 `[x]`，不删除
+      ```
+      ## 05-09 课程任务
+      - [ ] 1. 未完成
+      - [x] 2. 已完成
+      ```
 
-## Git规范
+## Git 规范
 
-需要提交时查看 [git-role](./git-role.md)
+提交时查看 [git-role](./git-role.md)
