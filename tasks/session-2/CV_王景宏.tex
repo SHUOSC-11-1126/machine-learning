@@ -1,0 +1,99 @@
+\documentclass[11pt,a4paper]{extarticle}
+\usepackage[top=1.5cm,bottom=1.5cm,left=2cm,right=2cm]{geometry}
+\usepackage{xeCJK}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\setCJKmainfont{STSong}
+\setCJKsansfont{STHeiti}
+\setCJKmonofont{STFangsong}
+
+% Compact section formatting
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0pt}%
+  {1.2ex plus 0.5ex minus 0.2ex}%
+  {0.4ex plus 0.2ex}%
+  {\large\bfseries\color{blue!70!black}}}
+\makeatother
+
+% Compact itemize
+\renewcommand{\labelitemi}{\textbullet}
+\setlength{\parskip}{0pt}
+\setlength{\itemsep}{0pt}
+\setlength{\parsep}{0pt}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% Header
+\begin{center}
+  {\LARGE\bfseries 王景宏} \\[4pt]
+  {\large 大前端开发 + AI 应用} \\[4pt]
+  电话: 19857907795 \quad|\quad 邮箱: 3506456886@qq.com \quad|\quad 年龄: 20 \quad|\quad 性别: 男 \\[2pt]
+  GitHub: \href{https://github.com/ceilf6}{ceilf6} \quad|\quad Blog: \href{https://blog.csdn.net/2301_78856868}{blog.csdn.net/2301\_78856868}
+\end{center}
+
+\section{教育背景}
+\textbf{上海大学(211)} \hfill 2023 年 7 月 -- 2027 年 6 月 \\
+信息工程
+
+\section{专业技能}
+\begin{itemize}
+  \item 长期使用和学习 AI，了解大模型底层神经网络 RNN、Transformer 架构；了解 infra 基建层的 RAG、Skill、MCP 等；同时长期维护前端智能体等多个开源项目
+  \item 熟练使用 HTML5 进行语义化开发
+  \item 熟悉 CSS 样式设置, 对视觉格式化模型、块级格式化上下文理解, 熟练异常样式排查
+  \item 理解原型链、期约异步、作用域链、this 指向、闭包、垃圾回收等 JS 核心原理，此外了解 TS、C++、python 语言
+  \item 了解浏览器组成、渲染流程、事件循环、缓存、离线存储、资源提示词
+  \item 了解模块化、包管理器、Less、打包优化等工程化开发
+  \item 了解 Vue2 的模版、组件对象配置、通信、实例属性、路由插件，Vue3 的组合式 API、响应化实现原理、Vuex
+  \item 了解 React 的 JSX、组件状态、HOC、Ref 转发、上下文等基本概念，及其整体架构和渲染流程。有 RN 开发经验
+  \item 了解 AJAX、跨域、cookie、TCP、各版本 HTTP、SSL、HTTPS、CSRF、XSS、DNS、WebSocket 等网络知识
+\end{itemize}
+
+\section{工作经历}
+
+\textbf{(1) 美团} \quad 前端开发(实习) \hfill 2025 年 9 月 -- 2026 年 1 月
+
+\textbf{工作项目: 钱管家、基建组件库}
+
+技术栈: React、Vue2、HTML5、CSS3、JavaScript、TypeScript
+
+\begin{itemize}
+  \item 项目描述: 美团旧版钱管家系统状态管理混乱、框架设计不合理，且面临海外企业的使用需求，急需重构。同时美团财务前端正在构建一套更切合业务场景的基建组件库，提高代码复用率和安全性，减轻开发人员的负担
+  \item 主要工作:
+  \begin{enumerate}
+    \item 从逻辑优化的基础出发，将钱管家原先 Vue2 框架的 PC 和移动端 i 站双端一并重构为 React，双端间通过 business 层作为模板优化代码的复用率与可拓展性。原先组件模块间耦合度极高，经过重构后完全解藕，并通过胶水层进行适配，使得代码强健且可拓展。
+    \item 学习 KMP 分层共享策略，同时基于 SDD 规范设计国际化改造方案，接入 i18n 平台 SDK，并通过 MCP 实现多端硬编码文案的自动化替换，完成钱管家全域、多端语言动态化支持
+  \end{enumerate}
+\end{itemize}
+
+\textbf{(2) 七牛云} \quad 前端开发(实习) \hfill 2025 年 6 月 -- 2025 年 9 月
+
+\textbf{工作项目: XBuilder}
+
+技术栈: Vue3、HTML5、CSS3、JavaScript、TypeScript、XGO、Vite、npm、Git、Vercel
+
+\begin{itemize}
+  \item 项目描述: 通过构建 XBuilder 平台的分享机制，提高平台的传播度，宣传 XBuilder 游戏编译器和 XGO 语言
+  \item 主要工作:
+  \begin{enumerate}
+    \item 负责模块设计与接口设计，实现代码的低耦合与强健
+    \item 架构和编写了海报组件，实现项目信息与渲染 DOM 节点的统一管理
+    \item 架构和编写了截屏分享和录屏分享组件，通过模态框统一管理组件状态，优化了父子组件通信
+  \end{enumerate}
+\end{itemize}
+
+\section{荣誉奖项}
+\begin{itemize}
+  \item 天梯程序设计赛国家级二等奖 \quad 睿抗开发者大赛国家级二等奖 \quad 字节工程训练营证书
+  \item 腾讯优秀开源证书 \quad 腾讯大前端工程营证书 \quad Datawhale 优秀 Agent 开发者
+  \item 百度之星金奖 \quad 码蹄杯程序设计大赛金奖 \quad 美国数学建模大赛 H 奖 \quad CSP 证书
+  \item 从 0 到 1 国家级项目负责人 \quad 上海大学优秀学生 \quad 上海大学科创奖学金
+  \item 学院四佳学生 \quad 最受欢迎学习委员 \quad 英语、法语都支持工作交流
+\end{itemize}
+
+\section{附件链接}
+\href{https://ceilf6.github.io/ceilf6/}{ceilf6.github.io/ceilf6/}
+
+\end{document}
