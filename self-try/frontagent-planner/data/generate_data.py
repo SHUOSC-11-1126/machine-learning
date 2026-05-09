@@ -300,12 +300,26 @@ def main():
         client_kwargs["base_url"] = base_url
     client = anthropic.Anthropic(**client_kwargs)
     print(f"模型: {model}, Base URL: {base_url or '默认'}")
-    output_path = Path(__file__).parent / args.output
+    output_path = Path(args.output) if Path(args.output).is_absolute() else Path(__file__).parent / args.output
 
     dataset = []
-    print(f"开始生成 {args.count} 条训练数据...")
+    start_idx = 0
+    if output_path.exists():
+        try:
+            with open(output_path, "r", encoding="utf-8") as f:
+                dataset = json.load(f)
+            start_idx = len(dataset)
+            print(f"发现已有数据 {start_idx} 条，将从第 {start_idx + 1} 条开始接续生成...")
+        except Exception:
+            pass
 
-    for i in range(args.count):
+    if start_idx >= args.count:
+        print(f"已达到或超过目标数量 ({args.count} 条)，无需继续生成。")
+        return
+
+    print(f"开始生成剩余训练数据...")
+
+    for i in range(start_idx, args.count):
         # 确定性地选择任务模板和上下文
         task_template = TASK_TEMPLATES[i % len(TASK_TEMPLATES)]
         context = CONTEXTS[i % len(CONTEXTS)]
@@ -324,13 +338,13 @@ def main():
 
         sample = plan_to_alpaca(task, context, plan)
         dataset.append(sample)
+        
+        # 每生成一条实时保存，避免进度丢失
+        with open(output_path, "w", encoding="utf-8") as f:
+            json.dump(dataset, f, ensure_ascii=False, indent=2)
 
         # 避免速率限制
         time.sleep(0.5)
-
-    # 写入文件
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(dataset, f, ensure_ascii=False, indent=2)
 
     print(f"\n完成！生成 {len(dataset)}/{args.count} 条有效数据，保存到 {output_path}")
 
