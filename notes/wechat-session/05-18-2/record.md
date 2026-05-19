@@ -1,0 +1,3 @@
+- 深度学习可视化
+    - https://gitee.com/lundechen/machine_learning_2026_spring/blob/master/session-404-quantization-2/practice-onnx-export-and-quantization.ipynb
+    - https://gitee.com/lundechen/machine_learning_2026_spring/blob/master/session-404-quantization-2/practice-fp32-fp16-int8-int4.md
