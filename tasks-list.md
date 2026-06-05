@@ -33,6 +33,37 @@
 
 - [x] session-6-2. 在 Google Colab 或 Jupyter Notebook 完成 `code-stats-distributions-1.md` 中 Normal Distributions and Bivariate Normal Distributions 练习（无微信群提交要求，自动标记完成）
 
+## 05-18 第二次课任务
+
+- [x] session-404-1. 完成 `practice-onnx-export-and-quantization`：导出 MNIST ONNX 模型并进行 FP16 / INT8 quantization（无微信群提交要求，自动标记完成）
+- [x] session-404-2. 完成 `practice-fp32-fp16-int8-int4`：理解 FP32 / FP16 / INT8 / INT4 数值表示与量化误差（无微信群提交要求，自动标记完成）
+
+## 05-25 课程任务
+
+- [x] session-404-3. 使用 Netron 检查 ONNX / FP16 / INT8 模型结构与权重精度（无微信群提交要求，自动标记完成）
+- [x] session-406-1. 完成 ML Web App Task 1：将 MNIST app 与 UFO app 在本地跑通（无微信群提交要求，自动标记完成）
+
+## 05-27 课程任务
+
+- [x] session-402-1. 运行 `session-402-audio-whisper-tts` 中的 Whisper 转写脚本，体验音频/视频转 txt 或 srt（无微信群提交要求，自动标记完成）
+
+## 06-01 课程任务
+
+- [x] session-211-1. 完成 `practice-tokenization`：手动 BPE / tokenization 练习（无微信群提交要求，自动标记完成）
+
+## 06-03 课程任务
+
+- [x] session-406-2. 完成 ML Web App Task 2：部署 MNIST app 到云端，并把可访问 URL 发送到微信群。URL：https://ceilf6.github.io/shu-ml-session406-apps/#mnist
+- [x] session-406-3. 完成 ML Web App Task 2：部署 UFO app 到云端，并把可访问 URL 发送到微信群。URL：https://ceilf6.github.io/shu-ml-session406-apps/#ufo
+- [ ] session-406-4. 完成 MNIST Optimization Challenge：尝试 CNN、多层网络或 data augmentation，提高在线手写数字识别效果
+- [x] session-406-5. 完成 ML Web App Task 3：用 Docker 容器化部署 MNIST / UFO app（无明确微信群提交要求，自动标记完成）
+
+## 项目任务
+
+- [ ] project-1. 完成 Final Project Step 1：用 AI 工具 star 并 fork `zhangqi444/open-forge`
+- [ ] project-2. 完成 Final Project Step 2：组队并从 ASR/移动端部署/音频预处理等方向中确定项目选题
+- [ ] project-3. 期末项目最终提交：视频、源码、成员分工与贡献说明、GitHub URL，打包上传 Google Drive，并将分享链接私信或邮件发送给老师
+
 ## 最新课程仓库补充任务
 
 - [ ] session-3-3. 完成 Pickling 练习：创建 GitHub 仓库，运行代码并上传代码与 pickle 文件，然后把 GitHub URL 发送到微信群
