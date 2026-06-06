@@ -114,21 +114,6 @@ def bag_questions() -> dict[str, list[tuple[Path, list[str]]]]:
     return result
 
 
-def homework_assets() -> list[tuple[Path, str]]:
-    assets: list[tuple[Path, str]] = []
-    for path in sorted((ROOT / "tasks").glob("**/*")):
-        if path.is_file() and path.suffix.lower() in {".md", ".py", ".txt", ".csv", ".ipynb"}:
-            note = "historical homework asset; low priority"
-            if "session-400" in str(path):
-                note = "low-priority NLP/sentiment homework evidence"
-            if "session-2" in str(path):
-                note = "low-priority CI/CV homework evidence"
-            assets.append((path, note))
-    if (ROOT / "tasks-list.md").exists():
-        assets.insert(0, (ROOT / "tasks-list.md", "historical task tracker; not a review priority source"))
-    return assets
-
-
 def write_source_index() -> None:
     REVIEW.mkdir(parents=True, exist_ok=True)
     questions = bag_questions()
@@ -137,7 +122,7 @@ def write_source_index() -> None:
     lines: list[str] = [
         "# 机器学习复习资料索引",
         "",
-        "本索引从 `files-from-teacher/` 子模块生成。该子模块由老师维护，是考试复习的最高优先级资料。本仓库自己的历史作业、任务列表和群聊记录只能作为低优先级辅助。",
+        "本索引从 `files-from-teacher/` 子模块生成。该子模块由老师维护，是考试复习的唯一最高优先级资料。本仓库自己的历史作业、任务列表和群聊记录不用于决定考试重点。",
         "",
         "## Exam Signal From Readme",
         "",
@@ -153,7 +138,7 @@ def write_source_index() -> None:
         "2. `files-from-teacher/BagOfQuestions/` question source.",
         "3. `files-from-teacher/session-1` to `session-7` lecture and code materials.",
         "4. Extra session materials under `files-from-teacher/session-*` beyond 1-7.",
-        "5. This repository's own `tasks/`, `tasks-list.md`, and `notes/` only after a teacher-source topic has already been identified.",
+        "5. Archived homework experience only after a teacher-source topic has already been identified; it must never override `files-from-teacher/`.",
         "",
         "## Main Sessions",
         "",
@@ -199,24 +184,29 @@ def write_homework_assets() -> None:
     lines: list[str] = [
         "# 本仓库历史作业资产索引",
         "",
-        "这些材料来自本仓库自己的 `tasks/`、`tasks-list.md` 等历史建设。它们不能决定考试范围，也不能覆盖老师资料；只有当 `files-from-teacher/` 已经确认某个考点后，才可以用来补充个人练习经验。",
+        "本仓库历史作业和任务管理文件已从复习仓库移除并备份到仓库外。它们不能决定考试范围，也不能覆盖老师资料；只有当 `files-from-teacher/` 已经确认某个考点后，才可以把历史作业经验当作个人练习补充。",
         "",
-        "## Low-Priority Assets",
+        "## 已清理噪音类型",
         "",
+        "- 历史任务列表：提交、微信群、URL、待完成状态等管理信息。",
+        "- 历史作业目录：CV、CI/CD、项目提交、实验脚本和中间数据。",
+        "- 群聊记录与截图：只服务任务确认，不作为考试复习来源。",
+        "- 旧 GitHub Actions：服务作业提交，不服务复习。",
+        "",
+        "## 可沉淀的低优先级复习经验",
+        "",
+        "- 情感分类模型评估：可复习 `pipeline`、标签映射、accuracy 计算、模型与数据集匹配；具体模型排名不视为考试范围。",
+        "- 线性模型训练脚本：可复习 `fit`、模型参数、保存模型和最小训练流程；CI/CD 发布流程不作为复习重点。",
+        "- GloVe/embedding 小实验：可辅助理解词向量、相似度、下游分类；考试重点仍以 BagOfQuestions 和老师 session 资料为准。",
+        "- 个人作业踩坑：只在老师题目已经定位到同一知识点时用于提醒易错点。",
+        "",
+        "## 使用规则",
+        "",
+        "1. 先查 `files-from-teacher/Readme.md`、`files-from-teacher/BagOfQuestions/` 和主 session 资料。",
+        "2. 只有老师资料已经确认某个知识点后，才允许回忆历史作业经验。",
+        "3. 如果历史作业经验与老师资料冲突，丢弃历史作业经验。",
+        "4. 如果需要查看已备份原始作业文件，先向用户确认，不要自行把备份复制回仓库。",
     ]
-    for path, note in homework_assets():
-        lines.append(f"- `{rel(path)}`: {note}")
-    lines.extend(
-        [
-            "",
-            "## Useful Review Extraction",
-            "",
-            "- `tasks/session-400/results.txt`: 可作为模型评估与数据集匹配的例子，但考试重点仍以老师的 BagOfQuestions 和 session 材料为准。",
-            "- `tasks/session-400/evaluate_models.py`: 可复习 `pipeline`、标签映射、accuracy 计算和模型比较流程；不要把具体模型排名当作考试范围。",
-            "- `tasks/session-2/train_model.py`: 可复习 `fit/predict/save model` 的最小流程；CI/CD、CV、提交微信群等任务噪音在复习中忽略。",
-            "- `tasks-list.md`: 只用于知道历史上做过什么，不用于规划考试知识点。",
-        ]
-    )
     (REVIEW / "homework-assets-low-priority.md").write_text("\n".join(lines), encoding="utf-8")
 
 
