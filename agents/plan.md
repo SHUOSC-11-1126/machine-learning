@@ -20,7 +20,6 @@
 - `files-from-teacher/session-6/`：generalization、metrics、evaluation methods、bias-variance、L1/L2 regularization、basic distributions。
 - `files-from-teacher/session-7/`：dropout、inverted dropout、early stopping、data augmentation、hyperparameter optimization、batch normalization。
 - `review/source-index.md`：从老师子模块生成的快速索引。
-- `review/homework-assets-low-priority.md`：历史作业经验的低优先级使用规则。
 
 ## Knowledge Route
 
@@ -162,5 +161,4 @@
 ## Assumptions
 
 - 当前复习范围以 `files-from-teacher/Readme.md` 为准。
-- 本仓库历史任务内容已迁移到 `ceilf6/machine-learning-tasks`，不再参与本仓库复习主线。
 - 如果老师子模块更新，应重新生成 `review/source-index.md`。

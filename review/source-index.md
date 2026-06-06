@@ -1,6 +1,6 @@
 # 机器学习复习资料索引
 
-本索引从 `files-from-teacher/` 子模块生成。该子模块由老师维护，是考试复习的唯一最高优先级资料。本仓库自己的历史作业、任务列表和群聊记录不用于决定考试重点。
+本索引从 `files-from-teacher/` 子模块生成。该子模块由老师维护，是考试复习的唯一最高优先级资料。
 
 ## Exam Signal From Readme
 
@@ -16,7 +16,6 @@
 2. `files-from-teacher/BagOfQuestions/` question source.
 3. `files-from-teacher/session-1` to `session-7` lecture and code materials.
 4. Extra session materials under `files-from-teacher/session-*` beyond 1-7.
-5. Archived homework experience only after a teacher-source topic has already been identified; it must never override `files-from-teacher/`.
 
 ## Main Sessions
 

@@ -122,7 +122,7 @@ def write_source_index() -> None:
     lines: list[str] = [
         "# 机器学习复习资料索引",
         "",
-        "本索引从 `files-from-teacher/` 子模块生成。该子模块由老师维护，是考试复习的唯一最高优先级资料。本仓库自己的历史作业、任务列表和群聊记录不用于决定考试重点。",
+        "本索引从 `files-from-teacher/` 子模块生成。该子模块由老师维护，是考试复习的唯一最高优先级资料。",
         "",
         "## Exam Signal From Readme",
         "",
@@ -138,7 +138,6 @@ def write_source_index() -> None:
         "2. `files-from-teacher/BagOfQuestions/` question source.",
         "3. `files-from-teacher/session-1` to `session-7` lecture and code materials.",
         "4. Extra session materials under `files-from-teacher/session-*` beyond 1-7.",
-        "5. Archived homework experience only after a teacher-source topic has already been identified; it must never override `files-from-teacher/`.",
         "",
         "## Main Sessions",
         "",
@@ -178,45 +177,11 @@ def write_source_index() -> None:
 
     (REVIEW / "source-index.md").write_text("\n".join(lines), encoding="utf-8")
 
-
-def write_homework_assets() -> None:
-    REVIEW.mkdir(parents=True, exist_ok=True)
-    lines: list[str] = [
-        "# 本仓库历史作业资产索引",
-        "",
-        "本仓库历史作业和任务管理文件已从复习仓库移除，并推送到 `https://github.com/ceilf6/machine-learning-tasks`。它们不能决定考试范围，也不能覆盖老师资料；只有当 `files-from-teacher/` 已经确认某个考点后，才可以把历史作业经验当作个人练习补充。",
-        "",
-        "## 已清理噪音类型",
-        "",
-        "- 历史任务列表：提交、微信群、URL、待完成状态等管理信息。",
-        "- 历史作业目录：CV、CI/CD、项目提交、实验脚本和中间数据。",
-        "- 群聊记录与截图：只服务任务确认，不作为考试复习来源。",
-        "- 旧 GitHub Actions：服务作业提交，不服务复习。",
-        "",
-        "## 可沉淀的低优先级复习经验",
-        "",
-        "- 情感分类模型评估：可复习 `pipeline`、标签映射、accuracy 计算、模型与数据集匹配；具体模型排名不视为考试范围。",
-        "- 线性模型训练脚本：可复习 `fit`、模型参数、保存模型和最小训练流程；CI/CD 发布流程不作为复习重点。",
-        "- GloVe/embedding 小实验：可辅助理解词向量、相似度、下游分类；考试重点仍以 BagOfQuestions 和老师 session 资料为准。",
-        "- 个人作业踩坑：只在老师题目已经定位到同一知识点时用于提醒易错点。",
-        "",
-        "## 使用规则",
-        "",
-        "1. 先查 `files-from-teacher/Readme.md`、`files-from-teacher/BagOfQuestions/` 和主 session 资料。",
-        "2. 只有老师资料已经确认某个知识点后，才允许回忆历史作业经验。",
-        "3. 如果历史作业经验与老师资料冲突，丢弃历史作业经验。",
-        "4. 如果需要查看已备份原始作业文件，先向用户确认，不要自行把备份复制回仓库。",
-    ]
-    (REVIEW / "homework-assets-low-priority.md").write_text("\n".join(lines), encoding="utf-8")
-
-
 def main() -> int:
     if not TEACHER.exists():
         raise SystemExit("Missing files-from-teacher submodule")
     write_source_index()
-    write_homework_assets()
     print("generated review/source-index.md")
-    print("generated review/homework-assets-low-priority.md")
     return 0
 
 
