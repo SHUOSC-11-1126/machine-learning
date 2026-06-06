@@ -1,6 +1,3 @@
 [submodule "files-from-teacher"]
 	path = files-from-teacher
 	url = https://github.com/reveurmichael/machine_learning_2026_spring
-[submodule "ocademy-ai-machine-learning"]
-	path = ocademy-ai-machine-learning
-	url = https://github.com/ceilf6/ocademy-ai-machine-learning
