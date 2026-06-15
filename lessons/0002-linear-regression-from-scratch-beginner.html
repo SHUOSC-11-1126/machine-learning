@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesson 0002: Linear Regression From Scratch</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #162033;
+      --muted: #5f6877;
+      --paper: #fffdf8;
+      --panel: #f6f8fb;
+      --line: #d9dee8;
+      --accent: #0f766e;
+      --accent-dark: #115e59;
+      --warn: #9a3412;
+      --ok: #166534;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 17px/1.62 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 44px 24px 76px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 36px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 34px 0 12px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      font-size: 23px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+    p, li { max-width: 80ch; }
+    a { color: var(--accent-dark); }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.95em;
+    }
+    pre {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      background: #fff;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+    .subtitle, .zh { color: var(--muted); }
+    .subtitle { margin-top: 0; font-size: 18px; }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+    .rule {
+      border-left: 4px solid var(--accent);
+      padding-left: 14px;
+    }
+    .step {
+      display: inline-block;
+      min-width: 30px;
+      padding: 2px 8px;
+      margin-right: 6px;
+      border-radius: 999px;
+      background: #ccfbf1;
+      color: #134e4a;
+      font-weight: 700;
+      text-align: center;
+    }
+    .quiz button {
+      appearance: none;
+      border: 1px solid var(--accent);
+      background: #fff;
+      color: var(--accent-dark);
+      border-radius: 7px;
+      padding: 8px 14px;
+      margin: 4px 6px 4px 0;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .quiz button:hover { background: #ecfdf5; }
+    .feedback { margin-top: 10px; font-weight: 700; }
+    .feedback.ok { color: var(--ok); }
+    .feedback.no { color: var(--warn); }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+      .quiz { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Lesson 0002: Linear Regression From Scratch</h1>
+    <p class="subtitle">第 2 课：从零理解老师的第一部分线性回归代码</p>
+
+    <div class="card rule">
+      <p><strong>Goal in English:</strong> Be able to explain and fill in the teacher's <code>MyOwnLinearRegression.fit</code> code.</p>
+      <p class="zh"><strong>中文目标：</strong>能解释并填出老师的 <code>MyOwnLinearRegression.fit</code> 代码。</p>
+    </div>
+
+    <h2><span class="step">1</span> What problem are we solving?</h2>
+    <p><strong>English:</strong> Linear regression predicts a continuous number, such as salary, house price, or score.</p>
+    <p class="zh"><strong>中文：</strong>线性回归用来预测一个连续数值，比如工资、房价、分数。</p>
+
+    <p><strong>English:</strong> The data has inputs and true answers.</p>
+    <p class="zh"><strong>中文：</strong>数据里有输入，也有真实答案。</p>
+
+    <table>
+      <tr><th>Symbol</th><th>English meaning</th><th>中文</th></tr>
+      <tr><td><code>X</code></td><td>Input features.</td><td>输入特征。</td></tr>
+      <tr><td><code>y</code></td><td>True target values.</td><td>真实答案。</td></tr>
+      <tr><td><code>y_predicted</code></td><td>Model predictions.</td><td>模型预测值。</td></tr>
+    </table>
+
+    <h2><span class="step">2</span> What are weights and bias?</h2>
+    <p><strong>English:</strong> A weight tells the model how important one feature is. The bias is a constant added to every prediction.</p>
+    <p class="zh"><strong>中文：</strong>weight 表示某个特征有多重要。bias 是加到每个预测值上的常数。</p>
+
+    <pre><code>prediction = feature_1 * weight_1
+           + feature_2 * weight_2
+           + ...
+           + bias</code></pre>
+
+    <p><strong>English:</strong> If there are <code>n_features</code> features, we need <code>n_features</code> weights.</p>
+    <p class="zh"><strong>中文：</strong>如果有 <code>n_features</code> 个特征，就需要 <code>n_features</code> 个权重。</p>
+
+    <pre><code>n_samples, n_features = X.shape
+self.weights = np.zeros(n_features)
+self.bias = 0</code></pre>
+
+    <h2><span class="step">3</span> How do we predict?</h2>
+    <p><strong>English:</strong> The teacher's prediction line is:</p>
+    <p class="zh"><strong>中文：</strong>老师的预测代码是：</p>
+
+    <pre><code>y_predicted = np.dot(X, self.weights) + self.bias</code></pre>
+
+    <p><strong>English:</strong> <code>np.dot(X, self.weights)</code> computes one weighted sum per sample.</p>
+    <p class="zh"><strong>中文：</strong><code>np.dot(X, self.weights)</code> 会给每个样本算一个加权和。</p>
+
+    <pre><code>X = [[1, 2],
+     [3, 4]]
+weights = [10, 100]
+bias = 5
+
+first prediction  = 1*10 + 2*100 + 5 = 215
+second prediction = 3*10 + 4*100 + 5 = 435</code></pre>
+
+    <p><strong>English:</strong> Do not use <code>X * self.weights</code> as the prediction line. It only multiplies element by element and does not sum the features.</p>
+    <p class="zh"><strong>中文：</strong>不要把 <code>X * self.weights</code> 当作预测代码。它只是逐元素相乘，不会把特征加起来。</p>
+
+    <h2><span class="step">4</span> How do we know the prediction is bad?</h2>
+    <p><strong>English:</strong> We compare the prediction with the true answer. The difference is the error.</p>
+    <p class="zh"><strong>中文：</strong>我们把预测值和真实答案比较，差值就是误差。</p>
+
+    <pre><code>error = y_predicted - y</code></pre>
+
+    <p><strong>English:</strong> MSE loss means average squared error.</p>
+    <p class="zh"><strong>中文：</strong>MSE loss 是误差平方的平均值。</p>
+
+    <pre><code>math:   L = (1/n) * sum((y_hat - y)^2)
+Python: loss = np.mean((y_predicted - y) ** 2)</code></pre>
+
+    <h2><span class="step">5</span> What are gradients?</h2>
+    <p><strong>English:</strong> A gradient tells us how the loss changes when we change a parameter. In this code, <code>dw</code> is the gradient for weights, and <code>db</code> is the gradient for bias.</p>
+    <p class="zh"><strong>中文：</strong>梯度告诉我们：当参数变化时，loss 会怎么变。在这段代码里，<code>dw</code> 是 weights 的梯度，<code>db</code> 是 bias 的梯度。</p>
+
+    <pre><code>dw = (2 / n_samples) * np.dot(X.T, (y_predicted - y))
+db = (2 / n_samples) * np.sum(y_predicted - y)</code></pre>
+
+    <p><strong>English:</strong> <code>X.T</code> is used so that <code>dw</code> has one gradient value for each feature. Therefore, <code>dw.shape</code> matches <code>self.weights.shape</code>.</p>
+    <p class="zh"><strong>中文：</strong>这里用 <code>X.T</code>，是为了让 <code>dw</code> 对每个 feature 都有一个梯度值。所以 <code>dw.shape</code> 和 <code>self.weights.shape</code> 一样。</p>
+
+    <h2><span class="step">6</span> How do we improve the model?</h2>
+    <p><strong>English:</strong> Gradient descent updates parameters by moving against the gradient.</p>
+    <p class="zh"><strong>中文：</strong>梯度下降通过“朝梯度相反方向走”来更新参数。</p>
+
+    <pre><code>self.weights = self.weights - self.lr * dw
+self.bias = self.bias - self.lr * db</code></pre>
+
+    <p><strong>English:</strong> The minus sign is important. The gradient points toward increasing loss, so we subtract it to reduce the loss.</p>
+    <p class="zh"><strong>中文：</strong>减号非常重要。梯度指向 loss 增大的方向，所以我们要减去它来降低 loss。</p>
+
+    <h2><span class="step">7</span> The whole fit method</h2>
+    <pre><code>def fit(self, X, y):
+    n_samples, n_features = X.shape
+
+    self.weights = np.zeros(n_features)
+    self.bias = 0
+
+    for _ in range(self.n_iters):
+        y_predicted = np.dot(X, self.weights) + self.bias
+
+        dw = (2 / n_samples) * np.dot(X.T, (y_predicted - y))
+        db = (2 / n_samples) * np.sum(y_predicted - y)
+
+        self.weights = self.weights - self.lr * dw
+        self.bias = self.bias - self.lr * db</code></pre>
+
+    <h2><span class="step">8</span> Exam question and answer</h2>
+    <div class="card">
+      <h3>Question</h3>
+      <p><strong>English:</strong> Explain the main steps of the <code>fit</code> method in linear regression from scratch.</p>
+      <p class="zh"><strong>中文：</strong>解释从零实现线性回归时 <code>fit</code> 方法的主要步骤。</p>
+
+      <h3>Answer</h3>
+      <p><strong>English:</strong> The <code>fit</code> method first reads <code>n_samples</code> and <code>n_features</code> from <code>X.shape</code>. It initializes one weight for each feature and sets the bias to zero. In each iteration, it predicts with <code>np.dot(X, weights) + bias</code>, computes the MSE gradients <code>dw</code> and <code>db</code>, and updates the parameters by subtracting the learning rate times the gradients.</p>
+      <p class="zh"><strong>中文：</strong><code>fit</code> 方法先从 <code>X.shape</code> 读出样本数和特征数。它为每个特征初始化一个权重，并把 bias 设为 0。每次迭代中，它用 <code>np.dot(X, weights) + bias</code> 进行预测，计算 MSE 对应的梯度 <code>dw</code> 和 <code>db</code>，然后用“参数减去 learning rate 乘以梯度”的方式更新参数。</p>
+    </div>
+
+    <h2><span class="step">9</span> Fill-in-the-blank answers</h2>
+    <div class="card">
+      <pre><code>____YOUR_CODE_HERE__1_____: n_features
+____YOUR_CODE_HERE__2_____: 0
+____YOUR_CODE_HERE__3_____: X
+____YOUR_CODE_HERE__4_____: self.weights
+____YOUR_CODE_HERE__5_____: X.T
+____YOUR_CODE_HERE__6_____: y_predicted - y
+____YOUR_CODE_HERE__7_____: dw
+____YOUR_CODE_HERE__8_____: db
+____YOUR_CODE_HERE__9_____: X
+____YOUR_CODE_HERE__10____: self.weights</code></pre>
+    </div>
+
+    <h2><span class="step">10</span> Quick practice</h2>
+    <div class="card quiz">
+      <p><strong>English:</strong> If <code>X.shape == (50, 4)</code>, what is the shape of <code>self.weights</code>?</p>
+      <p class="zh"><strong>中文：</strong>如果 <code>X.shape == (50, 4)</code>，那么 <code>self.weights</code> 的 shape 是什么？</p>
+      <p>A. <code>(50,)</code></p>
+      <p>B. <code>(4,)</code></p>
+      <p>C. <code>(50, 4)</code></p>
+      <button data-answer="no">A</button>
+      <button data-answer="ok">B</button>
+      <button data-answer="no">C</button>
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+    </div>
+
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="../files-from-teacher/Readme.md">Teacher README</a></li>
+      <li><a href="../files-from-teacher/session-1/code-my_linear_regression.md">Teacher Session 1 code: linear regression from scratch</a></li>
+      <li><a href="../files-from-teacher/BagOfQuestions/BagOfQuestions-session-1-ae.md">BagOfQuestions Session 1 AE</a></li>
+      <li><a href="../files-from-teacher/BagOfQuestions/BagOfQuestions-session-1-af.md">BagOfQuestions Session 1 AF</a></li>
+      <li><a href="../files-from-teacher/BagOfQuestions/BagOfQuestions-session-1-ak.md">BagOfQuestions Session 1 AK</a></li>
+      <li><a href="../reference/session-1-linear-regression-cheatsheet.html">Reference: Session 1 linear regression cheat sheet</a></li>
+      <li><a href="../lessons/0001-np-dot-linear-regression.html">Previous lesson: np.dot in linear regression</a></li>
+    </ul>
+
+    <p><strong>English:</strong> If any step is unclear, ask the agent to zoom in on that exact line of code.</p>
+    <p class="zh"><strong>中文：</strong>如果任何一步不清楚，直接让 agent 针对那一行代码继续拆开讲。</p>
+  </main>
+
+  <script>
+    const feedback = document.getElementById("feedback");
+    document.querySelectorAll(".quiz button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const ok = button.dataset.answer === "ok";
+        feedback.className = ok ? "feedback ok" : "feedback no";
+        feedback.textContent = ok
+          ? "Correct. There is one weight per feature, so 4 features need 4 weights."
+          : "Try again. We need one weight per feature, not one weight per sample.";
+      });
+    });
+  </script>
+</body>
+</html>

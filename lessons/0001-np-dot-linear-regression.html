@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lesson 0001: np.dot in Linear Regression</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #162033;
+      --muted: #606b7b;
+      --paper: #fffdf8;
+      --panel: #f7f9fc;
+      --line: #d8dee9;
+      --accent: #0f766e;
+      --accent-dark: #115e59;
+      --warn: #9a3412;
+      --ok: #166534;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 17px/1.62 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 44px 24px 72px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 36px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 32px 0 12px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      font-size: 23px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 20px 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+    p, li {
+      max-width: 78ch;
+    }
+    a { color: var(--accent-dark); }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.95em;
+    }
+    pre {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      overflow-x: auto;
+    }
+    .subtitle, .zh {
+      color: var(--muted);
+    }
+    .subtitle {
+      margin-top: 0;
+      font-size: 18px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+    .rule {
+      border-left: 4px solid var(--accent);
+      padding-left: 14px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      background: #fff;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: var(--accent-dark);
+      font-weight: 700;
+    }
+    .quiz button {
+      appearance: none;
+      border: 1px solid var(--accent);
+      background: #fff;
+      color: var(--accent-dark);
+      border-radius: 7px;
+      padding: 8px 14px;
+      margin: 4px 6px 4px 0;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .quiz button:hover {
+      background: #ecfdf5;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: 700;
+    }
+    .feedback.ok { color: var(--ok); }
+    .feedback.no { color: var(--warn); }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+      .quiz { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Lesson 0001: What does np.dot do in linear regression?</h1>
+    <p class="subtitle">第 1 课：线性回归里的 <code>np.dot</code> 是什么？</p>
+
+    <div class="card rule">
+      <p><strong>Goal in English:</strong> Understand why the teacher's code uses <code>np.dot(X, self.weights)</code> instead of <code>X * self.weights</code>.</p>
+      <p class="zh"><strong>中文目标：</strong>理解为什么老师代码里用 <code>np.dot(X, self.weights)</code>，而不是 <code>X * self.weights</code>。</p>
+    </div>
+
+    <h2>1. The beginner story: prediction is weighted addition</h2>
+    <p><strong>English:</strong> Linear regression predicts a number by multiplying each feature by its weight, adding the results, and then adding a bias.</p>
+    <p class="zh"><strong>中文：</strong>线性回归预测一个数：每个特征先乘自己的权重，然后把这些结果加起来，最后再加一个 bias。</p>
+
+    <pre><code>prediction = feature_1 * weight_1
+           + feature_2 * weight_2
+           + feature_3 * weight_3
+           + bias</code></pre>
+
+    <p><strong>English:</strong> If there are many features, writing this by hand is slow and easy to get wrong. <code>np.dot</code> is the NumPy function that does this multiply-then-add pattern for us.</p>
+    <p class="zh"><strong>中文：</strong>如果特征很多，手写每一项很慢，也容易错。<code>np.dot</code> 就是 NumPy 里帮我们做“对应相乘，然后相加”的函数。</p>
+
+    <h2>2. Single sample: dot product</h2>
+    <p><strong>English:</strong> For one sample, <code>np.dot(x, weights)</code> means: multiply matching positions, then add them.</p>
+    <p class="zh"><strong>中文：</strong>对一个样本来说，<code>np.dot(x, weights)</code> 的意思是：对应位置相乘，然后把结果加起来。</p>
+
+    <pre><code>import numpy as np
+
+x = np.array([1, 2, 3])
+weights = np.array([10, 100, 1000])
+
+np.dot(x, weights)
+# 1*10 + 2*100 + 3*1000 = 3210</code></pre>
+
+    <p><strong>English:</strong> The result is one number, because one sample should produce one prediction.</p>
+    <p class="zh"><strong>中文：</strong>结果是一个数，因为一个样本应该得到一个预测值。</p>
+
+    <h2>3. Many samples: matrix times vector</h2>
+    <p><strong>English:</strong> In the teacher's code, <code>X</code> stores many samples. Each row is one sample, and each column is one feature.</p>
+    <p class="zh"><strong>中文：</strong>在老师代码中，<code>X</code> 存很多个样本。每一行是一个样本，每一列是一个特征。</p>
+
+    <table>
+      <tr><th>Object</th><th>Shape</th><th>Meaning</th></tr>
+      <tr><td><code>X</code></td><td><code>(n_samples, n_features)</code></td><td>Many samples, many features.</td></tr>
+      <tr><td><code>self.weights</code></td><td><code>(n_features,)</code></td><td>One weight for each feature.</td></tr>
+      <tr><td><code>np.dot(X, self.weights)</code></td><td><code>(n_samples,)</code></td><td>One predicted value for each sample.</td></tr>
+    </table>
+
+    <pre><code>X = np.array([
+    [1, 2, 3],
+    [4, 5, 6],
+])
+weights = np.array([10, 100, 1000])
+
+np.dot(X, weights)
+# array([3210, 6540])</code></pre>
+
+    <p><strong>English:</strong> The first output, <code>3210</code>, is the prediction for the first row. The second output, <code>6540</code>, is the prediction for the second row.</p>
+    <p class="zh"><strong>中文：</strong>第一个输出 <code>3210</code> 是第一行样本的预测值；第二个输出 <code>6540</code> 是第二行样本的预测值。</p>
+
+    <h2>4. Why not X * weights?</h2>
+    <p><strong>English:</strong> <code>X * weights</code> only multiplies element by element. It does not add the feature contributions together.</p>
+    <p class="zh"><strong>中文：</strong><code>X * weights</code> 只是逐元素相乘，它不会把各个特征的贡献加起来。</p>
+
+    <pre><code>X * weights
+# array([
+#   [  10,  200, 3000],
+#   [  40,  500, 6000],
+# ])</code></pre>
+
+    <p><strong>English:</strong> This result still has shape <code>(2, 3)</code>. It is not the final prediction, because we need one number per sample, not three numbers per sample.</p>
+    <p class="zh"><strong>中文：</strong>这个结果的 shape 还是 <code>(2, 3)</code>。它不是最终预测，因为我们需要每个样本一个数，而不是每个样本三个数。</p>
+
+    <h2>5. The teacher's line</h2>
+    <p><strong>English:</strong> This is why the correct prediction line in the teacher's implementation is:</p>
+    <p class="zh"><strong>中文：</strong>所以老师实现里的正确预测代码是：</p>
+
+    <pre><code>y_predicted = np.dot(X, self.weights) + self.bias</code></pre>
+
+    <p><strong>English:</strong> <code>np.dot(X, self.weights)</code> gives one weighted sum per sample. <code>self.bias</code> then shifts every prediction by the same amount.</p>
+    <p class="zh"><strong>中文：</strong><code>np.dot(X, self.weights)</code> 给每个样本算出一个加权和。<code>self.bias</code> 再把每个预测值整体平移同样的量。</p>
+
+    <h2>6. Exam question and answer</h2>
+    <div class="card">
+      <h3>Question</h3>
+      <p><strong>English:</strong> Why do we use <code>np.dot(X, self.weights)</code> instead of elementwise multiplication <code>X * self.weights</code> for prediction in multiple linear regression?</p>
+      <p class="zh"><strong>中文：</strong>在多元线性回归中，为什么预测时使用 <code>np.dot(X, self.weights)</code>，而不是逐元素乘法 <code>X * self.weights</code>？</p>
+
+      <h3>Answer</h3>
+      <p><strong>English:</strong> We use <code>np.dot(X, self.weights)</code> because multiple linear regression needs a weighted sum of all features for each sample. The dot product multiplies each feature by its corresponding weight and sums the results, producing one prediction per sample. Elementwise multiplication only multiplies matching entries and does not perform the summation, so it does not directly produce the correct prediction shape.</p>
+      <p class="zh"><strong>中文：</strong>我们使用 <code>np.dot(X, self.weights)</code>，因为多元线性回归需要对每个样本的所有特征做加权求和。点积会把每个特征乘以对应权重，并把结果加起来，从而为每个样本产生一个预测值。逐元素乘法只会对应位置相乘，不会执行求和，因此不会直接得到正确的预测形状。</p>
+    </div>
+
+    <h2>7. Quick practice</h2>
+    <div class="card quiz">
+      <p><strong>English:</strong> If <code>X.shape == (50, 4)</code> and <code>self.weights.shape == (4,)</code>, what is the shape of <code>np.dot(X, self.weights)</code>?</p>
+      <p class="zh"><strong>中文：</strong>如果 <code>X.shape == (50, 4)</code> 且 <code>self.weights.shape == (4,)</code>，那么 <code>np.dot(X, self.weights)</code> 的 shape 是什么？</p>
+      <p>A. <code>(50,)</code></p>
+      <p>B. <code>(4,)</code></p>
+      <p>C. <code>(50, 4)</code></p>
+      <button data-answer="ok">A</button>
+      <button data-answer="no">B</button>
+      <button data-answer="no">C</button>
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+    </div>
+
+    <h2>8. What to ask next</h2>
+    <p><strong>English:</strong> Ask the agent to explain <code>X.T</code> next, because it appears in the gradient line <code>np.dot(X.T, (y_predicted - y))</code>.</p>
+    <p class="zh"><strong>中文：</strong>下一步可以让 agent 解释 <code>X.T</code>，因为它出现在梯度代码 <code>np.dot(X.T, (y_predicted - y))</code> 里。</p>
+
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="../files-from-teacher/session-1/code-my_linear_regression.md">Teacher Session 1 code: linear regression from scratch</a></li>
+      <li><a href="../files-from-teacher/session-1/lecture-3-multiple-linear-regression.md">Teacher Session 1 lecture: multiple linear regression</a></li>
+      <li><a href="../files-from-teacher/BagOfQuestions/BagOfQuestions-session-1-ae.md">BagOfQuestions Session 1 AE: linear regression from scratch</a></li>
+      <li><a href="../files-from-teacher/BagOfQuestions/BagOfQuestions-session-1-af.md">BagOfQuestions Session 1 AF: debug linear regression</a></li>
+      <li><a href="../reference/numpy-dot-linear-regression.html">Reference: np.dot for linear regression</a></li>
+    </ul>
+  </main>
+
+  <script>
+    const feedback = document.getElementById("feedback");
+    document.querySelectorAll(".quiz button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const ok = button.dataset.answer === "ok";
+        feedback.className = ok ? "feedback ok" : "feedback no";
+        feedback.textContent = ok
+          ? "Correct. One row gives one prediction, so 50 rows give 50 predictions."
+          : "Try again. The result should have one prediction for each row of X.";
+      });
+    });
+  </script>
+</body>
+</html>

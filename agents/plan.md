@@ -6,6 +6,8 @@
 
 最高优先级资料是 `files-from-teacher/` 子模块。根据 `files-from-teacher/Readme.md`，final exam 约 70% 来自主 session 1-7，部分题目来自 `files-from-teacher/BagOfQuestions/`；约 30% 来自 extra sessions，题目较简单。
 
+所有复习产物遵循 English-first rule：考试题目、考试问法、可背答案、关键术语和公式解释先写英文，再给中文翻译或中文讲解。中文用于帮助理解，不能替代英文考试版。
+
 复习主线：线性回归与梯度下降 -> 逻辑回归与 BCE -> 神经网络前向传播 -> softmax 和多分类 -> 反向传播与层接口 -> 优化器 -> 泛化、指标、正则化 -> dropout、early stopping、batch normalization -> extra sessions 速记。
 
 ## Source Map
@@ -154,9 +156,10 @@
 1. Read `review/source-index.md` to locate teacher materials.
 2. Read the matching BagOfQuestions file first if available.
 3. Read the matching session lecture/code file.
-4. Produce a short Chinese explanation for understanding.
-5. Produce an English exam-ready answer.
-6. Do one similar practice question.
+4. Extract or write the exam question in English first, then add a Chinese translation.
+5. Produce an English exam-ready answer first, then add a Chinese translation.
+6. Add a short Chinese explanation for understanding.
+7. Do one similar practice question, also English first with Chinese translation.
 
 ## Assumptions
 

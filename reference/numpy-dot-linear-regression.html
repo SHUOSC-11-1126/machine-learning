@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>np.dot for Linear Regression Reference</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #5a6475;
+      --line: #d9dee8;
+      --paper: #fffdf8;
+      --accent: #0f766e;
+      --code: #f3f6fa;
+    }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 44px 24px 64px;
+    }
+    h1, h2 {
+      line-height: 1.15;
+      margin: 0 0 14px;
+    }
+    h1 {
+      font-size: 34px;
+      letter-spacing: 0;
+    }
+    h2 {
+      font-size: 21px;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      margin-top: 28px;
+    }
+    p, li {
+      max-width: 76ch;
+    }
+    .zh {
+      color: var(--muted);
+      margin-top: -8px;
+    }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    pre {
+      background: var(--code);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>np.dot for Linear Regression</h1>
+    <p class="zh">线性回归里的 np.dot 速查表</p>
+
+    <h2>Core Meaning</h2>
+    <p><strong>English:</strong> In linear regression, <code>np.dot(X, weights)</code> computes the weighted sum of features for each sample.</p>
+    <p class="zh"><strong>中文：</strong>在线性回归中，<code>np.dot(X, weights)</code> 会为每个样本计算“特征乘权重再相加”的结果。</p>
+
+    <pre><code>y_predicted = np.dot(X, self.weights) + self.bias</code></pre>
+
+    <h2>Single Sample</h2>
+    <table>
+      <tr><th>Input</th><th>Meaning</th><th>Result</th></tr>
+      <tr>
+        <td><code>x = [x1, x2, x3]</code><br><code>w = [w1, w2, w3]</code></td>
+        <td>Multiply matching positions, then add them.</td>
+        <td><code>x1*w1 + x2*w2 + x3*w3</code></td>
+      </tr>
+    </table>
+
+    <h2>Batch Input</h2>
+    <table>
+      <tr><th>Expression</th><th>Shape</th><th>Meaning</th></tr>
+      <tr><td><code>X</code></td><td><code>(n_samples, n_features)</code></td><td>Rows are samples, columns are features.</td></tr>
+      <tr><td><code>weights</code></td><td><code>(n_features,)</code></td><td>One weight for each feature.</td></tr>
+      <tr><td><code>np.dot(X, weights)</code></td><td><code>(n_samples,)</code></td><td>One prediction value for each sample.</td></tr>
+    </table>
+
+    <h2>Do Not Confuse With Elementwise Multiplication</h2>
+    <p><strong>English:</strong> <code>X * weights</code> only multiplies matching elements. It does not add across features, so it does not directly produce one prediction per sample.</p>
+    <p class="zh"><strong>中文：</strong><code>X * weights</code> 只是逐元素相乘，不会把多个特征加起来，所以它不会直接得到每个样本的一个预测值。</p>
+
+    <h2>Exam Sentence</h2>
+    <p><strong>English:</strong> We use <code>np.dot(X, weights)</code> because multiple linear regression requires a weighted sum over all features for each sample.</p>
+    <p class="zh"><strong>中文：</strong>我们使用 <code>np.dot(X, weights)</code>，因为多元线性回归需要对每个样本的所有特征做加权求和。</p>
+
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="../files-from-teacher/session-1/code-my_linear_regression.md">Teacher Session 1 code: linear regression from scratch</a></li>
+      <li><a href="../files-from-teacher/session-1/lecture-3-multiple-linear-regression.md">Teacher Session 1 lecture: multiple linear regression</a></li>
+      <li><a href="../files-from-teacher/BagOfQuestions/BagOfQuestions-session-1-af.md">BagOfQuestions Session 1 AF: debug linear regression</a></li>
+    </ul>
+  </main>
+</body>
+</html>

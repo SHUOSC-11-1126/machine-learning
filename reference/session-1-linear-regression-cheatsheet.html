@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Session 1 Linear Regression Cheat Sheet</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #5f6877;
+      --line: #d9dee8;
+      --paper: #fffdf8;
+      --panel: #f6f8fb;
+      --accent: #0f766e;
+    }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 42px 24px 64px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 28px 0 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-size: 22px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+    p, li { max-width: 78ch; }
+    .zh { color: var(--muted); }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    pre {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      background: #fff;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { color: var(--accent); }
+    @media print {
+      body { background: #fff; }
+      main { padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Session 1 Linear Regression Cheat Sheet</h1>
+    <p class="zh">Session 1 线性回归考试速查表</p>
+
+    <h2>1. Core Objects</h2>
+    <table>
+      <tr><th>Name</th><th>Shape</th><th>English meaning</th><th>中文</th></tr>
+      <tr><td><code>X</code></td><td><code>(n_samples, n_features)</code></td><td>Input feature matrix.</td><td>输入特征矩阵。</td></tr>
+      <tr><td><code>y</code></td><td><code>(n_samples,)</code></td><td>True target values.</td><td>真实答案。</td></tr>
+      <tr><td><code>weights</code></td><td><code>(n_features,)</code></td><td>One weight for each feature.</td><td>每个特征一个权重。</td></tr>
+      <tr><td><code>bias</code></td><td>scalar</td><td>A constant shift added to every prediction.</td><td>给每个预测加上的常数偏移。</td></tr>
+      <tr><td><code>y_predicted</code></td><td><code>(n_samples,)</code></td><td>One prediction for each sample.</td><td>每个样本一个预测值。</td></tr>
+      <tr><td><code>dw</code></td><td><code>(n_features,)</code></td><td>Gradient for the weights.</td><td>权重的梯度。</td></tr>
+      <tr><td><code>db</code></td><td>scalar</td><td>Gradient for the bias.</td><td>bias 的梯度。</td></tr>
+    </table>
+
+    <h2>2. Prediction</h2>
+    <p><strong>English:</strong> Linear regression predicts with a weighted sum of features plus a bias.</p>
+    <p class="zh"><strong>中文：</strong>线性回归用“特征加权求和 + bias”做预测。</p>
+    <pre><code>y_predicted = np.dot(X, self.weights) + self.bias</code></pre>
+
+    <h2>3. MSE Loss</h2>
+    <p><strong>English:</strong> MSE measures the average squared prediction error.</p>
+    <p class="zh"><strong>中文：</strong>MSE 衡量预测误差平方的平均值。</p>
+    <pre><code>math:   L = (1/n) * sum((y_hat - y)^2)
+Python: loss = np.mean((y_predicted - y) ** 2)</code></pre>
+
+    <h2>4. Gradients</h2>
+    <p><strong>English:</strong> Gradients tell us how to change parameters to reduce the loss.</p>
+    <p class="zh"><strong>中文：</strong>梯度告诉我们怎样改变参数才能降低 loss。</p>
+    <pre><code>dw = (2 / n_samples) * np.dot(X.T, (y_predicted - y))
+db = (2 / n_samples) * np.sum(y_predicted - y)</code></pre>
+
+    <h2>5. Updates</h2>
+    <p><strong>English:</strong> Gradient descent subtracts the gradient because the gradient points toward increasing loss.</p>
+    <p class="zh"><strong>中文：</strong>梯度下降要减去梯度，因为梯度方向是 loss 增大的方向。</p>
+    <pre><code>self.weights = self.weights - self.lr * dw
+self.bias = self.bias - self.lr * db</code></pre>
+
+    <h2>6. Fill-in Answers</h2>
+    <pre><code>1: n_features
+2: 0
+3: X
+4: self.weights
+5: X.T
+6: y_predicted - y
+7: dw
+8: db
+9: X
+10: self.weights</code></pre>
+
+    <h2>7. Debug Rules</h2>
+    <ul>
+      <li><strong>English:</strong> Use <code>np.dot(X, self.weights)</code>, not <code>X * self.weights</code>, because prediction needs a weighted sum.</li>
+      <li class="zh"><strong>中文：</strong>预测要用 <code>np.dot(X, self.weights)</code>，不要用 <code>X * self.weights</code>，因为预测需要加权求和。</li>
+      <li><strong>English:</strong> Use <code>X.T</code> in <code>dw</code> so the gradient has one value per feature.</li>
+      <li class="zh"><strong>中文：</strong><code>dw</code> 里用 <code>X.T</code>，这样梯度才是每个 feature 一个值。</li>
+      <li><strong>English:</strong> Update with minus, not plus.</li>
+      <li class="zh"><strong>中文：</strong>参数更新用减号，不用加号。</li>
+    </ul>
+
+    <h2>Sources</h2>
+    <ul>
+      <li><a href="../files-from-teacher/session-1/code-my_linear_regression.md">Teacher Session 1 code</a></li>
+      <li><a href="../files-from-teacher/BagOfQuestions/BagOfQuestions-session-1-ae.md">BagOfQuestions Session 1 AE</a></li>
+      <li><a href="../files-from-teacher/BagOfQuestions/BagOfQuestions-session-1-af.md">BagOfQuestions Session 1 AF</a></li>
+      <li><a href="../files-from-teacher/BagOfQuestions/BagOfQuestions-session-1-ak.md">BagOfQuestions Session 1 AK</a></li>
+    </ul>
+  </main>
+</body>
+</html>
