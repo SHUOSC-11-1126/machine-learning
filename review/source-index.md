@@ -1,23 +1,40 @@
 # 机器学习复习资料索引
 
-本索引从 `files-from-teacher/` 子模块生成。该子模块由老师维护，是考试复习的唯一最高优先级资料。
+本索引从 `files-from-teacher/` 子模块生成，并记录 2026-06-17 老师最新口头范围更新。该子模块由老师维护，是考试复习的唯一最高优先级资料。
+
+## Latest Scope Update
+
+- 2026-06-17 teacher update: `files-from-teacher/session-0` to `files-from-teacher/session-7` are the main line.
+- Extra questions only use `files-from-teacher/session-201-qkv-attention-mini-series`, `files-from-teacher/session-202-positional-encoding-mini-series`, and `files-from-teacher/session-203-masking-mini-series`.
+- Other `files-from-teacher/session-*` directories are outside the current final-exam scope unless the teacher updates the scope again.
 
 ## Exam Signal From Readme
 
 - Final score = `0.7 * T + 0.3 * P`.
-- Final exam: about 70% from main sessions 1-7.
+- Final exam: about 70% from main sessions; latest teacher update defines the main line as sessions 0-7.
 - Some exam questions will come from `files-from-teacher/BagOfQuestions/`.
-- About 30% from extra sessions, described as easier questions.
+- About 30% from extra sessions, now scoped to sessions 201, 202, and 203 only.
 - Closed-book exam: no books, sheets, or other materials.
 
 ## Priority Order
 
 1. `files-from-teacher/Readme.md` exam rules.
 2. `files-from-teacher/BagOfQuestions/` question source.
-3. `files-from-teacher/session-1` to `session-7` lecture and code materials.
-4. Extra session materials under `files-from-teacher/session-*` beyond 1-7.
+3. `files-from-teacher/session-0` to `session-7` lecture and code materials.
+4. Extra session materials only from `session-201`, `session-202`, and `session-203`.
 
 ## Main Sessions
+
+### Session 0
+
+- BagOfQuestions files: 0
+- Markdown materials: 6
+  - `files-from-teacher/session-0/lecture-0-notation-for-session-1-to-session-7.md` (lecture): Notation for Sessions 1–7
+  - `files-from-teacher/session-0/lecture-Left-Side-vs-Right-Side-Projection.md` (lecture): 1. Left-Side vs. Right-Side Projection
+  - `files-from-teacher/session-0/lecture-breaking-changes-in-NN-history.md` (lecture): Breaking Changes in Neural Network History
+  - `files-from-teacher/session-0/lecture-notation-guideline.md` (lecture): lecture-notation-guideline
+  - `files-from-teacher/session-0/lecture-what-is-ml-dl.md` (lecture): What is Machine Learning and Deep Learning
+  - `files-from-teacher/session-0/lecture-why-nn-from-srcatch.md` (lecture): lecture-why-nn-from-srcatch
 
 ### Session 1
 
@@ -40,7 +57,7 @@
 
 ### Session 2
 
-- BagOfQuestions files: 12
+- BagOfQuestions files: 11
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-aa.md`: Logistic Regression Boundary and Losses
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-ab.md`: GitHub CI/CD/Actions/Release Project
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-ac.md`: Decision Boundary; Numerical Boundary
@@ -51,7 +68,6 @@
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-ai.md`: Probability, Threshold, and Business Meaning; Link to the Decision Boundary
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-aj.md`: Compare Linear and Logistic Regression Code From Scratch
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-ak.md`: Logistic Regression Predict Method
-  - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-bg.md`: Logistic Regression Fit Method and Internal Sigmoid
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-bh.md`: Logistic Regression from Scratch
 - Markdown materials: 10
   - `files-from-teacher/session-2/code-my_logistic_regression.md` (code): Logistic Regression from Scratch
@@ -142,15 +158,14 @@
 
 ### Session 6
 
-- BagOfQuestions files: 7
+- BagOfQuestions files: 6
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-6-aa.md`: Generalization, Overfitting, and Data Splits
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-6-ab.md`: Metrics Under Class Imbalance and Task-Dependent Trade-offs
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-6-af.md`: Bias–Variance Tradeoff Drawing
-  - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-6-ag.md`: L1 vs L2 Regularization
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-6-ah.md`: L1 and L2 Regularization — Formula, Geometry, and Intuition
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-6-ai.md`: L1 and L2 Regularization Formulas
   - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-6-ak.md`: Visualizing and Analyzing a Bivariate Normal Distribution
-- Markdown materials: 16
+- Markdown materials: 17
   - `files-from-teacher/session-6/README.md` (other): Simple Neural Network UTSEUS (simple_nn_utseus)
   - `files-from-teacher/session-6/code-stats-distributions-1-math.md` (code): Normal Distribution and Bivariate Normal Distribution
   - `files-from-teacher/session-6/code-stats-distributions-1.md` (code): Normal Distributions and Bivariate Normal Distributions
@@ -166,6 +181,7 @@
   - `files-from-teacher/session-6/lecture-8-L1-L2-regularization-geometry-and-effect.md` (lecture): L1/L2 Regularization — Geometry and Effect
   - `files-from-teacher/session-6/lecture-9-L1-L2-first-touch-geometry.md` (lecture): L1 vs L2 Regularization — Geometry of Norm Balls and the First-Touch Principle
   - `files-from-teacher/session-6/practice-python-packaging.md` (practice): Converting a Neural Network Script into a Python Package
+  - `files-from-teacher/session-6/practice-why-python-packaging.md` (practice): Why Python Packaging Is Useful — 15 Practical Reasons
   - `files-from-teacher/session-6/reading-material-why-we-do-not-want-large-weights.md` (reading): Why We Don’t Want Large Weights (Optional)
 
 ### Session 7
@@ -190,33 +206,10 @@
 
 ## Extra Sessions
 
-### session-102-autoencoder-mini-series
-
-- `files-from-teacher/session-102-autoencoder-mini-series/code-compare-PCA-with-linear-autoencoder.md`: PCA as a baseline: compare with linear autoencoder
-- `files-from-teacher/session-102-autoencoder-mini-series/lecture-autoencoder-1.md`: Autoencoders
-- `files-from-teacher/session-102-autoencoder-mini-series/lecture-autoencoder-2.md`: Variational Autoencoders
-- `files-from-teacher/session-102-autoencoder-mini-series/lecture-autoencoder-3.md`: The Reparameterization Trick
-
-### session-104-resnet-and-skip-connections-mini-series
-
-- `files-from-teacher/session-104-resnet-and-skip-connections-mini-series/lecture-1-resnet-and-skip-connections.md`: From ResNet to Skip Connections
-- `files-from-teacher/session-104-resnet-and-skip-connections-mini-series/lecture-2-object-detection-1.md`: Object Detection 1: From Classification to Boxes
-- `files-from-teacher/session-104-resnet-and-skip-connections-mini-series/lecture-3-object-detection-2.md`: Object Detection 2: Backbone, Neck, Head, Losses, and Metrics
-- `files-from-teacher/session-104-resnet-and-skip-connections-mini-series/lecture-4-object-detection-3.md`: Object Detection 3: Why Detectors Use Rectangles
-- `files-from-teacher/session-104-resnet-and-skip-connections-mini-series/lecture-5-image-segmentation.md`: Image Segmentation: Dense Prediction with Encoder-Decoder Networks
-- `files-from-teacher/session-104-resnet-and-skip-connections-mini-series/lecture-6-upsampling.md`: Upsampling: From Low Resolution to High Fidelity
-
-### session-105-gan-and-adversarial-robustness-mini-series
-
-- `files-from-teacher/session-105-gan-and-adversarial-robustness-mini-series/lecture-adversarial-robustness-attack.md`: Adversarial Robustness (Part 1): Adversarial Attacks
-- `files-from-teacher/session-105-gan-and-adversarial-robustness-mini-series/lecture-adversarial-robustness-defense.md`: Adversarial Robustness (Part 2): Defense
-- `files-from-teacher/session-105-gan-and-adversarial-robustness-mini-series/lecture-gan.md`: Generative Adversarial Networks (GANs)
-
-### session-200-welcome-to-attention-transformer
-
-- `files-from-teacher/session-200-welcome-to-attention-transformer/lecture-0-notation-guideline-for-transformer-attention-20X-series.md`: Unified Notation Guideline for Transformer Attention 20X Mini-Series
-
 ### session-201-qkv-attention-mini-series
+
+- BagOfQuestions files: 1
+  - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-201-ee.md`: Self-Attention vs Cross-Attention
 
 - `files-from-teacher/session-201-qkv-attention-mini-series/lecture-0-notation-guideline-for-qkv-mini-series.md`: Notation Guideline for the QKV Attention Mini-Series (Exhaustive Edition)
 - `files-from-teacher/session-201-qkv-attention-mini-series/lecture-1-from-static-to-dynamic-weights.md`: From Static to Dynamic Weights
@@ -234,6 +227,9 @@
 
 ### session-202-positional-encoding-mini-series
 
+- BagOfQuestions files: 1
+  - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-202-ee.md`: Sinusoidal Positional Encoding and the Attention Pipeline
+
 - `files-from-teacher/session-202-positional-encoding-mini-series/lecture-0-notation-guideline-for-pe-mini-series.md`: Notation Guideline for the Positional Encoding Mini-Series
 - `files-from-teacher/session-202-positional-encoding-mini-series/lecture-pe-1-why-order-matters.md`: Positional Encoding: Why Order Matters
 - `files-from-teacher/session-202-positional-encoding-mini-series/lecture-pe-2-order-in-rnn-and-cnn.md`: Positional Encoding: How RNN and CNN Encode Order Implicitly
@@ -246,6 +242,9 @@
 
 ### session-203-masking-mini-series
 
+- BagOfQuestions files: 1
+  - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-203-ee.md`: Causal Mask for Autoregressive Decoding
+
 - `files-from-teacher/session-203-masking-mini-series/code-networkx-1.md`: NetworkX & Graph Theory
 - `files-from-teacher/session-203-masking-mini-series/lecture-0-notation-guideline-for-masking-mini-series.md`: Notation Guideline for the Masking Mini-Series
 - `files-from-teacher/session-203-masking-mini-series/lecture-mask-1-why-attention-needs-constraints.md`: Why Attention Needs Constraints
@@ -257,114 +256,26 @@
 - `files-from-teacher/session-203-masking-mini-series/lecture-mask-7-masking-in-transformers.md`: Masking in Transformer Architectures
 - `files-from-teacher/session-203-masking-mini-series/lecture-mask-8-information-flow-view.md`: Masking as Information Flow Control
 
-### session-204-loss-function-mini-series
+## Out Of Current Exam Scope
 
-- `files-from-teacher/session-204-loss-function-mini-series/lecture-0-notation-guideline-for-loss-function-mini-series.md`: Notation Guideline for the Loss-Function Mini-Series
-- `files-from-teacher/session-204-loss-function-mini-series/lecture-loss-1-the-goal-of-prediction.md`: The Goal of Prediction — From Vectors to Words
-- `files-from-teacher/session-204-loss-function-mini-series/lecture-loss-2-cross-entropy-and-maximum-likelihood.md`: Cross-Entropy and Maximum Likelihood
-- `files-from-teacher/session-204-loss-function-mini-series/lecture-loss-3-encoder-only-mlm-bert.md`: Encoder-Only Models — Masked Language Modeling (MLM)
-- `files-from-teacher/session-204-loss-function-mini-series/lecture-loss-4-decoder-only-clm-gpt.md`: Decoder-Only Models — Causal Language Modeling (CLM)
-- `files-from-teacher/session-204-loss-function-mini-series/lecture-loss-5-encoder-decoder-seq2seq-transformer.md`: Encoder–Decoder Models — Seq2Seq Transformer
-- `files-from-teacher/session-204-loss-function-mini-series/lecture-loss-6-label-smoothing-trick.md`: Label Smoothing — A Soft Target for Stable Training
-- `files-from-teacher/session-204-loss-function-mini-series/lecture-loss-7-unifying-view-masking-and-objectives.md`: Unifying View — Masking and Objectives
+Latest teacher update says these other `session-*` directories are not assessed in the final exam:
 
-### session-205-transformer-advanced-topics
-
-- `files-from-teacher/session-205-transformer-advanced-topics/adamw.md`: AdamW: Decoupled Weight Decay for Transformers
-- `files-from-teacher/session-205-transformer-advanced-topics/moe.md`: Mixture-of-Experts (MoE)
-- `files-from-teacher/session-205-transformer-advanced-topics/shift-right.md`: shift-right
-
-### session-208-rnn-seq2seq-mini-series
-
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-1-hmm.md`: Hidden Markov Models: The Probabilistic Starting Point
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-10-Bahdanau-attention-additive.md`: Bahdanau Attention: Additive Alignment
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-11-Luong-attention-multiplicative.md`: Luong Attention: Multiplicative Alignment
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-12-from-attention-to-self-attention.md`: From Attention to Self-Attention
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-13-attention-as-a-unified-operator.md`: Attention as a Unified Operator
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-14-transformer-attention.md`: Transformer Attention: From Operator to Architecture
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-15-transformer-cross-attention.md`: Transformer Cross-Attention
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-16-rnn-training-bptt.md`: RNN Training: Backpropagation Through Time
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-17-seq2seq-with-attention-training.md`: Sequence-to-Sequence Training with Attention
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-18-transformer-training.md`: Transformer Training
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-2-rnn-vanilla.md`: Vanilla Recurrent Neural Networks
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-3-rnn-LSTM.md`: Long Short-Term Memory Networks
-- ... 6 more markdown files
-
-### session-211-tokenization-mini-series
-
-- `files-from-teacher/session-211-tokenization-mini-series/lecture-1-from-language-to-tokens.md`: From Language to Tokens
-- `files-from-teacher/session-211-tokenization-mini-series/lecture-2-granularity-of-tokenization.md`: Tokenization Granularity
-- `files-from-teacher/session-211-tokenization-mini-series/lecture-3-subword-algorithms-bpe-wordpiece.md`: BPE and WordPiece
-- `files-from-teacher/session-211-tokenization-mini-series/lecture-4-tokenization-beyond-text.md`: Tokenization Beyond Text
-- `files-from-teacher/session-211-tokenization-mini-series/practice-tokenization.md`: Practice: Tokenization
-
-### session-212-clustering-and-embedding-mini-series
-
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-1-kmeans.md`: K-Means Clustering
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-10-text-embedding-motivation.md`: Text Embedding Motivation
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-11-word2vec.md`: Word2Vec
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-12-embedding-layer-and-unembedding-layer-in-transformers.md`: Embedding and Unembedding Layers in Transformers
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-13-image-embedding-in-vision-models.md`: Image Embeddings in Vision Models
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-14-multimodal-alignment.md`: Multimodal Alignment
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-15-contrasive-learning.md`: Contrastive Learning
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-16-dropout-for-data-augmentation.md`: Dropout for Data Augmentation
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-2-knn.md`: K-Nearest Neighbors
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-3-gmm.md`: Gaussian Mixture Models
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-4-dbscan.md`: DBSCAN
-- `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-5-hierarchical-clustering.md`: Hierarchical Clustering
-- ... 4 more markdown files
-
-### session-223-ffn-mini-series
-
-- `files-from-teacher/session-223-ffn-mini-series/lecture-1-ffn-structure-and-role.md`: Feed-Forward Networks
-- `files-from-teacher/session-223-ffn-mini-series/lecture-2-activation-functions.md`: Activation Functions
-- `files-from-teacher/session-223-ffn-mini-series/lecture-3-ffn-as-knowledge-memory.md`: FFN as Knowledge Memory: Storing Facts in Transformers
-- `files-from-teacher/session-223-ffn-mini-series/lecture-4-attention-ffn-division-of-labor.md`: Attention and FFN: Division of Labor
-
-### session-400
-
-- `files-from-teacher/session-400/Exploring tiny_glove Word Vectors.md`: Exploring tiny_glove Word Vectors
-- `files-from-teacher/session-400/Task 11 - Markov Chains for Text.md`: Task 11: Markov Chains for Text
-- `files-from-teacher/session-400/Task 20 - Simple Audio Recognition with MFCC.md`: Task 20: Simple Audio Recognition with MFCC
-- `files-from-teacher/session-400/Task 3 - Discussion.md`: When "This Shouldn't Work" Actually Works: The Unreasonable Effectiveness of Addition, Averaging, and Linear Composition in Deep Learning
-- `files-from-teacher/session-400/Task 3 - Logistic Regression - Embedding-based Classifier.md`: Task 3: Logistic Regression with GloVe Embeddings
-- `files-from-teacher/session-400/Task 4 - Discussion.md`: Task 4 Follow-Up: Bag of Words — Turning Language into Feature Vectors
-- `files-from-teacher/session-400/Task 4 - Logistic Regression for Sentiment Classification.md`: Task 4: Logistic Regression for Sentiment Classification
-- `files-from-teacher/session-400/Task 7 - Discussion.md`: The Mathematics of Debiasing in Word Embeddings
-- `files-from-teacher/session-400/Task 7 - Orthogonal Projections for Debiasing.md`: Task 7: Orthogonal Projections for Debiasing
-- `files-from-teacher/session-400/huggingface-sentiment-analysis.md`: Hugging Face Ready-to-Use Sentiment Analysis
-- `files-from-teacher/session-400/huggingface-what-is-huggingface.md`: Hugging Face 🤗
-
-### session-403-quantization-1
-
-- `files-from-teacher/session-403-quantization-1/lecture-1-why-quantization.md`: Why Quantization?
-- `files-from-teacher/session-403-quantization-1/lecture-2-numbers-scale-zero-point.md`: Numbers, Scale, and Zero Point
-- `files-from-teacher/session-403-quantization-1/lecture-3-onnx-and-netron-mnist.md`: ONNX and Netron with an MNIST Model
-- `files-from-teacher/session-403-quantization-1/lecture-4-post-training-quantization.md`: Post-Training Quantization
-- `files-from-teacher/session-403-quantization-1/lecture-5-quantization-aware-training.md`: Quantization-Aware Training
-- `files-from-teacher/session-403-quantization-1/lecture-6-llm-quantization.md`: Quantization for Large Language Models
-- `files-from-teacher/session-403-quantization-1/lecture-7-advanced-quantization-topics.md`: Advanced Quantization Topics and Deployment Trade-Offs
-
-### session-404-quantization-2
-
-- `files-from-teacher/session-404-quantization-2/practice-fp32-fp16-int8-int4.md`: Accurate Numerical Examples: FP32, FP16, INT8, INT4
-- `files-from-teacher/session-404-quantization-2/practice-netron.md`: Inspecting ONNX Models with Netron
-- `files-from-teacher/session-404-quantization-2/practice-onnx-export-and-quantization.md`: --------------------------
-- `files-from-teacher/session-404-quantization-2/practice-why-quantization.md`: Why Quantization?
-- `files-from-teacher/session-404-quantization-2/why-is-pi-approximation-3.140625-in-fp16.md`: 16-Bit Floating-Point Numbers
-
-### session-405-quantization-3
-
-- `files-from-teacher/session-405-quantization-3/why-Quantization-Aware-Training.md`: Why Quantization Aware Training (QAT)?
-
-### session-406-ml-app
-
-- `files-from-teacher/session-406-ml-app/practice-UFO-flask-app.md`: Building a Web App with Machine Learning Integration
-- `files-from-teacher/session-406-ml-app/practice-gradio.md`: practice-gradio
-- `files-from-teacher/session-406-ml-app/practice-streamlit.md`: Streamlit
-- `files-from-teacher/session-406-ml-app/practice_ml_web_app-tasks.md`: Course Tutorial and Lab Guide: Machine Learning Web Apps
-
-### session-501-linear-regression-logistic-regression-revisit
-
-- `files-from-teacher/session-501-linear-regression-logistic-regression-revisit/lecture-optional-linear-regression-mle-short-version.md`: Linear Regression — A Probabilistic Perspective
-- `files-from-teacher/session-501-linear-regression-logistic-regression-revisit/lecture-optional-logistic-regression-mle-short-version.md`: Logistic Regression — A Probabilistic Perspective
+- `files-from-teacher/session-102-autoencoder-mini-series`
+- `files-from-teacher/session-104-resnet-and-skip-connections-mini-series`
+- `files-from-teacher/session-105-gan-and-adversarial-robustness-mini-series`
+- `files-from-teacher/session-200-welcome-to-attention-transformer`
+- `files-from-teacher/session-204-loss-function-mini-series`
+- `files-from-teacher/session-205-transformer-advanced-topics`
+- `files-from-teacher/session-208-rnn-seq2seq-mini-series`
+- `files-from-teacher/session-211-tokenization-mini-series`
+- `files-from-teacher/session-212-clustering-and-embedding-mini-series`
+- `files-from-teacher/session-223-ffn-mini-series`
+- `files-from-teacher/session-400`
+- `files-from-teacher/session-402-audio-whisper-tts`
+- `files-from-teacher/session-403-quantization-1`
+- `files-from-teacher/session-404-quantization-2`
+- `files-from-teacher/session-405-quantization-3`
+- `files-from-teacher/session-406-ml-app`
+- `files-from-teacher/session-407-l1-l2-revisited`
+- `files-from-teacher/session-408-ga-logistic-regression`
+- `files-from-teacher/session-501-linear-regression-logistic-regression-revisit`

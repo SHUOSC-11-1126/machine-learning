@@ -9,6 +9,20 @@
 
 Processing note: the recording audio had classroom/microphone mixing. A direct mono ASR pass missed most content, so the audio was split into chunks and reprocessed with left/right-channel speech enhancement. Project-related and research/project discussion was filtered out. Raw transcripts were kept only as temporary working files under `/tmp/ml-exam-asr`, not committed into this review note.
 
+## Latest Scope Update
+
+2026-06-17 teacher update:
+
+- Main line: `files-from-teacher/session-0` to `files-from-teacher/session-7`.
+- Extra questions: only `files-from-teacher/session-201-qkv-attention-mini-series`, `files-from-teacher/session-202-positional-encoding-mini-series`, and `files-from-teacher/session-203-masking-mini-series`.
+- Other `files-from-teacher/session-*` directories are not assessed unless the teacher updates the scope again.
+
+中文：
+
+- 主线是 `session-0` 到 `session-7`。
+- Extra questions 只考 `session-201`、`session-202`、`session-203`。
+- 其他 session 不考察，除非老师后续再次明确更新。
+
 ## Cleaned Exam-Relevant Transcript Excerpts
 
 These excerpts are ASR-cleaned and lightly normalized for readability. Non-exam project discussion was removed.
@@ -51,7 +65,7 @@ Cleaned likely topics:
 - early stopping
 - data augmentation / data processing: more data makes the model more robust
 - writing formulas
-- FFN / MLP, likely from Transformer extra sessions
+- FFN / MLP was mentioned in the noisy note, but related `session-223` material is now out of scope under the 2026-06-17 update.
 
 Matched teacher source paths:
 
@@ -64,6 +78,9 @@ Matched teacher source paths:
 - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-6-ai.md`
 - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-7-aa.md`
 - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-7-ae.md`
+
+Out-of-scope matches under the 2026-06-17 update:
+
 - `files-from-teacher/session-212-clustering-and-embedding-mini-series/lecture-clustering-12-embedding-layer-and-unembedding-layer-in-transformers.md`
 - `files-from-teacher/session-223-ffn-mini-series/lecture-1-ffn-structure-and-role.md`
 - `files-from-teacher/session-223-ffn-mini-series/lecture-3-ffn-as-knowledge-memory.md`
@@ -73,16 +90,16 @@ Matched teacher source paths:
 English:
 
 - Final score is `0.7 * T + 0.3 * P`.
-- Final exam `T`: around 70% from main sessions 1-7.
+- Final exam `T`: around 70% from main sessions; latest teacher update defines the main line as sessions 0-7.
 - Some questions come from `files-from-teacher/BagOfQuestions/`.
-- Around 30% are easy questions from extra sessions.
+- Around 30% are easy questions from extra sessions, now scoped to sessions 201, 202, and 203 only.
 - Closed book: no books, no sheets, no anything.
 - Duration: 2 hours.
 
 中文：
 
-- 录音/视频透露的信息是补充线索，不替代 `files-from-teacher/Readme.md`。
-- 复习优先级仍然是：Readme -> BagOfQuestions -> main sessions 1-7 -> extra sessions。
+- 录音/视频透露的信息是补充线索；2026-06-17 老师范围更新进一步收窄 extra sessions。
+- 复习优先级现在是：Readme -> BagOfQuestions -> main sessions 0-7 -> extra sessions 201/202/203。
 
 ## Cleaned Exam Signals
 
@@ -205,9 +222,9 @@ softmax 按行对 key 位置归一化。
 
 Teacher source paths:
 
-- `files-from-teacher/session-200-welcome-to-attention-transformer/lecture-0-notation-guideline-for-transformer-attention-20X-series.md`
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-12-from-attention-to-self-attention.md`
-- `files-from-teacher/session-208-rnn-seq2seq-mini-series/lecture-18-transformer-training.md`
+- `files-from-teacher/session-201-qkv-attention-mini-series/lecture-6-self-attention-mechanism.md`
+- `files-from-teacher/session-201-qkv-attention-mini-series/lecture-7-matrix-form-of-attention.md`
+- `files-from-teacher/session-201-qkv-attention-mini-series/lecture-17-self-attention-vs-cross-attention.md`
 
 ### 5. Session 5 Code / Optimizers Are Still Worth Reviewing
 
@@ -243,11 +260,11 @@ English signal:
 
 In the recording, immediately before discussing GAN from a fundamental definition, the teacher said that this session would not be in the final exam and could be ignored. This is stronger than "low priority": for final-exam review, GAN should be treated as not required unless a later teacher update explicitly brings it back.
 
-Important boundary: this only applies to GAN / that specific session. It does not cancel the `files-from-teacher/Readme.md` rule that around 30% of the final exam may come from easy extra-session questions.
+Important boundary: the 2026-06-17 teacher update now explicitly says only sessions 201, 202, and 203 are extra-question scope. GAN / session-105 is therefore out of scope, along with the other non-201/202/203 extra sessions.
 
 中文解释：
 
-更准确的结论不是“GAN 降低优先级”，而是：按这段老师口头透露，GAN 这节 final exam 可以不复习，除非后续老师又明确更新。这个结论只针对 GAN，不代表所有 extra sessions 都可以跳过。
+更准确的结论不是“GAN 降低优先级”，而是：按这段老师口头透露和 2026-06-17 最新范围，GAN / session-105 不考察。Extra 只保留 session-201、session-202、session-203。
 
 ## Filtered Out
 
@@ -263,8 +280,8 @@ Uncertain ASR fragments such as unclear architecture terms were not used as exam
 ## Practical Review Order After This Disclosure
 
 1. Review `files-from-teacher/BagOfQuestions/` first.
-2. For main sessions, keep the original route: sessions 1-7 remain the 70% core.
+2. For main sessions, keep the updated route: sessions 0-7 are the core.
 3. Add special attention to Session 7 regularization answers: dropout, early stopping, data augmentation, batch normalization.
 4. Review Session 5 optimizer code and formulas: SGD, Momentum, Adam.
-5. For Transformer / attention extra topics, memorize the self-attention definition and scaled dot-product attention formula.
-6. Do not spend final-review time on GAN unless a later teacher update explicitly brings it back.
+5. For extra questions, review only sessions 201, 202, and 203.
+6. Do not spend final-review time on GAN or other out-of-scope sessions unless a later teacher update explicitly brings them back.

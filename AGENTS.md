@@ -12,8 +12,9 @@
 
 1. `files-from-teacher/Readme.md`：考试规则与范围说明。
 2. `files-from-teacher/BagOfQuestions/`：题目来源，优先级极高。
-3. `files-from-teacher/session-1` 到 `files-from-teacher/session-7`：主 session 课件、代码和 practice，约占 final exam 的 70%。
-4. `files-from-teacher/session-*` 中的 extra sessions：约占 final exam 的 30%，按 Readme 描述通常更简单。
+3. `files-from-teacher/session-0` 到 `files-from-teacher/session-7`：主线 session 课件、代码和 practice，约占 final exam 的 70%。
+4. Extra questions 只来自 `files-from-teacher/session-201-qkv-attention-mini-series/`、`files-from-teacher/session-202-positional-encoding-mini-series/`、`files-from-teacher/session-203-masking-mini-series/`，约占 final exam 的 30%，按 Readme 描述通常更简单。
+5. 其他 `files-from-teacher/session-*` 当前不考察，除非老师后续再次明确更新范围。
 
 如果其他资料与 `files-from-teacher/` 冲突，直接以 `files-from-teacher/` 为准。
 
@@ -31,11 +32,19 @@
 根据 `files-from-teacher/Readme.md`：
 
 1. Final score = `0.7 * T + 0.3 * P`。
-2. Final exam `T` 中，约 70% 来自主 session 1-7：linear regression、logistic regression、neural networks、model selection 等。
+2. Final exam `T` 中，约 70% 来自主线 session 0-7：notation/basic ML setup、linear regression、logistic regression、neural networks、model selection 等。
 3. 部分题目会来自 `files-from-teacher/BagOfQuestions/`。
-4. 约 30% 来自 extra sessions，题目较简单。
+4. 约 30% 来自 extra questions，目前只考 `session-201`、`session-202`、`session-203`，题目较简单。
 5. Final exam 闭卷：no books, no sheets, no anything。
 6. Duration: 2 hours。
+
+## 最新考试范围更新
+
+根据 2026-06-17 老师最新透露：
+
+1. `files-from-teacher/session-0` 到 `files-from-teacher/session-7` 是主线。
+2. `files-from-teacher/session-201-qkv-attention-mini-series/`、`files-from-teacher/session-202-positional-encoding-mini-series/`、`files-from-teacher/session-203-masking-mini-series/` 作为 extra questions。
+3. 其他 `files-from-teacher/session-*` 不考察，除非老师后续再次明确更新。
 
 课程 Readme 写明 English for everything；因此考试题目、考试问法、答案、术语、公式解释中的关键表述必须优先使用英文。面向用户讲解时可以用中文解释思路，但题目与可背答案必须固定为 English first, then Chinese translation。
 
@@ -75,6 +84,7 @@
 
 ## 主 session 复习重点
 
+0. Session 0：notation guideline、what is ML/DL、why neural networks from scratch、projection intuition、basic activation/log/sigmoid support。
 1. Session 1：linear regression、MSE、gradient descent、matrix shapes、polynomial regression、train/test split。
 2. Session 2：logistic regression、sigmoid、decision boundary、BCE vs MSE、feature scaling、threshold。
 3. Session 3：neural network notation、forward propagation、activation functions、softmax、one-hot、output layer depends on task。
@@ -82,6 +92,12 @@
 5. Session 5：gradient update、learning rate、full-batch vs mini-batch SGD、momentum、Adam、bias correction。
 6. Session 6：generalization、classification/regression metrics、validation/test split、bias-variance、L1/L2 regularization、Gaussian/Bernoulli basics。
 7. Session 7：dropout、inverted dropout、early stopping、data augmentation、hyperparameter optimization、batch normalization。
+
+## Extra question 复习重点
+
+1. Session 201：QKV attention、self-attention、scaled dot-product attention、row-wise softmax、multi-head attention、self-attention vs cross-attention。
+2. Session 202：positional encoding、why order matters、sinusoidal positional encoding、adding token embedding and positional vector。
+3. Session 203：attention masks、causal mask、padding mask、combining masks、masking in transformers。
 
 ## 不确定情况
 

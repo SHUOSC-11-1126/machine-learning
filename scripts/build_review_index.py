@@ -12,15 +12,17 @@ ROOT = Path(__file__).resolve().parents[1]
 TEACHER = ROOT / "files-from-teacher"
 REVIEW = ROOT / "review"
 
-MAIN_SESSIONS = [1, 2, 3, 4, 5, 6, 7]
+MAIN_SESSIONS = [0, 1, 2, 3, 4, 5, 6, 7]
 EXTRA_PREFIXES = [
+    "session-201",
+    "session-202",
+    "session-203",
+]
+EXCLUDED_SESSION_PREFIXES = [
     "session-102",
     "session-104",
     "session-105",
     "session-200",
-    "session-201",
-    "session-202",
-    "session-203",
     "session-204",
     "session-205",
     "session-208",
@@ -33,6 +35,8 @@ EXTRA_PREFIXES = [
     "session-404",
     "session-405",
     "session-406",
+    "session-407",
+    "session-408",
     "session-501",
 ]
 
@@ -46,6 +50,13 @@ class MarkdownFile:
 
 def rel(path: Path) -> str:
     return str(path.relative_to(ROOT))
+
+
+def session_key(name: str) -> str:
+    match = re.match(r"^(session-\d+)", name)
+    if not match:
+        return name
+    return match.group(1)
 
 
 def read_text(path: Path) -> str:
@@ -103,6 +114,16 @@ def extra_markdown_files() -> dict[str, list[MarkdownFile]]:
     return result
 
 
+def excluded_session_directories() -> list[str]:
+    names: list[str] = []
+    for directory in sorted(TEACHER.iterdir()):
+        if not directory.is_dir():
+            continue
+        if any(directory.name.startswith(prefix) for prefix in EXCLUDED_SESSION_PREFIXES):
+            names.append(directory.name)
+    return names
+
+
 def bag_questions() -> dict[str, list[tuple[Path, list[str]]]]:
     result: dict[str, list[tuple[Path, list[str]]]] = {}
     directory = TEACHER / "BagOfQuestions"
@@ -118,26 +139,33 @@ def write_source_index() -> None:
     REVIEW.mkdir(parents=True, exist_ok=True)
     questions = bag_questions()
     extras = extra_markdown_files()
+    excluded = excluded_session_directories()
 
     lines: list[str] = [
         "# 机器学习复习资料索引",
         "",
-        "本索引从 `files-from-teacher/` 子模块生成。该子模块由老师维护，是考试复习的唯一最高优先级资料。",
+        "本索引从 `files-from-teacher/` 子模块生成，并记录 2026-06-17 老师最新口头范围更新。该子模块由老师维护，是考试复习的唯一最高优先级资料。",
+        "",
+        "## Latest Scope Update",
+        "",
+        "- 2026-06-17 teacher update: `files-from-teacher/session-0` to `files-from-teacher/session-7` are the main line.",
+        "- Extra questions only use `files-from-teacher/session-201-qkv-attention-mini-series`, `files-from-teacher/session-202-positional-encoding-mini-series`, and `files-from-teacher/session-203-masking-mini-series`.",
+        "- Other `files-from-teacher/session-*` directories are outside the current final-exam scope unless the teacher updates the scope again.",
         "",
         "## Exam Signal From Readme",
         "",
         "- Final score = `0.7 * T + 0.3 * P`.",
-        "- Final exam: about 70% from main sessions 1-7.",
+        "- Final exam: about 70% from main sessions; latest teacher update defines the main line as sessions 0-7.",
         "- Some exam questions will come from `files-from-teacher/BagOfQuestions/`.",
-        "- About 30% from extra sessions, described as easier questions.",
+        "- About 30% from extra sessions, now scoped to sessions 201, 202, and 203 only.",
         "- Closed-book exam: no books, sheets, or other materials.",
         "",
         "## Priority Order",
         "",
         "1. `files-from-teacher/Readme.md` exam rules.",
         "2. `files-from-teacher/BagOfQuestions/` question source.",
-        "3. `files-from-teacher/session-1` to `session-7` lecture and code materials.",
-        "4. Extra session materials under `files-from-teacher/session-*` beyond 1-7.",
+        "3. `files-from-teacher/session-0` to `session-7` lecture and code materials.",
+        "4. Extra session materials only from `session-201`, `session-202`, and `session-203`.",
         "",
         "## Main Sessions",
         "",
@@ -169,10 +197,25 @@ def write_source_index() -> None:
     lines.extend(["## Extra Sessions", ""])
     for name, files in extras.items():
         lines.extend([f"### {name}", ""])
+        qfiles = questions.get(session_key(name), [])
+        if qfiles:
+            lines.append(f"- BagOfQuestions files: {len(qfiles)}")
+            for path, titles in qfiles:
+                joined = "; ".join(titles)
+                lines.append(f"  - `{rel(path)}`: {joined}")
+            lines.append("")
         for item in files[:12]:
             lines.append(f"- `{rel(item.path)}`: {item.title}")
         if len(files) > 12:
             lines.append(f"- ... {len(files) - 12} more markdown files")
+        lines.append("")
+
+    if excluded:
+        lines.extend(["## Out Of Current Exam Scope", ""])
+        lines.append("Latest teacher update says these other `session-*` directories are not assessed in the final exam:")
+        lines.append("")
+        for name in excluded:
+            lines.append(f"- `files-from-teacher/{name}`")
         lines.append("")
 
     (REVIEW / "source-index.md").write_text("\n".join(lines), encoding="utf-8")

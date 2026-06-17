@@ -4,16 +4,17 @@
 
 本计划只按知识点组织，不按时间推进。
 
-最高优先级资料是 `files-from-teacher/` 子模块。根据 `files-from-teacher/Readme.md`，final exam 约 70% 来自主 session 1-7，部分题目来自 `files-from-teacher/BagOfQuestions/`；约 30% 来自 extra sessions，题目较简单。
+最高优先级资料是 `files-from-teacher/` 子模块。根据 `files-from-teacher/Readme.md`，final exam 约 70% 来自主 session，部分题目来自 `files-from-teacher/BagOfQuestions/`；约 30% 来自 extra sessions，题目较简单。根据 2026-06-17 老师最新透露，主线明确为 `session-0` 到 `session-7`，extra questions 只来自 `session-201`、`session-202`、`session-203`，其他 `session-*` 不考察。
 
 所有复习产物遵循 English-first rule：考试题目、考试问法、可背答案、关键术语和公式解释先写英文，再给中文翻译或中文讲解。中文用于帮助理解，不能替代英文考试版。
 
-复习主线：线性回归与梯度下降 -> 逻辑回归与 BCE -> 神经网络前向传播 -> softmax 和多分类 -> 反向传播与层接口 -> 优化器 -> 泛化、指标、正则化 -> dropout、early stopping、batch normalization -> extra sessions 速记。
+复习主线：session-0 notation/basic ML framing -> 线性回归与梯度下降 -> 逻辑回归与 BCE -> 神经网络前向传播 -> softmax 和多分类 -> 反向传播与层接口 -> 优化器 -> 泛化、指标、正则化 -> dropout、early stopping、batch normalization -> extra questions 201/202/203。
 
 ## Source Map
 
 - `files-from-teacher/Readme.md`：考试比例、闭卷要求、主 session 和 extra session 权重。
 - `files-from-teacher/BagOfQuestions/`：最高优先级题源。
+- `files-from-teacher/session-0/`：notation guideline、ML/DL basic framing、why neural networks from scratch、projection intuition。
 - `files-from-teacher/session-1/`：linear regression、MSE、gradient descent、polynomial regression、train/test split。
 - `files-from-teacher/session-2/`：logistic regression、sigmoid、decision boundary、BCE、feature scaling。
 - `files-from-teacher/session-3/`：neural network architecture、forward propagation、activation functions、softmax、one-hot、output layers。
@@ -21,9 +22,17 @@
 - `files-from-teacher/session-5/`：learning rate、mini-batch SGD、momentum、Adam、bias correction。
 - `files-from-teacher/session-6/`：generalization、metrics、evaluation methods、bias-variance、L1/L2 regularization、basic distributions。
 - `files-from-teacher/session-7/`：dropout、inverted dropout、early stopping、data augmentation、hyperparameter optimization、batch normalization。
+- `files-from-teacher/session-201-qkv-attention-mini-series/`：QKV attention、self-attention、scaled dot-product attention、multi-head attention、self-attention vs cross-attention。
+- `files-from-teacher/session-202-positional-encoding-mini-series/`：positional encoding、why order matters、sinusoidal formula、embedding plus position。
+- `files-from-teacher/session-203-masking-mini-series/`：causal mask、padding mask、combining masks、masking in transformer architectures。
 - `review/source-index.md`：从老师子模块生成的快速索引。
 
 ## Knowledge Route
+
+0. **Session 0 Notation and Basic ML Framing**
+   掌握 row-vector convention、ML/DL 基本定义、为什么从零实现 neural networks、projection intuition。
+   考试重点：看懂后续 session 的 shape notation、activation/log/sigmoid 基础图像和符号。
+   来源：`files-from-teacher/session-0/`
 
 1. **Linear Regression From Scratch**
    掌握模型 `Y_hat = XW + b`、MSE、梯度、`np.dot`、`X.T`、shape 检查和参数更新。
@@ -135,10 +144,22 @@
     考试重点：validation loss 上升时 early stopping；label-preserving transformation；grid search vs random search；BN train/inference behavior。
     来源：`files-from-teacher/session-7/lecture-3-*` 到 `lecture-6-*`，`BagOfQuestions-session-7-aa.md`，`session-7-ae.md`，`session-7-af.md`
 
-23. **Extra Sessions Quick Review**
-    按 Readme 约 30% easy questions 处理。重点掌握每个 extra topic 的 high-level definition、core mechanism、one simple example。
-    包括 transformer/attention、QKV、positional encoding、masking、loss functions、RNN/seq2seq、tokenization、clustering/embeddings、autoencoder、ResNet/skip connections、GAN/adversarial robustness、quantization、ML app。
-    来源：`files-from-teacher/session-*` extra materials，详见 `review/source-index.md`
+23. **Extra Question 201: QKV Attention**
+    按 Readme 约 30% easy questions 处理，但范围只看老师最新指定的 extra question sessions。Session 201 重点掌握 Q/K/V、self-attention、scaled dot-product attention、row-wise softmax、multi-head attention、self-attention vs cross-attention。
+    考试重点：1-3 句解释 self-attention；写 `softmax(QK^T / sqrt(d_k))V`；说明 row-wise softmax；区分 self-attention 和 cross-attention。
+    来源：`files-from-teacher/session-201-qkv-attention-mini-series/`，`BagOfQuestions-session-201-ee.md`
+
+24. **Extra Question 202: Positional Encoding**
+    掌握为什么 Transformer 需要位置信息、sinusoidal positional encoding 的基本形式、token embedding 加 positional vector。
+    考试重点：解释 self-attention 本身不包含顺序；写 embedding + positional encoding 的组合公式；识别 sine/cosine position signal。
+    来源：`files-from-teacher/session-202-positional-encoding-mini-series/`，`BagOfQuestions-session-202-ee.md`
+
+25. **Extra Question 203: Masking**
+    掌握 causal mask、padding mask、combining masks，以及 mask 如何限制 attention 信息流。
+    考试重点：说明 autoregressive decoder 为什么不能看 future tokens；说明 padding mask 为什么需要；写 masked attention 的核心想法。
+    来源：`files-from-teacher/session-203-masking-mini-series/`，`BagOfQuestions-session-203-ee.md`
+
+Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`session-204`、`session-205`、`session-208`、`session-211`、`session-212`、`session-223`、`session-400+`、`session-501` 等其他 `session-*` 目录当前不考察，除非老师后续再次明确更新范围。
 
 ## High-Priority Exam Patterns
 
@@ -163,5 +184,5 @@
 
 ## Assumptions
 
-- 当前复习范围以 `files-from-teacher/Readme.md` 为准。
+- 当前复习范围以 `files-from-teacher/Readme.md` 加 2026-06-17 老师最新口头范围更新为准：main = session-0 到 session-7；extra = session-201、session-202、session-203；其他 session 不考察。
 - 如果老师子模块更新，应重新生成 `review/source-index.md`。
