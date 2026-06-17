@@ -11,3 +11,5 @@ explain.md
 .env
 
 .DS_Store
+
+*.mp4

@@ -69,14 +69,12 @@ English checklist:
 - `db = (1 / n_samples) * np.sum(y_predicted - y)`
 - update with minus gradient
 - prediction threshold, especially strict `> 0.5`
-- BCE formula and BCE curves for `y=1` and `y=0`
-- CE vs BCE at the conceptual level
+- BCE / BCE vs MSE / BCE curves are now excluded by the latest scope clarification.
 
 中文：代码复习只把 logistic regression 做熟；其他 session 的代码只作为理解概念，不按代码填空准备。
 
 Teacher source:
 
-- `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-ad.md`
 - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-aj.md`
 - `files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-ak.md`
 - `files-from-teacher/session-2/`
@@ -146,7 +144,7 @@ Teacher source:
 ## Incorrect Or Out-Of-Scope Items
 
 - The note says it was organized by `session 1-7 + 201-205`; this is outdated/wrong for current scope. Correct extra scope is `201/202/203` only.
-- `session-204` loss-function material is out of scope unless the teacher updates the range. CE/BCE should be reviewed through main `session-2`, not as extra 204.
+- `session-204` loss-function material is out of scope unless the teacher updates the range. BCE is also excluded from current Session 2 exam preparation by the latest scope clarification.
 - `session-205` AdamW, MoE, fast/linear attention, and large-model training details are out of scope unless the teacher updates the range.
 - `session-223` FFN/MLP and parameter counting are out of scope unless the teacher updates the range.
 - The note's "session4 not tested" line conflicts with the current main-line scope `session-0` to `session-7`. Do not remove backpropagation from review unless the teacher confirms it directly.

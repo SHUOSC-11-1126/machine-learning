@@ -4,8 +4,11 @@
 
 - Media source: `老师关于考试的透露/06-15.m4a`
 - Media source: `老师关于考试的透露/1643_1778674198.mp4`
+- Highest-priority media source: `老师关于考试的透露/最高优先级！考试范围划定.m4a`
+- Highest-priority media source: `老师关于考试的透露/最高优先级！考试范围的划定.mp4`
 - Baseline exam rule source: `files-from-teacher/Readme.md`
 - Review index: `review/source-index.md`
+- Highest-priority cleaned scope: `review/highest-priority-exam-scope-2026-06-17.md`
 
 Processing note: the recording audio had classroom/microphone mixing. A direct mono ASR pass missed most content, so the audio was split into chunks and reprocessed with left/right-channel speech enhancement. Project-related and research/project discussion was filtered out. Raw transcripts were kept only as temporary working files under `/tmp/ml-exam-asr`, not committed into this review note.
 
@@ -24,6 +27,23 @@ Processing note: the recording audio had classroom/microphone mixing. A direct m
 - Extra questions 只考 `session-201`、`session-202`、`session-203`。
 - 其他 session 不考察，除非老师后续再次明确更新。
 - 代码题只考 logistic regression；其他主要按概念、数学推导、公式、手算和画图准备。
+
+## Highest-Priority Range Recording
+
+The later 2026-06-17 range recording has been cleaned separately in `review/highest-priority-exam-scope-2026-06-17.md`.
+
+Main added signals:
+
+- Session 1 is low priority.
+- Session 2 code focus is logistic regression `def fit`, `n_features`, `linear_model`, sigmoid, and update direction.
+- Softmax formula, normalization, and shift invariance are likely testable.
+- TensorFlow Playground / feature engineering / underfitting-good fitting-overfitting drawings are high priority.
+- Session 3 includes MoE / ChatGPT-style parameter counting, embedding no bias, dense-layer bias counting, and FFN/MLP meaning.
+- Session 5 emphasizes formulas plus loss-contour trajectory drawings for GD/SGD/Momentum/Adam.
+- Session 6 emphasizes L1/L2 penalties and diamond/circle geometry.
+- Session 7 emphasizes dropout, early stopping, and data augmentation diagrams.
+- Extra questions remain `201/202/203`.
+- BCE is not tested under the latest clarification; ignore `BagOfQuestions-session-2-ad.md` for current exam-priority practice.
 
 ## Cleaned Exam-Relevant Transcript Excerpts
 

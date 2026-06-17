@@ -4,7 +4,7 @@
 
 本计划只按知识点组织，不按时间推进。
 
-最高优先级资料是 `files-from-teacher/` 子模块。根据 `files-from-teacher/Readme.md`，final exam 约 70% 来自主 session，部分题目来自 `files-from-teacher/BagOfQuestions/`；约 30% 来自 extra sessions，题目较简单。根据 2026-06-17 老师最新透露，主线明确为 `session-0` 到 `session-7`，extra questions 只来自 `session-201`、`session-202`、`session-203`，其他 `session-*` 不考察。最新题型消息进一步说明：代码只考 logistic regression，主要题型是 concepts、mathematical derivations、drawing/sketching、formulas、hand computation。
+最高优先级资料是 `files-from-teacher/` 子模块。根据 `files-from-teacher/Readme.md`，final exam 约 70% 来自主 session，部分题目来自 `files-from-teacher/BagOfQuestions/`；约 30% 来自 extra sessions，题目较简单。根据 2026-06-17 老师最新透露，主线明确为 `session-0` 到 `session-7`，extra questions 只来自 `session-201`、`session-202`、`session-203`，其他 `session-*` 不考察。最新题型消息进一步说明：代码只考 logistic regression，主要题型是 concepts、mathematical derivations、drawing/sketching、formulas、hand computation。最新最高优先级划范围记录已清洗到 `review/highest-priority-exam-scope-2026-06-17.md`，复习时先读它。
 
 所有复习产物遵循 English-first rule：考试题目、考试问法、可背答案、关键术语和公式解释先写英文，再给中文翻译或中文讲解。中文用于帮助理解，不能替代英文考试版。
 
@@ -16,7 +16,7 @@
 - `files-from-teacher/BagOfQuestions/`：最高优先级题源。
 - `files-from-teacher/session-0/`：notation guideline、ML/DL basic framing、why neural networks from scratch、projection intuition。
 - `files-from-teacher/session-1/`：linear regression、MSE、gradient descent、polynomial regression、train/test split。
-- `files-from-teacher/session-2/`：logistic regression、sigmoid、decision boundary、BCE、feature scaling。
+- `files-from-teacher/session-2/`：logistic regression、sigmoid、decision boundary、feature scaling、TensorFlow Playground / feature engineering。BCE is excluded by the latest scope update.
 - `files-from-teacher/session-3/`：neural network architecture、forward propagation、activation functions、softmax、one-hot、output layers。
 - `files-from-teacher/session-4/`：backpropagation、chain rule、computation graph、Dense/ReLU layer、softmax cross-entropy、training step。
 - `files-from-teacher/session-5/`：learning rate、mini-batch SGD、momentum、Adam、bias correction。
@@ -26,6 +26,22 @@
 - `files-from-teacher/session-202-positional-encoding-mini-series/`：positional encoding、why order matters、sinusoidal formula、embedding plus position。
 - `files-from-teacher/session-203-masking-mini-series/`：causal mask、padding mask、combining masks、masking in transformer architectures。
 - `review/source-index.md`：从老师子模块生成的快速索引。
+- `review/highest-priority-exam-scope-2026-06-17.md`：2026-06-17 老师最高优先级范围录音/视频和手写记录的清洗版，包含音近词纠错和优先级压缩。
+
+## Highest-Priority Scope Compression
+
+根据 2026-06-17 老师最高优先级范围录音/视频：
+
+- Session 1 is low priority：保留基础，不投入主要时间。
+- Session 2 code target：logistic regression `def fit`、`n_features`、`linear_model = XW + b`、`sigmoid`、update sign。`dw`/`db` 精确推导有降级信号，先理解为 gradients。
+- Session 2/3 softmax：公式、normalization、shift invariance、同加常数 `c` 后 `e^c` 约掉。
+- TensorFlow Playground：feature engineering、`x_1^2`/`x_2^2`、圆形/曲线边界、underfitting / good fit / overfitting、high bias / high variance。
+- Session 3 parameter counting：MoE / ChatGPT-style counting、embedding no bias、dense layer bias counts、FFN/MLP `d_model -> 4 d_model -> d_model` with one hidden layer。这个点不代表 `session-223` 重新进范围。
+- Session 5：GD/SGD/Momentum/Adam formulas and loss-contour trajectory drawings。
+- Session 6：L1/L2 penalty, lambda, L1 diamond, L2 circle, loss ellipses, first-touch geometry。
+- Session 7：dropout diagram, early stopping curve, data augmentation rotation。
+- Extra：must remember BagOfQuestions for `201/202/203`。
+- Scope override：BCE is not tested. `BagOfQuestions-session-2-ad.md` is an older teacher question source, but the latest scope update overrides it for current exam preparation.
 
 ## Knowledge Route
 
@@ -51,7 +67,7 @@
 
 4. **Logistic Regression Basics**
    掌握 `z = XW + b`、`sigmoid(z)`、probability interpretation、threshold and class label。
-   考试重点：唯一代码题范围；从 linear regression 改成 logistic regression 的代码填空；`linear_model`、`y_predicted`、`y_predicted_cls` 区别；sigmoid、BCE、gradient、threshold、decision boundary。
+   考试重点：唯一代码题范围；优先准备 `def fit` 训练部分、`n_samples, n_features = X.shape`、`weights` 数量等于 `n_features`、`linear_model = np.dot(X, self.weights) + self.bias`、`y_predicted = self._sigmoid(linear_model)`、参数更新方向；`predict` 保留为 BagOfQuestions 备选；`dw`/`db` 精确推导按降级处理。
    来源：`files-from-teacher/session-2/`，`BagOfQuestions-session-2-aj.md`，`BagOfQuestions-session-2-ak.md`
 
 5. **Decision Boundary**
@@ -59,10 +75,10 @@
    考试重点：把 `w1*x1 + w2*x2 + b = 0` 改写成 `x2 = a*x1 + c`；数值点分类；改变 threshold 后边界仍是 line。
    来源：`files-from-teacher/session-2/lecture-3-logistic-regression-decision-boundary.md`，`BagOfQuestions-session-2-ac.md`
 
-6. **BCE vs MSE**
-   掌握 binary cross-entropy formula、confident mistake penalty、why BCE is preferred over MSE in logistic regression。
-   考试重点：写 one-example / average BCE；画 y=1 和 y=0 的 loss 曲线；解释 sigmoid saturation 下 MSE gradient 弱；概念区分 CE vs BCE，其中 BCE 用于 binary classification，multi-class CE 通常配 softmax。
-   来源：`files-from-teacher/session-2/lecture-4-logistic-regression-loss-bce-gd.md`，`BagOfQuestions-session-2-ad.md`
+6. **BCE Is Out of Current Exam Scope**
+   BCE / BCE vs MSE / BCE curves are not tested under the latest scope update.
+   处理方式：不要按考试题准备 `BagOfQuestions-session-2-ad.md`；logistic regression 仍重点看 `def fit`、sigmoid、linear score、parameter update、decision boundary、softmax 和 TensorFlow Playground。
+   来源：2026-06-17 最新范围更新覆盖旧 `BagOfQuestions-session-2-ad.md`
 
 7. **Feature Scaling**
    掌握 normalization、standardization、why scales affect gradient descent。
@@ -81,13 +97,18 @@
 
 10. **Softmax and One-Hot**
     掌握 softmax formula、shift invariance、numerical stability、one-hot labels、argmax。
-    考试重点：手算 `[2,1,0]` softmax；解释 `[102,101,100]` 和 `[2,1,0]` 概率相同；写 stable softmax。
+    考试重点：手算 `[2,1,0]` softmax；解释 `[102,101,100]` 和 `[2,1,0]` 概率相同；写 stable softmax；能说明同加常数 `c` 时分子分母共同出现 `e^c`，所以会约掉。
     来源：`files-from-teacher/session-3/lecture-5-*` 到 `lecture-7-*`，`BagOfQuestions-session-3-ae.md`，`BagOfQuestions-session-3-af.md`
 
 11. **Output Layer Depends on Task**
     掌握 regression、binary classification、multi-class classification 对应输出层和 loss。
     考试重点：说明什么时候用 linear output、sigmoid、softmax。
     来源：`files-from-teacher/session-3/lecture-5-neural-networks-output-layers-and-softmax.md`，`BagOfQuestions-session-3-ah.md`
+
+11a. **MoE / FFN / MLP Parameter Counting**
+    掌握 `MoE = Mixture of Experts`、`FFN = Feed-Forward Network`、`MLP = Multi-Layer Perceptron`、dense layer 参数量、embedding table no bias、router/expert 参数统计。
+    考试重点：`BagOfQuestions-session-3-ag.md` 的 DeepSeek Mini MoE 参数统计；dense layer 要加 bias，embedding 通常不加 bias；transformer FFN/MLP 形状是 `d_model -> 4 d_model -> d_model`，中间 expanded layer 是 one hidden layer。注意：这不代表 `session-223` 重新纳入范围。
+    来源：`files-from-teacher/BagOfQuestions/BagOfQuestions-session-3-ag.md`
 
 12. **Backpropagation**
    掌握 chain rule、computation graph、forward values stored for backward、gradient flow。
@@ -163,12 +184,13 @@ Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`
 
 ## High-Priority Exam Patterns
 
-- Code blanks: logistic regression only, especially sigmoid, `linear_model`, probability prediction, threshold-to-class prediction, BCE/gradient-related fit logic.
+- Code blanks: logistic regression only, especially `def fit`, `n_features`, `linear_model`, `_sigmoid(linear_model)`, and parameter update sign. `predict` is a backup BagOfQuestions item; BCE is not treated as a code-blank priority.
+- Highest-priority code focus from the latest range recording: logistic regression `def fit`, `n_features`, `linear_model`, `_sigmoid(linear_model)`, and update sign; exact `dw`/`db` derivation is lower priority unless the final question follows BagOfQuestions literally.
 - Shape questions: `X`, `W`, `y_predicted`, `dw`, logits, softmax probabilities, but answer as shape reasoning unless it is logistic-regression code.
-- Formula writing and derivation: MSE, BCE, sigmoid, softmax, cross-entropy, gradient update, Momentum, Adam, L1/L2, dropout expectation, attention formula.
+- Formula writing and derivation: MSE, sigmoid, softmax, cross-entropy except BCE, gradient update, Momentum, Adam, L1/L2, dropout expectation, attention formula. BCE is out of current exam scope.
 - Hand computation: logistic one-step gradient descent, softmax probabilities, decision boundary classification, parameter count.
-- Concept explanation: BCE vs MSE, feature scaling, nonlinearity, backprop, mini-batch trade-off, bias-variance, regularization, dropout expectation, early stopping.
-- Drawing/sketching: polynomial underfit/good/overfit, decision boundary, activation curves, BCE curves, softmax bar chart, optimization paths, bias-variance curve, L1/L2 geometry, dropout subnetworks, early-stopping curves.
+- Concept explanation: feature scaling, nonlinearity, backprop, mini-batch trade-off, bias-variance, regularization, dropout expectation, early stopping. BCE vs MSE is out of current exam scope.
+- Drawing/sketching: polynomial underfit/good/overfit, decision boundary, activation curves, softmax bar chart, optimization paths, bias-variance curve, L1/L2 geometry, dropout subnetworks, early-stopping curves. Do not prepare BCE curves for the current exam.
 - Second-hand checklist audit: `review/essential-cleaned-audit.md` records which classmate-note items are useful, wrong, or out of scope. Do not use it to expand scope beyond `session-201`/`202`/`203`.
 
 ## Review Method

@@ -22,6 +22,7 @@
 
 优先读取：
 
+- `review/highest-priority-exam-scope-2026-06-17.md`
 - `review/source-index.md`
 - `agents/plan.md`
 
@@ -54,6 +55,21 @@
 1. Code question scope: logistic regression only。
 2. Main question types: concepts, mathematical derivations, drawing/sketching, formulas, and hand computation。
 3. Linear regression、neural network layer、optimizer、dropout 等代码实现不再作为代码题优先准备；这些内容仍按概念、公式、推导和图形理解准备。
+
+## 最高优先级考试范围划定
+
+根据 2026-06-17 老师“最高优先级”范围录音/视频和用户手写记录，优先读取 `review/highest-priority-exam-scope-2026-06-17.md`。当前压缩重点：
+
+1. Session 1 低优先级：不删除，但不要投入主要时间。
+2. Session 2 是代码题核心：logistic regression 的 `def fit`、`n_features`、`linear_model = XW + b`、`sigmoid`、参数更新方向。`dw`/`db` 精确推导有降级信号，先会解释为 gradients。
+3. Session 2/3 softmax 要会公式、normalization、shift invariance，以及同加常数 `c` 后 `e^c` 约掉。
+4. TensorFlow Playground / feature engineering 高优先级：从直线 underfitting 到加 `x_1^2, x_2^2` 得到圆形/曲线边界，再到高复杂度 overfitting；能解释 high bias / high variance / good fit。
+5. Session 3 MoE / ChatGPT-style parameter counting 高优先级：embedding 通常 no bias；dense layer 参数量包括 bias；FFN/MLP 是 `d_model -> 4 d_model -> d_model`，中间 expanded layer 是 one hidden layer。这个点不等于重新纳入 `session-223`。
+6. Session 5 高优先级：GD/SGD/Momentum/Adam 的公式和等高线椭圆轨迹图；SGD zig-zag，GD stable，Momentum/Adam smoother。
+7. Session 6 高优先级：L1/L2 penalty、`lambda`、L1 diamond、L2 circle、loss ellipses、first-touch geometry。
+8. Session 7 高优先级：dropout 图、early stopping 图、data augmentation rotation；early stopping 停在 validation loss 开始上升或最佳 validation-loss 点附近。
+9. Extra questions 必记 `session-201`、`session-202`、`session-203`。`qkb` 等音近词应清洗为 QKV。
+10. BCE 明确不考：虽然 `BagOfQuestions-session-2-ad.md` 里有 BCE 旧题，但当前复习按最新范围覆盖它，不再把 BCE / BCE vs MSE / BCE 曲线作为考试准备项。
 
 课程 Readme 写明 English for everything；因此考试题目、考试问法、答案、术语、公式解释中的关键表述必须优先使用英文。面向用户讲解时可以用中文解释思路，但题目与可背答案必须固定为 English first, then Chinese translation。
 
@@ -95,7 +111,7 @@
 
 0. Session 0：notation guideline、what is ML/DL、why neural networks from scratch、projection intuition、basic activation/log/sigmoid support。
 1. Session 1：linear regression、MSE、gradient descent、matrix shapes、polynomial regression、train/test split。
-2. Session 2：logistic regression、sigmoid、decision boundary、BCE vs MSE、feature scaling、threshold。
+2. Session 2：logistic regression、sigmoid、decision boundary、feature scaling、threshold、softmax、TensorFlow Playground / feature engineering。BCE 明确不考。
 3. Session 3：neural network notation、forward propagation、activation functions、softmax、one-hot、output layer depends on task。
 4. Session 4：backpropagation、chain rule、computation graph、Dense/ReLU/softmax cross-entropy、layer interface、training step。
 5. Session 5：gradient update、learning rate、full-batch vs mini-batch SGD、momentum、Adam、bias correction。
