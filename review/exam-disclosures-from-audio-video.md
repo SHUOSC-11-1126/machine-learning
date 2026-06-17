@@ -53,6 +53,8 @@ These excerpts are ASR-cleaned and lightly normalized for readability. Non-exam 
 
 Status: second-hand noisy transcript, not original audio. Use only as a supporting signal when it matches `files-from-teacher/`.
 
+Additional audit note: `review/essential-cleaned-audit.md` checks `老师关于考试的透露/essential-cleaned.txt` against the current teacher scope. Its most important correction is that the note's `201-205` framing is outdated/wrong; current extra scope is only `201/202/203`. Useful items from that note have been folded into `agents/plan.md` as drawing/formula/calculation practice, not as expanded scope.
+
 Cleaned likely topics:
 
 - sigmoid / softmax function

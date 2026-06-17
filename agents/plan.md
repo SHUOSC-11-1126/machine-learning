@@ -61,7 +61,7 @@
 
 6. **BCE vs MSE**
    掌握 binary cross-entropy formula、confident mistake penalty、why BCE is preferred over MSE in logistic regression。
-   考试重点：写 one-example / average BCE；画 y=1 和 y=0 的 loss 曲线；解释 sigmoid saturation 下 MSE gradient 弱。
+   考试重点：写 one-example / average BCE；画 y=1 和 y=0 的 loss 曲线；解释 sigmoid saturation 下 MSE gradient 弱；概念区分 CE vs BCE，其中 BCE 用于 binary classification，multi-class CE 通常配 softmax。
    来源：`files-from-teacher/session-2/lecture-4-logistic-regression-loss-bce-gd.md`，`BagOfQuestions-session-2-ad.md`
 
 7. **Feature Scaling**
@@ -111,7 +111,7 @@
 
 16. **Momentum and Adam**
     掌握 momentum velocity、Adam first moment、second moment、bias correction、default intuition。
-    考试重点：写 Adam formulas；解释 bias correction；比较 SGD、Momentum、Adam。
+    考试重点：写 Adam formulas；解释 bias correction；比较 SGD、Momentum、Adam；画 optimizer 更新轨迹，说明 SGD 的 noisy/zig-zag path、Momentum 如何平滑振荡、Adam 如何用自适应步长。
     来源：`files-from-teacher/session-5/lecture-4-momentum.md`，`lecture-5-adam.md`，`BagOfQuestions-session-5-ad.md` 到 `session-5-ag.md`
 
 17. **Generalization and Metrics**
@@ -126,7 +126,7 @@
 
 19. **L1/L2 Regularization**
     掌握 regularized objective、L2 weight decay、L1 sparsity、gradient/update rule、geometry of norm balls。
-    考试重点：公式、几何解释、L1 为什么促稀疏、L2 为什么缩小权重。
+    考试重点：公式、几何解释、L1/Lasso 为什么促稀疏、L2/Ridge 为什么平滑缩小权重；画 data-loss ellipses 与 L1 diamond / L2 circle，并标出 first-touch point。
     来源：`files-from-teacher/session-6/lecture-6-*` 到 `lecture-9-*`，`BagOfQuestions-session-6-ag.md` 到 `session-6-ai.md`
 
 20. **Probability Distributions in ML**
@@ -141,7 +141,7 @@
 
 22. **Other Regularization and Model Selection Tools**
     掌握 early stopping、data augmentation、hyperparameter optimization、batch normalization。
-    考试重点：validation loss 上升时 early stopping；label-preserving transformation；grid search vs random search；BN train/inference behavior。
+    考试重点：validation loss 上升时 early stopping；画 train/validation loss curves 和 train/validation accuracy curves，标出 best validation epoch / stop point / patience；label-preserving transformation；grid search vs random search；BN train/inference behavior。
     来源：`files-from-teacher/session-7/lecture-3-*` 到 `lecture-6-*`，`BagOfQuestions-session-7-aa.md`，`session-7-ae.md`，`session-7-af.md`
 
 23. **Extra Question 201: QKV Attention**
@@ -151,12 +151,12 @@
 
 24. **Extra Question 202: Positional Encoding**
     掌握为什么 Transformer 需要位置信息、sinusoidal positional encoding 的基本形式、token embedding 加 positional vector。
-    考试重点：解释 self-attention 本身不包含顺序；写 embedding + positional encoding 的组合公式；识别 sine/cosine position signal。
+    考试重点：解释 self-attention 本身不包含顺序；写 embedding + positional encoding 的组合公式 `h_i = x_i + p_i`；识别 sine/cosine position signal；会做 `i=0` 的小计算：sine channels are `0` and cosine channels are `1`。
     来源：`files-from-teacher/session-202-positional-encoding-mini-series/`，`BagOfQuestions-session-202-ee.md`
 
 25. **Extra Question 203: Masking**
     掌握 causal mask、padding mask、combining masks，以及 mask 如何限制 attention 信息流。
-    考试重点：说明 autoregressive decoder 为什么不能看 future tokens；说明 padding mask 为什么需要；写 masked attention 的核心想法。
+    考试重点：说明 autoregressive decoder 为什么不能看 future tokens；写 causal validity relationship `j <= i`；画 lower-triangular causal mask；说明 masked positions are set to `-inf` before softmax, so `exp(-inf)=0` and the attention weight becomes zero；说明 padding mask 为什么需要；写 masked attention 的核心想法。
     来源：`files-from-teacher/session-203-masking-mini-series/`，`BagOfQuestions-session-203-ee.md`
 
 Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`session-204`、`session-205`、`session-208`、`session-211`、`session-212`、`session-223`、`session-400+`、`session-501` 等其他 `session-*` 目录当前不考察，除非老师后续再次明确更新范围。
@@ -169,6 +169,7 @@ Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`
 - Hand computation: logistic one-step gradient descent, softmax probabilities, decision boundary classification, parameter count.
 - Concept explanation: BCE vs MSE, feature scaling, nonlinearity, backprop, mini-batch trade-off, bias-variance, regularization, dropout expectation, early stopping.
 - Drawing/sketching: polynomial underfit/good/overfit, decision boundary, activation curves, BCE curves, softmax bar chart, optimization paths, bias-variance curve, L1/L2 geometry, dropout subnetworks, early-stopping curves.
+- Second-hand checklist audit: `review/essential-cleaned-audit.md` records which classmate-note items are useful, wrong, or out of scope. Do not use it to expand scope beyond `session-201`/`202`/`203`.
 
 ## Review Method
 

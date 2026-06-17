@@ -1,0 +1,163 @@
+==========================================================================
+ML01 期末考试要点（整理版）
+来源：essential-raw.txt 的关键词，已按课程目录(session 1-7 + 201-205)校对、纠错、去重
+==========================================================================
+
+【考试逻辑 / Logistics】
+- 时长 2 小时；闭卷（不允许任何资料）。
+- 成绩 = 0.7 * 期末T + 0.3 * 项目P。
+- 约 70% 来自主线 session 1-7（线性回归→逻辑回归→神经网络→模型选择，
+  考察更深入，涵盖 lecture + code + 少量 practice；部分题来自 BagOfQuestions）。
+- 约 30% 来自 extra session（Transformer/Attention 等），题目较简单。
+
+
+==========================================================================
+A. 主线 session 1-7  (约占 70%)
+==========================================================================
+
+--- Session 1  线性回归 Linear Regression ---
+- MSE（均方误差损失）。
+- 如何拟合“旋转/周期”的数据集？—— 引入非线性特征，例如加入 sin(x)
+  （多项式 / 特征工程的思想）。
+- 梯度下降 Gradient Descent（注意原文 "gradiante" = gradient）。
+
+--- Session 2  逻辑回归 Logistic Regression ---
+- sigmoid 函数（model / 决策边界）。
+- BCE（二元交叉熵损失）。
+- CE vs BCE 的区别（多分类 CE / 二分类 BCE）。
+- 代码：logistic regression 的实现要很熟（code-my_logistic_regression）。
+- 备注：sigmoid 本身的代码不太重要（"sigmoid code is not very important"）。
+
+--- Session 3  神经网络 Neural Networks ---
+- 前向传播 forward propagation。
+- softmax（输出层）：公式 + 说明要会。
+    * 公式：softmax(z)_i = exp(z_i) / Σ_j exp(z_j)。
+    * 说明：把一组实数 logits 变成概率分布（每项∈(0,1)、求和=1）；
+      指数放大差距、保留单调性；常配交叉熵 CE 做多分类输出。
+- 激活函数 / one-hot 编码。
+
+--- Session 4  反向传播 Backpropagation ---
+- 链式法则、计算图。
+- 梯度记号：dW (=dw)、db；以及中间量 d / value 的含义。
+  ⚠ 见下方“待确认的考试范围”：原文有 "session4不考" 的字样，与本节是否考察存在矛盾，需向老师确认。
+
+--- Session 5  优化 Optimization (重点 / "very important") ---
+- learning rate（学习率）。
+- GD、SGD（注意区分二者）。
+- momentum（动量）——原文 "momantal/momento" = momentum；公式要会。
+- Adam：
+    * 一阶矩、二阶矩 + bias correction（理解 t / 时间步的含义）。
+    * Adam 公式 + momentum 公式都要会（momentum / Adam / attention 三个公式都要会写）。
+    * "Adam is used everywhere"，本课程默认/唯一用的优化器就是 Adam。
+    * 与大模型(LLM)训练相关。
+- AdamW（大模型为什么用它）——会考“为什么大模型要用 AdamW”：
+    * W = weight decay（权重衰减）；核心是“解耦的权重衰减 decoupled weight decay”。
+    * 在普通 SGD 上，L2 正则 ≡ 权重衰减；但放进 Adam 后，λW 会被混入一阶矩 m、
+      二阶矩 v 并被逐坐标自适应缩放，导致不再是干净的“缩小权重”。
+    * AdamW 把两件事分开：m、v 只由原始梯度 g 计算；权重衰减单独作用。
+      更新式：W ← (1-ηλ)W - η * m̂/(√v̂+ε)。
+    * 适配大模型训练栈：长训练步数、warmup + 余弦衰减、梯度裁剪、混合精度、
+      参数分组（bias / LayerNorm 通常不做 weight decay）。
+- 画图：optimizer 更新轨迹的 zig-zag（SGD 抖动 / momentum 如何抑制振荡）。
+
+--- Session 6  模型选择 Model Selection ---
+- 什么是 overfitting（会考，重复出现，重点）。两层含义：
+    1. “过度”：训练损失很低、真实/验证损失高（记住噪声而非规律，
+       泛化差——seen 好、unseen 差）；
+    2. “复杂模型用在简单（或少量）数据”：模型复杂度/容量过高，
+       如高次多项式、很深的决策树 → 高方差 high variance。
+    * 对应偏差-方差权衡：复杂度↑ → 偏差↓、方差↑；存在欠拟合与过拟合之间的 sweet spot。
+- L1 与 L2 正则化：会考“画图 + 公式”，并解释其几何/效果差异。
+
+--- Session 7  正则化等 Regularization ---
+- 正则化手段：除了 L1、L2 之外，还有 —— dropout、early stopping
+  （还有 data augmentation、batch norm，了解即可）。
+- dropout：训练时按概率 p 随机“丢弃”一部分神经元（置零），
+  迫使网络不依赖某些特定神经元 → 抑制过拟合、近似集成。
+- early stopping（提前停止）：会考“画出这张图”（老师明确点名要画）。
+    * 思路：训练时监控验证集；train loss 单调下降，但 val loss 先降后升，
+      在 val loss 最低点 t* 处停止（用 patience 容忍若干步不提升后停）。
+    * 本质是隐式正则化：用训练时长控制有效容量，停在过拟合区之前。
+    * 画图要点：横轴 epoch、纵轴 loss；两条曲线——train loss 持续下降，
+      val loss 呈 U 形；在 val loss 最低点画竖线标 “stop / t*”，
+      其右侧标注 overfitting 区域。
+
+
+==========================================================================
+B. Extra session  Transformer / Attention  (约占 30%，考察范围: 201 / 202 / 203)
+==========================================================================
+
+--- 201  QKV 注意力 Attention ---
+- Q、K、V 与 softmax；attention 公式（"attention formula"）：
+    Attention(Q,K,V) = softmax( Q K^T / sqrt(d_k) ) V。
+- 点积作为相似度；按 sqrt(d_k) 缩放。
+- self-attention vs cross-attention：
+    * cross-attention 中 Q 来自 decoder。
+- QKV + masking（结合 203）：把 mask 矩阵 M 加进 softmax 内部
+    softmax( QK^T/sqrt(d_k) + M ) V，未来位置被屏蔽（见 203，如图）。
+- "transformer most important"（transformer 是最重要的）。
+
+--- 223  前馈网络 FFN / MLP ---
+- 结构（要会画出来）：Linear 扩展 → 非线性激活 → Linear 收缩。
+    输入 d_model → 隐藏层 4×d_model → 激活(ReLU/GELU 等) → 输出回 d_model。
+    公式：FFN(x) = activation(x W1 + b1) W2 + b2。
+    画图：[d_model] --W1放大--> [4·d_model 隐藏层] --激活--> --W2缩小--> [d_model]。
+- 隐藏层一般是 4 倍神经元（d_ff = 4·d_model，例 768 → 3072），属经验最优、提升容量。
+- 逐位置独立：FFN 对每个 token 用同一套权重、位置间不交换信息
+    （分工：attention 负责“看哪里/路由”，FFN 负责“处理信息”）。
+- parameter counting（参数量估算，会考）：
+    * FFN：两个权重矩阵 = d·(4d) + (4d)·d = 8 d^2（外加偏置，常忽略/无 bias）。
+    * Attention：Q、K、V、O 四个投影 ≈ 4 d^2。
+    * 故每个 transformer block 里 FFN 的参数约是 attention 的 2 倍。
+    * 一个线性层 Linear(in,out) 参数 = in*out (+out 偏置)。
+
+--- 202  位置编码 Positional Encoding ---
+- 为什么顺序/位置重要：两个相同的单词出现在不同位置，结果不同——要能解释原因。
+- sinusoidal（正弦/余弦）位置编码。
+- PE 不需要死记硬背，但要会一点点计算（"a little bit calculation"）。
+
+--- 203  掩码 Masking ---
+- mask（掩码）。
+- Causal Mask（因果/自回归掩码）——重点。
+- mask 矩阵 M（如图，会考）：用 -∞（负无穷）来控制屏蔽过程。
+    M_ij = 0       当 i ≥ j（可看“当前及过去”）
+    M_ij = -∞      当 i < j（屏蔽“未来”）
+    形状是下三角矩阵；加进 softmax 内部后，-∞ 经 exp 变 0 →
+    对应注意力权重 α_ij = 0，未来位置被完全去掉。
+- 用在哪里：causal mask 用于 decoder。
+    * decoder-only 模型（GPT）：每层都用因果自注意力；
+    * encoder-decoder 的 decoder：自注意力用因果掩码，cross-attention 不用。
+
+--- 204  损失函数 Loss Function ---
+- 交叉熵 CE / BCE（与 session 2 相通）。
+
+--- 205  进阶主题 Advanced (了解即可) ---
+- MoE 混合专家（ChatGPT 相关）、参数/专家数量。
+- 注意力的开销 expensive：自注意力的显存/内存是瓶颈（O(n^2)）。
+  例：1000 tokens 约占 1 megabit 量级。
+- fast attention / 线性注意力：让复杂度更接近线性。
+
+
+==========================================================================
+C. 待确认的考试范围（课堂口述笔记，建议向老师核对）
+==========================================================================
+- "201 / 202 / 203 要考" —— transformer extra 部分以这三块为主。
+- "5: adam / gd / sgd" —— session 5 是重点（与上文一致）。
+- "L1, L2: 画图 + 公式" —— 与 session 6 一致。
+- ✅ dropout / early stopping：确定要考（已和老师确认）。
+    旧笔记 "dropout 不考" 作废；以此为准：
+    early stopping 必考、且要会画图；dropout 要懂概念与作用。
+- "session 4 不考"。  ⚠ 与主线反向传播是否考察矛盾，务必确认。
+- "1 几乎不考"（session 1 线性回归考得少）。
+- "2: tensorflow"、"3: chat-gpt"。
+  ⚠ 这两条编号含义不清：按主线 session2=逻辑回归 / session3=神经网络，
+    与 "tensorflow / chat-gpt" 对不上，疑似指 extra session 的别的编号，需老师确认。
+
+
+==========================================================================
+D. 原文中无法归类 / 噪声片段（已剔除，仅存档）
+==========================================================================
+- "other staff" / "no" / "task" / "function" / "m" / "Ada,"
+- "I think it's on you now." / "mecanism" / "there is no need to do calculation"
+- "code only for it" / "Exercise Code"
+（以上为录音转写的零碎词，无独立知识点含义。）
