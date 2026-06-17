@@ -7,6 +7,7 @@
 - 2026-06-17 teacher update: `files-from-teacher/session-0` to `files-from-teacher/session-7` are the main line.
 - Extra questions only use `files-from-teacher/session-201-qkv-attention-mini-series`, `files-from-teacher/session-202-positional-encoding-mini-series`, and `files-from-teacher/session-203-masking-mini-series`.
 - Other `files-from-teacher/session-*` directories are outside the current final-exam scope unless the teacher updates the scope again.
+- Latest exam-format update: code questions only test logistic regression; most questions focus on concepts, mathematical derivations, and drawings/sketches.
 
 ## Exam Signal From Readme
 
@@ -20,7 +21,7 @@
 
 1. `files-from-teacher/Readme.md` exam rules.
 2. `files-from-teacher/BagOfQuestions/` question source.
-3. `files-from-teacher/session-0` to `session-7` lecture and code materials.
+3. `files-from-teacher/session-0` to `session-7` lecture, practice, and code materials; code-question preparation only targets logistic regression.
 4. Extra session materials only from `session-201`, `session-202`, and `session-203`.
 
 ## Main Sessions

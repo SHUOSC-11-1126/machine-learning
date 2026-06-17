@@ -16,12 +16,14 @@ Processing note: the recording audio had classroom/microphone mixing. A direct m
 - Main line: `files-from-teacher/session-0` to `files-from-teacher/session-7`.
 - Extra questions: only `files-from-teacher/session-201-qkv-attention-mini-series`, `files-from-teacher/session-202-positional-encoding-mini-series`, and `files-from-teacher/session-203-masking-mini-series`.
 - Other `files-from-teacher/session-*` directories are not assessed unless the teacher updates the scope again.
+- Latest format update: code questions only test logistic regression; the exam mainly focuses on concepts, mathematical derivations, formulas, hand computation, and drawings/sketches.
 
 中文：
 
 - 主线是 `session-0` 到 `session-7`。
 - Extra questions 只考 `session-201`、`session-202`、`session-203`。
 - 其他 session 不考察，除非老师后续再次明确更新。
+- 代码题只考 logistic regression；其他主要按概念、数学推导、公式、手算和画图准备。
 
 ## Cleaned Exam-Relevant Transcript Excerpts
 
@@ -118,21 +120,22 @@ Action:
 - Prioritize every `files-from-teacher/BagOfQuestions/BagOfQuestions-session-*.md`.
 - Treat BagOfQuestions questions as closest to final-exam style.
 
-### 2. Final Exam Style: General Notions + A Little Code
+### 2. Final Exam Style: Concepts, Derivations, Drawings; Code Only Logistic Regression
 
 English signal:
 
-The teacher described final-exam questions as "general notions" and "a little bit of code".
+Earlier audio described final-exam questions as "general notions" and "a little bit of code". The latest update narrows that code part: code questions only test logistic regression. Most questions should be prepared as concepts, mathematical derivations, formulas, hand computations, and drawings/sketches.
 
 中文解释：
 
-考试不会只考抽象概念，也不会只考代码。要同时准备：
+考试不再按多处代码实现准备。代码题只看 logistic regression；其他内容按概念、数学推导、公式、手算、画图准备。
 
 - concept explanation
 - formulas
 - simple hand computation
-- code fill-in/debugging
+- logistic-regression code fill-in/debugging only
 - shapes and training/inference behavior
+- drawing/sketching
 
 This matches `files-from-teacher/Readme.md`: main sessions include lecture, code, and a little practice.
 
@@ -226,18 +229,19 @@ Teacher source paths:
 - `files-from-teacher/session-201-qkv-attention-mini-series/lecture-7-matrix-form-of-attention.md`
 - `files-from-teacher/session-201-qkv-attention-mini-series/lecture-17-self-attention-vs-cross-attention.md`
 
-### 5. Session 5 Code / Optimizers Are Still Worth Reviewing
+### 5. Session 5 Optimizers: Formulas and Concepts, Not Code Questions
 
 English signal:
 
-The video returned to Session 5 and mentioned neural-network code with SGD / Adam. This supports the existing priority on optimization and code-level questions.
+The video returned to Session 5 and mentioned neural-network code with SGD / Adam. This is now superseded by the latest update that code questions only test logistic regression. Session 5 is still worth reviewing for optimizer formulas, concepts, comparisons, and trajectory drawings, but not as code-fill material.
 
 Review targets:
 
 - full-batch GD vs mini-batch SGD
 - momentum update
 - Adam first moment, second moment, bias correction, and update rule
-- code structure in the Session 5 neural-network implementation
+- optimization path drawings: GD vs SGD vs Momentum vs Adam
+- learning-rate failure modes: too small vs too large
 
 Teacher source paths:
 
@@ -282,6 +286,6 @@ Uncertain ASR fragments such as unclear architecture terms were not used as exam
 1. Review `files-from-teacher/BagOfQuestions/` first.
 2. For main sessions, keep the updated route: sessions 0-7 are the core.
 3. Add special attention to Session 7 regularization answers: dropout, early stopping, data augmentation, batch normalization.
-4. Review Session 5 optimizer code and formulas: SGD, Momentum, Adam.
+4. Review Session 5 optimizer formulas and concepts: SGD, Momentum, Adam; do not prioritize Session 5 code blanks.
 5. For extra questions, review only sessions 201, 202, and 203.
 6. Do not spend final-review time on GAN or other out-of-scope sessions unless a later teacher update explicitly brings them back.

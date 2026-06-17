@@ -4,11 +4,11 @@
 
 本计划只按知识点组织，不按时间推进。
 
-最高优先级资料是 `files-from-teacher/` 子模块。根据 `files-from-teacher/Readme.md`，final exam 约 70% 来自主 session，部分题目来自 `files-from-teacher/BagOfQuestions/`；约 30% 来自 extra sessions，题目较简单。根据 2026-06-17 老师最新透露，主线明确为 `session-0` 到 `session-7`，extra questions 只来自 `session-201`、`session-202`、`session-203`，其他 `session-*` 不考察。
+最高优先级资料是 `files-from-teacher/` 子模块。根据 `files-from-teacher/Readme.md`，final exam 约 70% 来自主 session，部分题目来自 `files-from-teacher/BagOfQuestions/`；约 30% 来自 extra sessions，题目较简单。根据 2026-06-17 老师最新透露，主线明确为 `session-0` 到 `session-7`，extra questions 只来自 `session-201`、`session-202`、`session-203`，其他 `session-*` 不考察。最新题型消息进一步说明：代码只考 logistic regression，主要题型是 concepts、mathematical derivations、drawing/sketching、formulas、hand computation。
 
 所有复习产物遵循 English-first rule：考试题目、考试问法、可背答案、关键术语和公式解释先写英文，再给中文翻译或中文讲解。中文用于帮助理解，不能替代英文考试版。
 
-复习主线：session-0 notation/basic ML framing -> 线性回归与梯度下降 -> 逻辑回归与 BCE -> 神经网络前向传播 -> softmax 和多分类 -> 反向传播与层接口 -> 优化器 -> 泛化、指标、正则化 -> dropout、early stopping、batch normalization -> extra questions 201/202/203。
+复习主线：session-0 notation/basic ML framing -> 线性回归与梯度下降概念/推导/图形 -> 逻辑回归概念/数学/唯一代码题 -> 神经网络前向传播与图示 -> softmax 和多分类公式/手算 -> 反向传播概念/链式法则 -> 优化器公式与轨迹图 -> 泛化、指标、正则化 -> dropout、early stopping、batch normalization 图形与解释 -> extra questions 201/202/203。
 
 ## Source Map
 
@@ -36,7 +36,7 @@
 
 1. **Linear Regression From Scratch**
    掌握模型 `Y_hat = XW + b`、MSE、梯度、`np.dot`、`X.T`、shape 检查和参数更新。
-   考试重点：填空代码、解释 `weights` 与 `bias`、debug elementwise multiplication、说明为什么更新要减去梯度。
+   考试重点：概念、MSE/gradient update 推导、shape、解释 `weights` 与 `bias`、说明为什么更新要减去梯度；代码实现只作理解背景，不作为最新代码题优先级。
    来源：`files-from-teacher/session-1/`，`BagOfQuestions-session-1-*`
 
 2. **Polynomial Regression and Feature Engineering**
@@ -51,7 +51,7 @@
 
 4. **Logistic Regression Basics**
    掌握 `z = XW + b`、`sigmoid(z)`、probability interpretation、threshold and class label。
-   考试重点：从 linear regression 改成 logistic regression 的代码填空；`linear_model`、`y_predicted`、`y_predicted_cls` 区别。
+   考试重点：唯一代码题范围；从 linear regression 改成 logistic regression 的代码填空；`linear_model`、`y_predicted`、`y_predicted_cls` 区别；sigmoid、BCE、gradient、threshold、decision boundary。
    来源：`files-from-teacher/session-2/`，`BagOfQuestions-session-2-aj.md`，`BagOfQuestions-session-2-ak.md`
 
 5. **Decision Boundary**
@@ -90,13 +90,13 @@
     来源：`files-from-teacher/session-3/lecture-5-neural-networks-output-layers-and-softmax.md`，`BagOfQuestions-session-3-ah.md`
 
 12. **Backpropagation**
-    掌握 chain rule、computation graph、forward values stored for backward、gradient flow。
-    考试重点：解释 backprop 从 loss 回传到 parameters；Dense layer debug；ReLU backward；training step fill-in-the-blank。
+   掌握 chain rule、computation graph、forward values stored for backward、gradient flow。
+    考试重点：解释 backprop 从 loss 回传到 parameters、链式法则、computation graph、梯度方向和公式含义；Dense/ReLU/training step 代码填空不再作为最新代码题优先级。
     来源：`files-from-teacher/session-4/`，`BagOfQuestions-session-4-*`
 
 13. **Layer Interface and Minimal NN Implementation**
     掌握 `forward`、`backward`、stored activations、parameter gradients、network training step。
-    考试重点：为什么 forward 要保存输入/激活；layer interface 如何使 Dense、ReLU、SoftmaxCE 组合。
+    考试重点：概念解释和图示：为什么 forward 要保存输入/激活；layer interface 如何使 Dense、ReLU、SoftmaxCE 组合；不按代码题优先准备。
     来源：`files-from-teacher/session-4/code-my_nn.md`，`code-connections-with-lecture.md`
 
 14. **Optimization Basics**
@@ -136,7 +136,7 @@
 
 21. **Dropout**
     掌握 training-time random mask、inverted dropout scaling by `1/(1-p)`、eval mode no-op、implicit ensemble。
-    考试重点：dropout fill-in-the-blank；期望值计算；为什么 train/eval mode 必须分开。
+    考试重点：画 dropout 前后网络图、期望值计算、解释 inverted dropout 为什么除以 `1-p`、为什么 train/eval mode 必须分开；代码填空不再作为最新代码题优先级。
     来源：`files-from-teacher/session-7/lecture-1-dropout.md`，`lecture-2-dropout-1-p-multipy-or-devide.md`，`BagOfQuestions-session-7-ab.md`，`session-7-ac.md`，`session-7-ah.md`
 
 22. **Other Regularization and Model Selection Tools**
@@ -163,12 +163,12 @@ Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`
 
 ## High-Priority Exam Patterns
 
-- Code blanks: linear/logistic regression from scratch, sigmoid, predict threshold, Dense/ReLU/dropout/training step.
-- Shape questions: `X`, `W`, `y_predicted`, `dw`, logits, softmax probabilities.
-- Formula writing: MSE, BCE, softmax, cross-entropy, gradient update, Momentum, Adam, L1/L2.
+- Code blanks: logistic regression only, especially sigmoid, `linear_model`, probability prediction, threshold-to-class prediction, BCE/gradient-related fit logic.
+- Shape questions: `X`, `W`, `y_predicted`, `dw`, logits, softmax probabilities, but answer as shape reasoning unless it is logistic-regression code.
+- Formula writing and derivation: MSE, BCE, sigmoid, softmax, cross-entropy, gradient update, Momentum, Adam, L1/L2, dropout expectation, attention formula.
 - Hand computation: logistic one-step gradient descent, softmax probabilities, decision boundary classification, parameter count.
-- Concept explanation: BCE vs MSE, feature scaling, nonlinearity, backprop, mini-batch trade-off, bias-variance, dropout expectation.
-- Drawing/sketching: polynomial underfit/good/overfit, decision boundary, activation curves, softmax bar chart, bias-variance curve, L1/L2 geometry, dropout subnetworks.
+- Concept explanation: BCE vs MSE, feature scaling, nonlinearity, backprop, mini-batch trade-off, bias-variance, regularization, dropout expectation, early stopping.
+- Drawing/sketching: polynomial underfit/good/overfit, decision boundary, activation curves, BCE curves, softmax bar chart, optimization paths, bias-variance curve, L1/L2 geometry, dropout subnetworks, early-stopping curves.
 
 ## Review Method
 
@@ -176,7 +176,7 @@ Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`
 
 1. Read `review/source-index.md` to locate teacher materials.
 2. Read the matching BagOfQuestions file first if available.
-3. Read the matching session lecture/code file.
+3. Read the matching session lecture file first; read code files mainly for logistic regression code questions or for conceptual support.
 4. Extract or write the exam question in English first, then add a Chinese translation.
 5. Produce an English exam-ready answer first, then add a Chinese translation.
 6. Add a short Chinese explanation for understanding.
@@ -184,5 +184,5 @@ Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`
 
 ## Assumptions
 
-- 当前复习范围以 `files-from-teacher/Readme.md` 加 2026-06-17 老师最新口头范围更新为准：main = session-0 到 session-7；extra = session-201、session-202、session-203；其他 session 不考察。
+- 当前复习范围以 `files-from-teacher/Readme.md` 加 2026-06-17 老师最新口头范围更新为准：main = session-0 到 session-7；extra = session-201、session-202、session-203；其他 session 不考察。代码题只考 logistic regression，主要题型为概念、数学推导、画图、公式和手算。
 - 如果老师子模块更新，应重新生成 `review/source-index.md`。
