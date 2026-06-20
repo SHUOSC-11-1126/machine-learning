@@ -27,6 +27,7 @@
 - `files-from-teacher/session-203-masking-mini-series/`：causal mask、padding mask、combining masks、masking in transformer architectures。
 - `review/source-index.md`：从老师子模块生成的快速索引。
 - `review/highest-priority-exam-scope-2026-06-17.md`：2026-06-17 老师最高优先级范围录音/视频和手写记录的清洗版，包含音近词纠错和优先级压缩。
+- `review/classmate-ml-revision-all-audit.md`：同学整理 PDF `files-from-classmate/ml-revision-all.pdf` 的审阅记录。它可用于答案模板对照，但不能覆盖老师资料。
 
 ## Highest-Priority Scope Compression
 
@@ -184,7 +185,7 @@ Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`
 
 ## High-Priority Exam Patterns
 
-- Code blanks: logistic regression only, especially `def fit`, `n_features`, `linear_model`, `_sigmoid(linear_model)`, and parameter update sign. `predict` is a backup BagOfQuestions item; BCE is not treated as a code-blank priority.
+- Code blanks: logistic regression only, especially `def fit`, `n_features`, `linear_model`, `_sigmoid(linear_model)`, and parameter update sign. `predict` is understanding-only under the latest scope; BCE is not a code-blank priority.
 - Highest-priority code focus from the latest range recording: logistic regression `def fit`, `n_features`, `linear_model`, `_sigmoid(linear_model)`, and update sign; exact `dw`/`db` derivation is lower priority unless the final question follows BagOfQuestions literally.
 - Shape questions: `X`, `W`, `y_predicted`, `dw`, logits, softmax probabilities, but answer as shape reasoning unless it is logistic-regression code.
 - Formula writing and derivation: MSE, sigmoid, softmax, cross-entropy except BCE, gradient update, Momentum, Adam, L1/L2, dropout expectation, attention formula. BCE is out of current exam scope.
