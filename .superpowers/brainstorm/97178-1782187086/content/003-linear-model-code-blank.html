@@ -1,0 +1,38 @@
+<h2>Code blanks 1–2: build the linear score</h2>
+<p class="subtitle">The exact training line is <code>linear_model = np.dot(X, self.weights) + self.bias</code>.</p>
+
+<div class="section">
+  <svg viewBox="0 0 1000 245" width="100%" role="img" aria-label="A single sample dot product plus bias">
+    <rect x="35" y="48" width="260" height="130" rx="14" fill="#e9f2ff" stroke="#5287c8" stroke-width="2"/>
+    <text x="165" y="84" text-anchor="middle" font-size="24" font-weight="700" fill="#183a64">one sample x</text>
+    <text x="165" y="124" text-anchor="middle" font-size="25" fill="#183a64">[x₁, x₂, x₃]</text>
+    <text x="165" y="155" text-anchor="middle" font-size="16" fill="#486889">one row of X</text>
+    <text x="338" y="123" text-anchor="middle" font-size="35" fill="#53606f">·</text>
+    <rect x="380" y="48" width="240" height="130" rx="14" fill="#f7f0ff" stroke="#9266c7" stroke-width="2"/>
+    <text x="500" y="84" text-anchor="middle" font-size="24" font-weight="700" fill="#4f287a">weights W</text>
+    <text x="500" y="124" text-anchor="middle" font-size="25" fill="#4f287a">[w₁, w₂, w₃]</text>
+    <text x="500" y="155" text-anchor="middle" font-size="16" fill="#72538e">self.weights</text>
+    <text x="668" y="123" text-anchor="middle" font-size="30" fill="#53606f">+</text>
+    <rect x="710" y="48" width="255" height="130" rx="14" fill="#fff5e8" stroke="#c5883e" stroke-width="2"/>
+    <text x="838" y="84" text-anchor="middle" font-size="24" font-weight="700" fill="#75410b">bias b</text>
+    <text x="838" y="124" text-anchor="middle" font-size="25" fill="#75410b">self.bias</text>
+    <text x="838" y="155" text-anchor="middle" font-size="16" fill="#91642c">same scalar for every sample</text>
+    <text x="500" y="223" text-anchor="middle" font-size="20" fill="#394654">Result: z = x₁w₁ + x₂w₂ + x₃w₃ + b</text>
+  </svg>
+</div>
+
+<div class="section">
+  <p><strong>Question (English):</strong> Why is <code>np.dot(X, self.weights)</code> used in logistic regression?</p>
+  <p><strong>中文：</strong>为什么 logistic regression 要用 <code>np.dot(X, self.weights)</code>？</p>
+  <p><strong>Answer (English):</strong> It computes the weighted sum of the features for every sample, producing the linear score before applying sigmoid.</p>
+  <p><strong>中文：</strong>它为每个样本计算特征的加权和，得到应用 sigmoid 之前的线性分数。</p>
+</div>
+
+<h3>Retrieval check</h3>
+<p>Which fills the two blanks correctly?</p>
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)"><div class="letter">A</div><div class="content"><h3><code>np.dot(X, self.weights)</code></h3><p>Then add <code>self.bias</code>.</p></div></div>
+  <div class="option" data-choice="b" onclick="toggleSelect(this)"><div class="letter">B</div><div class="content"><h3><code>np.dot(X, y)</code></h3><p>Then add <code>self.weights</code>.</p></div></div>
+</div>
+
+<p class="subtitle">Source: <code>files-from-teacher/session-2/code-my_logistic_regression.md</code>; <code>files-from-teacher/BagOfQuestions/BagOfQuestions-session-2-aj.md</code>.</p>

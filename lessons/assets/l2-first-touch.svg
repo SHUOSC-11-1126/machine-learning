@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="740" height="570" viewBox="0 0 740 570" role="img" aria-labelledby="title desc">
+  <title id="title">L2 first-touch geometry</title><desc id="desc">The L2 circle is centered at the origin. Elliptical data-loss contours centered at the unconstrained minimum first touch the circle at a smooth non-axis point.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 Z" fill="#d4571e"/></marker></defs>
+  <rect width="740" height="570" rx="18" fill="#fbfcfe"/>
+  <style>text{font-family:Arial,sans-serif;fill:#263846} .small{font-size:18px} .label{font-size:21px;font-weight:700} .note{font-size:18px;fill:#52616e} .orange{fill:#b94b1a} .purple{fill:#7654a8} .blue{fill:#176fb3} .green{fill:#178061}</style>
+  <line x1="92.0" y1="354.7" x2="690.0" y2="354.7" stroke="#52616e" stroke-width="2.4"/>
+  <line x1="320.3" y1="500.0" x2="320.3" y2="48.0" stroke="#52616e" stroke-width="2.4"/>
+  <text x="684.0" y="385.7" class="label" text-anchor="end">w₁</text>
+  <text x="310.3" y="68.0" class="label" text-anchor="end">w₂</text>
+  <text x="308.3" y="383.7" class="small" text-anchor="end">0</text>
+  <circle cx="320.3" cy="354.7" r="109.0" fill="#ddf3e9" stroke="#178061" stroke-width="3"/>
+  <ellipse cx="543.2" cy="181.2" rx="93.3" ry="39.2" fill="none" stroke="#9bc7e5" stroke-width="2"/>
+  <ellipse cx="543.2" cy="181.2" rx="179.8" ry="75.5" fill="none" stroke="#6caad4" stroke-width="2.4"/>
+  <ellipse cx="543.2" cy="181.2" rx="239.9" ry="100.7" fill="none" stroke="#176fb3" stroke-width="3.5"/>
+  <circle cx="543.2" cy="181.2" r="8" fill="#7654a8"/>
+  <circle cx="385.3" cy="257.0" r="12" fill="#d4571e" stroke="white" stroke-width="3"/>
+  <line x1="453.0" y1="272.4" x2="385.3" y2="257.0" stroke="#d4571e" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="456.2" y="256.2" class="label orange">first touch</text>
+  <text x="456.2" y="278.8" class="small orange">smooth boundary</text>
+  <text x="439.9" y="122.3" class="small purple">unregularized minimum</text>
+  <text x="120.3" y="383.8" class="label green">L2 feasible set</text>
+  <text x="120.3" y="409.6" class="small green">w₁² + w₂² ≤ c²</text>
+</svg>

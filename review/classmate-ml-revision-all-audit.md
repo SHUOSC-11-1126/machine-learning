@@ -216,15 +216,14 @@ The PDF correctly says BCE / CE-vs-BCE is not tested under the latest scope. Thi
 
 Action: do not use `BagOfQuestions-session-2-ad.md` for current exam-priority practice.
 
-### 3. Session 1 / Session 4 Not-Tested Claims Need Care
+### 3. Session 1 / Session 4 Not-Tested Claims
 
-The PDF says Session 1 / Session 4 are not tested. This may match the latest class understanding, but it is still a classmate-produced document.
+The PDF says Session 1 / Session 4 are not tested. Session 1 remains low priority rather than excluded. Session 4 is now explicitly excluded by the later confirmed teacher update.
 
 Action:
 
 - Treat Session 1 as low priority, consistent with the teacher range recording.
-- Do not spend first-pass review time on Session 4 code or backprop implementation.
-- Keep minimal Session 4 conceptual understanding only if time allows, unless the user confirms the teacher explicitly removed Session 4.
+- Do not prepare any Session 4 code, backpropagation, or conceptual material for the current exam.
 
 ### 4. `xlsx 总表` Is Referenced But Not Present Here
 

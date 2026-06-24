@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>L1 and L2 Regularization: First-Touch Geometry</title>
+  <style>
+    :root { --ink:#17212b; --muted:#52616e; --paper:#fbfcfe; --line:#d7dee6; --blue:#1874b8; --blue-soft:#e8f3fb; --orange:#d25b25; --orange-soft:#fff0e9; --green:#18785a; --green-soft:#e8f7f0; --purple:#7654a8; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#eef2f6; color:var(--ink); font:17px/1.65 Georgia, "Noto Serif SC", serif; }
+    main { max-width:1120px; margin:32px auto; padding:44px clamp(24px,5vw,64px); background:var(--paper); box-shadow:0 16px 45px rgba(28,48,70,.12); }
+    h1,h2,h3 { font-family:Inter, ui-sans-serif, system-ui, "Noto Sans SC", sans-serif; line-height:1.25; }
+    h1 { font-size:clamp(30px,4vw,48px); letter-spacing:-.04em; margin:0 0 8px; }
+    h2 { font-size:26px; margin:40px 0 12px; }
+    h3 { font-size:18px; margin:0 0 8px; }
+    p { margin:10px 0; }
+    .eyebrow { color:var(--blue); font:700 13px/1.2 Inter,system-ui,sans-serif; text-transform:uppercase; letter-spacing:.12em; }
+    .lead { max-width:760px; font-size:20px; color:#344552; }
+    .source { border-left:3px solid var(--blue); padding:8px 14px; background:var(--blue-soft); font-size:14px; color:#314c63; }
+    code,.formula { font-family:"SFMono-Regular",Consolas,monospace; font-size:.94em; }
+    .formula { display:block; margin:14px 0; padding:14px 18px; background:#f2f5f8; border-radius:8px; overflow-x:auto; }
+    .panels { display:flex; gap:24px; margin:26px 0; }
+    figure { flex:1 1 0; min-width:0; margin:0; padding:18px; border:1px solid var(--line); background:#fff; border-radius:14px; }
+    svg { display:block; width:100%; height:350px; }
+    .diagram { display:block; width:100%; height:auto; }
+    figcaption { margin:12px 4px 2px; color:var(--muted); font:14px/1.45 Inter,system-ui,sans-serif; }
+    .steps { display:flex; gap:12px; margin:18px 0; }
+    .step { flex:1 1 0; padding:15px; border-top:3px solid var(--blue); background:#f3f7fa; font:14px/1.5 Inter,system-ui,sans-serif; }
+    .n { display:block; color:var(--blue); font-weight:800; font-size:21px; }
+    .answer { margin-top:24px; padding:22px; background:var(--green-soft); border:1px solid #bde4d5; border-radius:12px; }
+    .trap { margin-top:20px; padding:17px 20px; background:var(--orange-soft); border-left:4px solid var(--orange); }
+    .cn { color:#475967; }
+    @media (max-width:760px) { main { margin:0; min-height:100vh; padding:30px 20px; } .panels,.steps { display:block; } figure,.step { margin-bottom:16px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Session 6 · Model Selection</div>
+    <h1>L1/L2 正则化：首次接触几何图</h1>
+    <p class="lead">把模型暂时缩小到两个 weights：(w_1,w_2)。核心问题是：在正则化允许的 weights 中，哪一组能取得最低的 data loss？</p>
+    <p class="source"><strong>Teacher source / 题目来源：</strong><code>files-from-teacher/BagOfQuestions/BagOfQuestions-session-6-ah.md</code></p>
+
+    <h2>1. 先读懂坐标、等高线与约束区域</h2>
+    <p>图上的每一个点都是一组可能的参数 ((w_1,w_2))。蓝色椭圆是 <strong>data-loss contours（data loss 等高线）</strong>：同一条椭圆上的点有相同的 training-data loss。椭圆越靠近紫色点（未正则化最优点），data loss 越低。</p>
+    <p class="cn"><strong>feasible region（可行区域）</strong> 是正则化允许选择的 weights 集合。蓝色菱形对应 L1，绿色圆形对应 L2；两者都以原点 ((0,0)) 为中心。</p>
+
+    <div class="panels">
+      <figure>
+        <h3>L1：菱形约束（diamond constraint）</h3>
+        <img class="diagram" src="assets/l1-first-touch.svg" alt="L1 菱形约束、椭圆 data loss 等高线，以及在 w1 等于零的尖角处首次接触。">
+        <figcaption>菱形以原点为中心。等高线从紫色未正则化最优点向外扩张，第一次在尖角触到菱形；该点满足 (w_1=0)。</figcaption>
+      </figure>
+
+      <figure>
+        <h3>L2：圆形约束（circular constraint）</h3>
+        <img class="diagram" src="assets/l2-first-touch.svg" alt="L2 圆形约束、椭圆 data loss 等高线，以及在平滑边界处首次接触。">
+        <figcaption>圆形同样以原点为中心，但没有尖角。首次接触落在平滑边界上，因此 weights 通常被缩小而非恰好变为 0。</figcaption>
+      </figure>
+    </div>
+
+    <h2>2. 为什么“首次接触”就是答案？</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span>紫色点是未正则化的 minimum：data loss 最低，但它落在可行区域外，不能选。</div>
+      <div class="step"><span class="n">2</span>从紫色点附近最小的等高线开始。若椭圆没有碰到可行区域，说明没有合法 weights 能取得这么低的 loss。</div>
+      <div class="step"><span class="n">3</span>逐渐向外扩大椭圆，相当于逐渐接受更高一点的 data loss。</div>
+      <div class="step"><span class="n">4</span>第一次接触点是所有合法 weights 中 data loss 最低的点，因此就是正则化解。</div>
+    </div>
+    <p class="cn">中文：先看没有正则化时的最佳点；它的 data loss 最低，但可能落在允许区域外。逐渐把等高线扩大，直到第一次碰到菱形或圆形。更小的等高线没有任何合法参数；更大的等高线 loss 更高。因此首次接触点就是正则化解。</p>
+
+    <h2>3. 公式与稀疏解结论</h2>
+    <span class="formula">L1 objective: L<sub>train</sub>(W) + λ Σ<sub>j</sub>|W<sub>j</sub>|</span>
+    <span class="formula">L2 objective: L<sub>train</sub>(W) + λ Σ<sub>j</sub>W<sub>j</sub><sup>2</sup></span>
+    <p><strong>中文解释：</strong>L1 的菱形在坐标轴上有尖角；若首次接触发生在尖角，某个 weight 恰好为 0，因此能产生 sparse solution。L2 是光滑圆形，通常使 weights 变小，但不倾向恰好变为 0。</p>
+    <p class="cn"><strong>English:</strong> L1 can produce sparse solutions because its diamond has corners on coordinate axes. L2 usually shrinks weights smoothly because its circular boundary has no corners.</p>
+
+    <div class="answer">
+      <h2>Exam-ready answer</h2>
+      <p><strong>English:</strong> “L1 regularization uses an absolute-value penalty and has a diamond-shaped constraint region. Its first-touch point often occurs at a corner, so it can set some weights exactly to zero. L2 regularization uses a squared penalty and has a circular constraint region; it usually shrinks weights smoothly. In both cases, the solution is where the lowest feasible data-loss contour first touches the constraint region.”</p>
+      <p class="cn"><strong>中文：</strong>L1 使用绝对值惩罚，约束区域是菱形；首次接触常发生在尖角，因此可使某些权重恰好为 0。L2 使用平方惩罚，约束区域是圆形，通常平滑地缩小权重。两种情况下，解都是最低可行 data-loss 等高线首次接触约束区域的位置。</p>
+    </div>
+    <div class="trap"><strong>Common trap / 易错点：</strong>Do not say “L1 always makes every weight zero.” L1 can make <em>some</em> weights zero; λ controls how strong the regularization is.</div>
+  </main>
+</body>
+</html>

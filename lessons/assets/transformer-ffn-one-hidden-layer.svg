@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="700" viewBox="0 0 1280 700" role="img" aria-labelledby="title desc">
+  <title id="title">Transformer FFN shown as neurons and dense connections</title>
+  <desc id="desc">A one-hidden-layer MLP with input dimension d model, hidden dimension 4 d model, and output dimension d model. Circles represent neurons and ellipses represent omitted neurons.</desc>
+  <defs>
+    <style>
+      .title { font:700 29px Arial, "PingFang SC", sans-serif; fill:#142c3f; }
+      .sub { font:16px Arial, "PingFang SC", sans-serif; fill:#526678; }
+      .layer { font:700 20px Arial, "PingFang SC", sans-serif; fill:#142c3f; }
+      .dim { font:17px Arial, "PingFang SC", sans-serif; fill:#334e68; }
+      .note { font:15px Arial, "PingFang SC", sans-serif; fill:#334e68; }
+      .edge { stroke:#9ab3c7; stroke-width:1.35; opacity:.72; }
+      .neuron-in { fill:#dcecf8; stroke:#3e7eae; stroke-width:2.2; }
+      .neuron-hidden { fill:#e4f3e7; stroke:#39834d; stroke-width:2.2; }
+      .neuron-out { fill:#efe4f7; stroke:#7952a1; stroke-width:2.2; }
+      .ellipsis { font:700 24px Arial,sans-serif; fill:#526678; }
+    </style>
+  </defs>
+  <rect width="1280" height="700" fill="#f6f9fc"/>
+  <text x="640" y="47" text-anchor="middle" class="title">Transformer FFN / MLP: neuron view</text>
+  <text x="640" y="75" text-anchor="middle" class="sub">d_model → 4d_model → d_model</text>
+
+  <!-- representative fully connected edges: input to hidden -->
+  <g class="edge">
+    <path d="M224 185 L506 145"/><path d="M224 185 L506 210"/><path d="M224 185 L506 275"/><path d="M224 185 L506 340"/><path d="M224 185 L506 405"/><path d="M224 185 L506 470"/><path d="M224 185 L506 535"/>
+    <path d="M224 300 L506 145"/><path d="M224 300 L506 210"/><path d="M224 300 L506 275"/><path d="M224 300 L506 340"/><path d="M224 300 L506 405"/><path d="M224 300 L506 470"/><path d="M224 300 L506 535"/>
+    <path d="M224 415 L506 145"/><path d="M224 415 L506 210"/><path d="M224 415 L506 275"/><path d="M224 415 L506 340"/><path d="M224 415 L506 405"/><path d="M224 415 L506 470"/><path d="M224 415 L506 535"/>
+    <path d="M224 530 L506 145"/><path d="M224 530 L506 210"/><path d="M224 530 L506 275"/><path d="M224 530 L506 340"/><path d="M224 530 L506 405"/><path d="M224 530 L506 470"/><path d="M224 530 L506 535"/>
+  </g>
+  <!-- representative fully connected edges: hidden to output -->
+  <g class="edge">
+    <path d="M554 145 L871 185"/><path d="M554 145 L871 300"/><path d="M554 145 L871 415"/><path d="M554 145 L871 530"/>
+    <path d="M554 210 L871 185"/><path d="M554 210 L871 300"/><path d="M554 210 L871 415"/><path d="M554 210 L871 530"/>
+    <path d="M554 275 L871 185"/><path d="M554 275 L871 300"/><path d="M554 275 L871 415"/><path d="M554 275 L871 530"/>
+    <path d="M554 340 L871 185"/><path d="M554 340 L871 300"/><path d="M554 340 L871 415"/><path d="M554 340 L871 530"/>
+    <path d="M554 405 L871 185"/><path d="M554 405 L871 300"/><path d="M554 405 L871 415"/><path d="M554 405 L871 530"/>
+    <path d="M554 470 L871 185"/><path d="M554 470 L871 300"/><path d="M554 470 L871 415"/><path d="M554 470 L871 530"/>
+    <path d="M554 535 L871 185"/><path d="M554 535 L871 300"/><path d="M554 535 L871 415"/><path d="M554 535 L871 530"/>
+  </g>
+
+  <!-- input neurons -->
+  <g>
+    <text x="180" y="112" text-anchor="middle" class="layer">Input layer</text>
+    <text x="180" y="137" text-anchor="middle" class="dim">d_model neurons</text>
+    <circle class="neuron-in" cx="200" cy="185" r="24"/><circle class="neuron-in" cx="200" cy="300" r="24"/>
+    <text x="200" y="365" text-anchor="middle" class="ellipsis">⋮</text>
+    <circle class="neuron-in" cx="200" cy="415" r="24"/><circle class="neuron-in" cx="200" cy="530" r="24"/>
+    <text x="126" y="190" class="note">h₁</text><text x="126" y="305" class="note">h₂</text><text x="118" y="535" class="note">h_d</text>
+  </g>
+
+  <!-- hidden neurons -->
+  <g>
+    <text x="530" y="112" text-anchor="middle" class="layer">Hidden layer</text>
+    <text x="530" y="137" text-anchor="middle" class="dim">4d_model neurons</text>
+    <circle class="neuron-hidden" cx="530" cy="145" r="24"/><circle class="neuron-hidden" cx="530" cy="210" r="24"/>
+    <circle class="neuron-hidden" cx="530" cy="275" r="24"/><circle class="neuron-hidden" cx="530" cy="340" r="24"/>
+    <circle class="neuron-hidden" cx="530" cy="405" r="24"/><circle class="neuron-hidden" cx="530" cy="470" r="24"/><circle class="neuron-hidden" cx="530" cy="535" r="24"/>
+    <text x="580" y="351" class="ellipsis">⋮</text>
+    <text x="530" y="586" text-anchor="middle" class="note">expanded representation</text>
+  </g>
+
+  <!-- output neurons -->
+  <g>
+    <text x="895" y="112" text-anchor="middle" class="layer">Output layer</text>
+    <text x="895" y="137" text-anchor="middle" class="dim">d_model neurons</text>
+    <circle class="neuron-out" cx="895" cy="185" r="24"/><circle class="neuron-out" cx="895" cy="300" r="24"/>
+    <text x="895" y="365" text-anchor="middle" class="ellipsis">⋮</text>
+    <circle class="neuron-out" cx="895" cy="415" r="24"/><circle class="neuron-out" cx="895" cy="530" r="24"/>
+    <text x="934" y="190" class="note">y₁</text><text x="934" y="305" class="note">y₂</text><text x="934" y="535" class="note">y_d</text>
+  </g>
+
+  <!-- formulas -->
+  <rect x="1010" y="155" width="223" height="397" rx="14" fill="#fff" stroke="#ccd6e0" stroke-width="2"/>
+  <text x="1122" y="199" text-anchor="middle" class="layer">Dense formulas</text>
+  <text x="1034" y="243" class="note">Layer 1:</text>
+  <text x="1034" y="272" class="note">z = hW₁ + b₁</text>
+  <text x="1034" y="302" class="note">W₁: d × 4d</text>
+  <text x="1034" y="332" class="note">b₁: 4d</text>
+  <line x1="1034" y1="354" x2="1208" y2="354" stroke="#ccd6e0"/>
+  <text x="1034" y="389" class="note">Activation:</text>
+  <text x="1034" y="418" class="note">a = φ(z)</text>
+  <line x1="1034" y1="440" x2="1208" y2="440" stroke="#ccd6e0"/>
+  <text x="1034" y="475" class="note">Layer 2:</text>
+  <text x="1034" y="504" class="note">y = aW₂ + b₂</text>
+  <text x="1034" y="534" class="note">W₂: 4d × d</text>
+  <text x="1034" y="564" class="note">b₂: d</text>
+
+  <rect x="64" y="624" width="1169" height="48" rx="10" fill="#e8f0f7"/>
+  <text x="88" y="654" class="note"><tspan font-weight="700">Key:</tspan> The circles are neurons; the vertical dots mean “more neurons omitted.” The middle column is the only hidden layer.</text>
+</svg>

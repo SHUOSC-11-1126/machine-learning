@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="740" height="570" viewBox="0 0 740 570" role="img" aria-labelledby="title desc">
+  <title id="title">L1 first-touch geometry</title><desc id="desc">The L1 diamond is centered at the origin. Elliptical data-loss contours centered at the unconstrained minimum first touch the upper diamond corner, where w1 equals zero.</desc>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L9,5 L0,10 Z" fill="#d4571e"/></marker></defs>
+  <rect width="740" height="570" rx="18" fill="#fbfcfe"/>
+  <style>text{font-family:Arial,sans-serif;fill:#263846} .small{font-size:18px} .label{font-size:21px;font-weight:700} .note{font-size:18px;fill:#52616e} .orange{fill:#b94b1a} .purple{fill:#7654a8} .blue{fill:#176fb3} .green{fill:#178061}</style>
+  <line x1="92.0" y1="354.7" x2="690.0" y2="354.7" stroke="#52616e" stroke-width="2.4"/>
+  <line x1="320.3" y1="500.0" x2="320.3" y2="48.0" stroke="#52616e" stroke-width="2.4"/>
+  <text x="684.0" y="385.7" class="label" text-anchor="end">w₁</text>
+  <text x="310.3" y="68.0" class="label" text-anchor="end">w₂</text>
+  <text x="308.3" y="383.7" class="small" text-anchor="end">0</text>
+  <polygon points="320.3,249.8 461.7,354.7 320.3,459.6 179.0,354.7" fill="#dceef9" stroke="#176fb3" stroke-width="3"/>
+  <ellipse cx="320.3" cy="104.5" rx="77.2" ry="47.8" fill="none" stroke="#9bc7e5" stroke-width="2"/>
+  <ellipse cx="320.3" cy="104.5" rx="148.8" ry="92.0" fill="none" stroke="#6caad4" stroke-width="2.4"/>
+  <ellipse cx="320.3" cy="104.5" rx="234.9" ry="145.3" fill="none" stroke="#176fb3" stroke-width="3.5"/>
+  <circle cx="320.3" cy="104.5" r="8" fill="#7654a8"/>
+  <circle cx="320.3" cy="249.8" r="12" fill="#d4571e" stroke="white" stroke-width="3"/>
+  <line x1="398.6" y1="177.1" x2="320.3" y2="249.8" stroke="#d4571e" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="403.0" y="164.2" class="label orange">first touch</text>
+  <text x="403.0" y="186.8" class="small orange">corner: w₁ = 0</text>
+  <text x="346.4" y="91.6" class="small purple">unregularized minimum</text>
+  <text x="124.6" y="383.8" class="label blue">L1 feasible set</text>
+  <text x="124.6" y="409.6" class="small blue">|w₁| + |w₂| ≤ c</text>
+</svg>

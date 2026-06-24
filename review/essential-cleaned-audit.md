@@ -4,9 +4,9 @@
 
 This file is a second-hand cleaned note from classmate material. It is useful as a checklist, but it is not a higher-priority source than `files-from-teacher/` or the 2026-06-17 teacher scope update.
 
-Current scope remains:
+Current scope after the later confirmed Session 4 exclusion:
 
-- Main line: `files-from-teacher/session-0` to `files-from-teacher/session-7`.
+- Main line: `files-from-teacher/session-0` to `files-from-teacher/session-3`, plus `files-from-teacher/session-5` to `files-from-teacher/session-7`. Session 4 is not tested.
 - Extra questions: only `files-from-teacher/session-201-qkv-attention-mini-series/`, `files-from-teacher/session-202-positional-encoding-mini-series/`, and `files-from-teacher/session-203-masking-mini-series/`.
 - Code questions: logistic regression only.
 
@@ -147,7 +147,7 @@ Teacher source:
 - `session-204` loss-function material is out of scope unless the teacher updates the range. BCE is also excluded from current Session 2 exam preparation by the latest scope clarification.
 - `session-205` AdamW, MoE, fast/linear attention, and large-model training details are out of scope unless the teacher updates the range.
 - `session-223` FFN/MLP and parameter counting are out of scope unless the teacher updates the range.
-- The note's "session4 not tested" line conflicts with the current main-line scope `session-0` to `session-7`. Do not remove backpropagation from review unless the teacher confirms it directly.
+- The note's "session4 not tested" line is confirmed by the later teacher update. Exclude Session 4 backpropagation and implementation material from current exam review.
 - The note's "session1 almost not tested" can justify lower time allocation, but not deletion. Session 1 remains in the main line.
 - Old claims that dropout is not tested should be treated as obsolete. Current usable signal is that dropout and early stopping should be reviewed, with early stopping drawing especially important.
 
@@ -155,4 +155,4 @@ Teacher source:
 
 Use this audit to strengthen the review plan, but keep the source hierarchy unchanged:
 
-`files-from-teacher/Readme.md` -> `files-from-teacher/BagOfQuestions/` -> main sessions `0-7` -> extra sessions `201/202/203` -> cleaned audio/video notes -> classmate notes.
+`files-from-teacher/Readme.md` -> `files-from-teacher/BagOfQuestions/` -> current main sessions `0-3, 5-7` -> extra sessions `201/202/203` -> cleaned audio/video notes -> classmate notes.

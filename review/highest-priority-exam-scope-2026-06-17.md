@@ -21,11 +21,12 @@ Processing note: the two media files were transcribed with ASR after extracting/
 
 ## Scope Rule
 
-This recording is the highest-priority spoken scope update currently available. It does not replace the structural rule that main sessions are `session-0` to `session-7` and extra questions are `session-201`, `session-202`, and `session-203`.
+The 2026-06-17 recording is the highest-priority recorded scope update available. A later user-confirmed teacher update excludes Session 4 from the current exam scope. Main-session preparation is therefore `session-0` to `session-3` and `session-5` to `session-7`; extra questions remain `session-201`, `session-202`, and `session-203`.
 
 Important nuance:
 
 - The recording makes some topics much higher priority.
+- Session 4 is not tested under the latest confirmed update. Do not prepare its backpropagation, computation-graph, layer-interface, or implementation material for the current exam.
 - It does not make `session-204`, `session-205`, or `session-223` part of the current exam scope.
 - FFN/MLP parameter counting is in scope only because it was mentioned in the range recording and matches Session 3 / MoE / ChatGPT-style parameter-counting questions, not because `session-223` is re-added.
 
@@ -245,7 +246,7 @@ English checklist:
 
 中文：
 
-老师最新范围仍然是 201/202/203。`qkb` 应清洗为 `QKV`。不要把 204/205/223 因为同学资料或旧笔记重新加回考试范围。
+老师最新范围的 extra questions 仍然是 201/202/203；Session 4 已由后续确认排除。`qkb` 应清洗为 `QKV`。不要把 Session 4、204/205/223 因为同学资料或旧笔记重新加回考试范围。
 
 Teacher source:
 

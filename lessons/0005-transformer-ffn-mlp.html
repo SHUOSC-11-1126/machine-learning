@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transformer FFN / MLP</title>
+    <style>
+      body { margin:0; background:#f6f9fc; color:#142c3f; font:18px/1.65 Arial,"PingFang SC",sans-serif; }
+      main { max-width:1280px; margin:0 auto; padding:28px 22px 40px; }
+      h1 { margin:0 0 8px; font-size:30px; } p { margin:8px 0; }
+      img { display:block; width:100%; height:auto; margin:18px 0; border-radius:12px; }
+      .key { padding:16px 20px; border-left:5px solid #407daa; background:#fff; }
+      code { background:#e9f0f6; padding:1px 5px; border-radius:4px; }
+    </style>
+  </head>
+  <body><main>
+    <h1>Transformer FFN / MLP</h1>
+    <p>FFN is a one-hidden-layer MLP: <code>d_model → 4d_model → d_model</code>. The expanded <code>4d_model</code> representation is the hidden layer.</p>
+    <img src="assets/transformer-ffn-one-hidden-layer.svg" alt="Transformer feed-forward network, expanding d_model to 4d_model and projecting it back">
+    <div class="key"><strong>Exam sentence (English):</strong> A Transformer FFN is a one-hidden-layer MLP. It expands each token representation from <code>d_model</code> to <code>4d_model</code>, applies a nonlinear activation, and projects it back to <code>d_model</code>. Each dense layer has weights and biases.<br><strong>中文：</strong>Transformer 的 FFN 是一个单隐藏层 MLP：先扩展、激活、再压回原维度；两个 dense layer 都有 weights 和 biases。</div>
+    <p>Source: <code>files-from-teacher/BagOfQuestions/BagOfQuestions-session-3-ag.md</code> and the highest-priority scope record.</p>
+  </main></body>
+</html>

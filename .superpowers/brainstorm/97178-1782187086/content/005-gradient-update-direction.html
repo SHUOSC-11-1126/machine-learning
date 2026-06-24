@@ -1,0 +1,35 @@
+<h2>Code blanks 7–8: update in the negative-gradient direction</h2>
+<p class="subtitle">The required pattern is <code>parameter = parameter - learning_rate × gradient</code>.</p>
+
+<div class="section">
+  <svg viewBox="0 0 1000 275" width="100%" role="img" aria-label="Gradient descent moving down a loss curve">
+    <path d="M75,55 C250,220 340,250 500,250 C660,250 750,220 925,55" fill="none" stroke="#5c7491" stroke-width="5"/>
+    <text x="65" y="48" font-size="18" fill="#486889">high loss</text>
+    <text x="456" y="270" font-size="18" fill="#285c37">lower loss</text>
+    <circle cx="250" cy="183" r="11" fill="#d36636"/>
+    <text x="178" y="156" font-size="20" font-weight="700" fill="#75410b">current W</text>
+    <path d="M262,194 L410,239" stroke="#d36636" stroke-width="5"/>
+    <polygon points="410,239 389,226 394,250" fill="#d36636"/>
+    <text x="260" y="231" font-size="18" fill="#75410b">− η·dW</text>
+    <circle cx="430" cy="247" r="11" fill="#2d8d49"/>
+    <text x="447" y="226" font-size="20" font-weight="700" fill="#285c37">new W</text>
+    <text x="695" y="156" font-size="19" fill="#394654">The gradient points uphill.</text>
+    <text x="695" y="184" font-size="19" fill="#394654">Subtract it to go downhill.</text>
+  </svg>
+</div>
+
+<div class="section">
+  <p><strong>Core knowledge:</strong> <code>dw</code> and <code>db</code> are gradients: they describe how the loss changes when the weights or bias changes. To minimize loss, gradient descent subtracts the gradient.</p>
+  <p><strong>中文：</strong><code>dw</code>、<code>db</code> 是梯度，描述权重或 bias 改变时 loss 怎样变化。为了让 loss 变小，gradient descent 要减去梯度。</p>
+  <p><strong>Exam-ready English:</strong> “Gradient descent updates each parameter by subtracting the learning rate times its gradient, so that the loss decreases.”</p>
+  <p><strong>中文：</strong>梯度下降将每个参数减去学习率乘以其梯度，从而使 loss 降低。</p>
+</div>
+
+<h3>Retrieval check</h3>
+<p>Fill the update blanks: <code>self.weights = self.weights - self.lr * ___</code> and <code>self.bias = self.bias - self.lr * ___</code>.</p>
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)"><div class="letter">A</div><div class="content"><h3><code>dw</code> and <code>db</code></h3><p>Each parameter uses its own gradient.</p></div></div>
+  <div class="option" data-choice="b" onclick="toggleSelect(this)"><div class="letter">B</div><div class="content"><h3><code>y</code> and <code>X</code></h3><p>These are the labels and features, not parameter gradients.</p></div></div>
+</div>
+
+<p class="subtitle">Source: <code>files-from-teacher/session-2/code-my_logistic_regression.md</code>; scope: parameter-update direction is high priority, while exact <code>dw</code>/<code>db</code> derivations are lower priority.</p>

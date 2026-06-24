@@ -1,0 +1,33 @@
+<h2>Code blank 1: feature count determines weight count</h2>
+<p class="subtitle">In <code>n_samples, n_features = X.shape</code>, rows are examples; columns are inputs used in one prediction.</p>
+
+<div class="section">
+  <svg viewBox="0 0 1000 270" width="100%" role="img" aria-label="Matrix shape example with three features and three weights">
+    <rect x="35" y="28" width="365" height="192" rx="14" fill="#e9f2ff" stroke="#5287c8" stroke-width="2"/>
+    <text x="218" y="59" text-anchor="middle" font-size="23" font-weight="700" fill="#183a64">X: 4 samples × 3 features</text>
+    <g fill="#2d6da9" font-size="21" text-anchor="middle">
+      <text x="120" y="98">x₁</text><text x="214" y="98">x₂</text><text x="308" y="98">x₃</text>
+    </g>
+    <g stroke="#5287c8" stroke-width="1.5"><line x1="73" y1="111" x2="352" y2="111"/><line x1="73" y1="140" x2="352" y2="140"/><line x1="73" y1="169" x2="352" y2="169"/><line x1="73" y1="198" x2="352" y2="198"/><line x1="73" y1="82" x2="73" y2="198"/><line x1="166" y1="82" x2="166" y2="198"/><line x1="259" y1="82" x2="259" y2="198"/><line x1="352" y1="82" x2="352" y2="198"/></g>
+    <text x="218" y="250" text-anchor="middle" font-size="16" fill="#486889">Each column is one input variable.</text>
+    <line x1="420" y1="132" x2="555" y2="132" stroke="#53606f" stroke-width="3"/>
+    <text x="488" y="112" text-anchor="middle" font-size="19" fill="#53606f">one weight</text><text x="488" y="153" text-anchor="middle" font-size="19" fill="#53606f">per feature</text>
+    <rect x="590" y="48" width="290" height="164" rx="14" fill="#f7f0ff" stroke="#9266c7" stroke-width="2"/>
+    <text x="735" y="82" text-anchor="middle" font-size="23" font-weight="700" fill="#4f287a">weights: length 3</text>
+    <text x="735" y="128" text-anchor="middle" font-size="28" fill="#4f287a">W = [w₁, w₂, w₃]</text>
+    <text x="735" y="166" text-anchor="middle" font-size="17" fill="#72538e">z = x₁w₁ + x₂w₂ + x₃w₃ + b</text>
+    <text x="735" y="194" text-anchor="middle" font-size="15" fill="#72538e">The same W is reused for every row/sample.</text>
+  </svg>
+</div>
+
+<div class="section">
+  <p><strong>Exam-ready English:</strong> “The number of weights equals the number of features because each feature needs one coefficient in the linear model.”</p>
+  <p><strong>中文：</strong>权重数量等于特征数量，因为线性模型中每个特征都需要一个系数。</p>
+</div>
+
+<h3>Retrieval check</h3>
+<p>Suppose <code>X.shape = (100, 5)</code>. Which initialization is correct?</p>
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)"><div class="letter">A</div><div class="content"><h3><code>self.weights = np.zeros(100)</code></h3><p>One weight for every sample.</p></div></div>
+  <div class="option" data-choice="b" onclick="toggleSelect(this)"><div class="letter">B</div><div class="content"><h3><code>self.weights = np.zeros(5)</code></h3><p>One weight for every feature.</p></div></div>
+</div>

@@ -4,11 +4,11 @@
 
 本计划只按知识点组织，不按时间推进。
 
-最高优先级资料是 `files-from-teacher/` 子模块。根据 `files-from-teacher/Readme.md`，final exam 约 70% 来自主 session，部分题目来自 `files-from-teacher/BagOfQuestions/`；约 30% 来自 extra sessions，题目较简单。根据 2026-06-17 老师最新透露，主线明确为 `session-0` 到 `session-7`，extra questions 只来自 `session-201`、`session-202`、`session-203`，其他 `session-*` 不考察。最新题型消息进一步说明：代码只考 logistic regression，主要题型是 concepts、mathematical derivations、drawing/sketching、formulas、hand computation。最新最高优先级划范围记录已清洗到 `review/highest-priority-exam-scope-2026-06-17.md`，复习时先读它。
+最高优先级资料是 `files-from-teacher/` 子模块。根据 `files-from-teacher/Readme.md`，final exam 约 70% 来自主 session，部分题目来自 `files-from-teacher/BagOfQuestions/`；约 30% 来自 extra sessions，题目较简单。2026-06-17 的范围更新将主线定义为 `session-0` 到 `session-7`，但老师后续已确认 Session 4 不考；当前主线是 `session-0` 到 `session-3` 与 `session-5` 到 `session-7`。extra questions 只来自 `session-201`、`session-202`、`session-203`，其他 `session-*` 不考察。最新题型消息进一步说明：代码只考 logistic regression，主要题型是 concepts、mathematical derivations、drawing/sketching、formulas、hand computation。最新最高优先级划范围记录已清洗到 `review/highest-priority-exam-scope-2026-06-17.md`，复习时先读它。
 
 所有复习产物遵循 English-first rule：考试题目、考试问法、可背答案、关键术语和公式解释先写英文，再给中文翻译或中文讲解。中文用于帮助理解，不能替代英文考试版。
 
-复习主线：session-0 notation/basic ML framing -> 线性回归与梯度下降概念/推导/图形 -> 逻辑回归概念/数学/唯一代码题 -> 神经网络前向传播与图示 -> softmax 和多分类公式/手算 -> 反向传播概念/链式法则 -> 优化器公式与轨迹图 -> 泛化、指标、正则化 -> dropout、early stopping、batch normalization 图形与解释 -> extra questions 201/202/203。
+复习主线：session-0 notation/basic ML framing -> 线性回归与梯度下降概念/推导/图形 -> 逻辑回归概念/数学/唯一代码题 -> 神经网络前向传播与图示 -> softmax 和多分类公式/手算 -> 优化器公式与轨迹图 -> 泛化、指标、正则化 -> dropout、early stopping、batch normalization 图形与解释 -> extra questions 201/202/203。Session 4 is excluded.
 
 ## Source Map
 
@@ -18,7 +18,7 @@
 - `files-from-teacher/session-1/`：linear regression、MSE、gradient descent、polynomial regression、train/test split。
 - `files-from-teacher/session-2/`：logistic regression、sigmoid、decision boundary、feature scaling、TensorFlow Playground / feature engineering。BCE is excluded by the latest scope update.
 - `files-from-teacher/session-3/`：neural network architecture、forward propagation、activation functions、softmax、one-hot、output layers。
-- `files-from-teacher/session-4/`：backpropagation、chain rule、computation graph、Dense/ReLU layer、softmax cross-entropy、training step。
+- `files-from-teacher/session-4/`：not tested under the latest confirmed scope update; do not use for current exam preparation.
 - `files-from-teacher/session-5/`：learning rate、mini-batch SGD、momentum、Adam、bias correction。
 - `files-from-teacher/session-6/`：generalization、metrics、evaluation methods、bias-variance、L1/L2 regularization、basic distributions。
 - `files-from-teacher/session-7/`：dropout、inverted dropout、early stopping、data augmentation、hyperparameter optimization、batch normalization。
@@ -111,17 +111,7 @@
     考试重点：`BagOfQuestions-session-3-ag.md` 的 DeepSeek Mini MoE 参数统计；dense layer 要加 bias，embedding 通常不加 bias；transformer FFN/MLP 形状是 `d_model -> 4 d_model -> d_model`，中间 expanded layer 是 one hidden layer。注意：这不代表 `session-223` 重新纳入范围。
     来源：`files-from-teacher/BagOfQuestions/BagOfQuestions-session-3-ag.md`
 
-12. **Backpropagation**
-   掌握 chain rule、computation graph、forward values stored for backward、gradient flow。
-    考试重点：解释 backprop 从 loss 回传到 parameters、链式法则、computation graph、梯度方向和公式含义；Dense/ReLU/training step 代码填空不再作为最新代码题优先级。
-    来源：`files-from-teacher/session-4/`，`BagOfQuestions-session-4-*`
-
-13. **Layer Interface and Minimal NN Implementation**
-    掌握 `forward`、`backward`、stored activations、parameter gradients、network training step。
-    考试重点：概念解释和图示：为什么 forward 要保存输入/激活；layer interface 如何使 Dense、ReLU、SoftmaxCE 组合；不按代码题优先准备。
-    来源：`files-from-teacher/session-4/code-my_nn.md`，`code-connections-with-lecture.md`
-
-14. **Optimization Basics**
+12. **Optimization Basics**
     掌握 gradient gives direction、learning rate controls step size、minus sign means move against gradient。
     考试重点：too small / too large learning rate；gradient to parameter update。
     来源：`files-from-teacher/session-5/lecture-1-*`，`lecture-2-*`，`BagOfQuestions-session-5-aa.md`
@@ -181,7 +171,7 @@
     考试重点：说明 autoregressive decoder 为什么不能看 future tokens；写 causal validity relationship `j <= i`；画 lower-triangular causal mask；说明 masked positions are set to `-inf` before softmax, so `exp(-inf)=0` and the attention weight becomes zero；说明 padding mask 为什么需要；写 masked attention 的核心想法。
     来源：`files-from-teacher/session-203-masking-mini-series/`，`BagOfQuestions-session-203-ee.md`
 
-Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`session-204`、`session-205`、`session-208`、`session-211`、`session-212`、`session-223`、`session-400+`、`session-501` 等其他 `session-*` 目录当前不考察，除非老师后续再次明确更新范围。
+Out of scope：`session-4`、`session-102`、`session-104`、`session-105`、`session-200`、`session-204`、`session-205`、`session-208`、`session-211`、`session-212`、`session-223`、`session-400+`、`session-501` 等其他 `session-*` 目录当前不考察，除非老师后续再次明确更新范围。
 
 ## High-Priority Exam Patterns
 
@@ -190,7 +180,7 @@ Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`
 - Shape questions: `X`, `W`, `y_predicted`, `dw`, logits, softmax probabilities, but answer as shape reasoning unless it is logistic-regression code.
 - Formula writing and derivation: MSE, sigmoid, softmax, cross-entropy except BCE, gradient update, Momentum, Adam, L1/L2, dropout expectation, attention formula. BCE is out of current exam scope.
 - Hand computation: logistic one-step gradient descent, softmax probabilities, decision boundary classification, parameter count.
-- Concept explanation: feature scaling, nonlinearity, backprop, mini-batch trade-off, bias-variance, regularization, dropout expectation, early stopping. BCE vs MSE is out of current exam scope.
+- Concept explanation: feature scaling, nonlinearity, mini-batch trade-off, bias-variance, regularization, dropout expectation, early stopping. BCE vs MSE is out of current exam scope.
 - Drawing/sketching: polynomial underfit/good/overfit, decision boundary, activation curves, softmax bar chart, optimization paths, bias-variance curve, L1/L2 geometry, dropout subnetworks, early-stopping curves. Do not prepare BCE curves for the current exam.
 - Second-hand checklist audit: `review/essential-cleaned-audit.md` records which classmate-note items are useful, wrong, or out of scope. Do not use it to expand scope beyond `session-201`/`202`/`203`.
 
@@ -208,5 +198,5 @@ Out of scope：`session-102`、`session-104`、`session-105`、`session-200`、`
 
 ## Assumptions
 
-- 当前复习范围以 `files-from-teacher/Readme.md` 加 2026-06-17 老师最新口头范围更新为准：main = session-0 到 session-7；extra = session-201、session-202、session-203；其他 session 不考察。代码题只考 logistic regression，主要题型为概念、数学推导、画图、公式和手算。
+- 当前复习范围以 `files-from-teacher/Readme.md`、2026-06-17 老师口头范围更新与其后确认的 Session 4 排除为准：main = session-0 到 session-3，以及 session-5 到 session-7；extra = session-201、session-202、session-203；其他 session 不考察。代码题只考 logistic regression，主要题型为概念、数学推导、画图、公式和手算。
 - 如果老师子模块更新，应重新生成 `review/source-index.md`。

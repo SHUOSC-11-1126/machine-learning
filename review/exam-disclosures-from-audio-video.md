@@ -14,12 +14,14 @@ Processing note: the recording audio had classroom/microphone mixing. A direct m
 
 ## Latest Scope Update
 
-2026-06-17 teacher update:
+2026-06-17 teacher update (superseded for Session 4 by a later confirmed teacher update):
 
 - Main line: `files-from-teacher/session-0` to `files-from-teacher/session-7`.
 - Extra questions: only `files-from-teacher/session-201-qkv-attention-mini-series`, `files-from-teacher/session-202-positional-encoding-mini-series`, and `files-from-teacher/session-203-masking-mini-series`.
 - Other `files-from-teacher/session-*` directories are not assessed unless the teacher updates the scope again.
 - Latest format update: code questions only test logistic regression; the exam mainly focuses on concepts, mathematical derivations, formulas, hand computation, and drawings/sketches.
+
+Later confirmed update: Session 4 is not tested. The current main line is Sessions 0--3 and 5--7.
 
 中文：
 
@@ -27,6 +29,7 @@ Processing note: the recording audio had classroom/microphone mixing. A direct m
 - Extra questions 只考 `session-201`、`session-202`、`session-203`。
 - 其他 session 不考察，除非老师后续再次明确更新。
 - 代码题只考 logistic regression；其他主要按概念、数学推导、公式、手算和画图准备。
+- 后续确认：Session 4 不考；当前主线为 Session 0--3 与 5--7。
 
 ## Highest-Priority Range Recording
 
@@ -114,7 +117,7 @@ Out-of-scope matches under the 2026-06-17 update:
 English:
 
 - Final score is `0.7 * T + 0.3 * P`.
-- Final exam `T`: around 70% from main sessions; latest teacher update defines the main line as sessions 0-7.
+- Final exam `T`: around 70% from main sessions; the current main line is Sessions 0--3 and 5--7 because Session 4 is excluded by a later confirmed update.
 - Some questions come from `files-from-teacher/BagOfQuestions/`.
 - Around 30% are easy questions from extra sessions, now scoped to sessions 201, 202, and 203 only.
 - Closed book: no books, no sheets, no anything.
@@ -122,8 +125,8 @@ English:
 
 中文：
 
-- 录音/视频透露的信息是补充线索；2026-06-17 老师范围更新进一步收窄 extra sessions。
-- 复习优先级现在是：Readme -> BagOfQuestions -> main sessions 0-7 -> extra sessions 201/202/203。
+- 录音/视频透露的信息是补充线索；2026-06-17 老师范围更新进一步收窄 extra sessions，之后确认 Session 4 不考。
+- 复习优先级现在是：Readme -> BagOfQuestions -> main sessions 0-3、5-7 -> extra sessions 201/202/203。
 
 ## Cleaned Exam Signals
 
@@ -306,7 +309,7 @@ Uncertain ASR fragments such as unclear architecture terms were not used as exam
 ## Practical Review Order After This Disclosure
 
 1. Review `files-from-teacher/BagOfQuestions/` first.
-2. For main sessions, keep the updated route: sessions 0-7 are the core.
+2. For main sessions, keep the current route: sessions 0-3 and 5-7 are the core; do not review Session 4 for the exam.
 3. Add special attention to Session 7 regularization answers: dropout, early stopping, data augmentation, batch normalization.
 4. Review Session 5 optimizer formulas and concepts: SGD, Momentum, Adam; do not prioritize Session 5 code blanks.
 5. For extra questions, review only sessions 201, 202, and 203.

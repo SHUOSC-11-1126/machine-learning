@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Optimizer trajectories</title>
+    <style>
+      body { margin: 0; background: #f6f9fc; color: #172b3a; font: 18px/1.65 Arial, "PingFang SC", sans-serif; }
+      main { max-width: 1280px; margin: 0 auto; padding: 28px 22px 42px; }
+      h1 { margin: 0 0 8px; font-size: 30px; }
+      p { margin: 8px 0; }
+      .note { color: #526678; }
+      img { display: block; width: 100%; height: auto; margin: 18px 0; border-radius: 12px; }
+      .answer { padding: 16px 20px; border-left: 5px solid #1261a0; background: #fff; }
+      code { background: #e9f0f6; padding: 1px 5px; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Optimizer trajectories / 优化器轨迹图</h1>
+      <p class="note">同一组椭圆是同一个 <code>training loss</code> 的等高线。中心为 minimum；不同优化器只是走向最低点的路径不同。</p>
+      <img src="assets/optimizer-trajectories.svg" alt="GD, mini-batch SGD, Momentum, and Adam trajectories on identical loss contours">
+      <div class="answer">
+        <strong>Exact updates used in the figure:</strong><br>
+        Momentum: <code>uₜ = 0.9uₜ₋₁ + 0.1ĝₜ</code>, <code>wₜ₊₁ = wₜ − 0.2uₜ</code>.<br>
+        Adam: <code>mₜ = 0.9mₜ₋₁ + 0.1ĝₜ</code>, <code>vₜ = 0.999vₜ₋₁ + 0.001ĝₜ²</code>, <code>m̂ₜ = mₜ/(1−0.9ᵗ)</code>, <code>v̂ₜ = vₜ/(1−0.999ᵗ)</code>, <code>wₜ₊₁ = wₜ − 0.24m̂ₜ/(√v̂ₜ+ε)</code>.<br><br>
+        <strong>Exam answer (English):</strong> With a massive dataset, full-batch GD has the smoothest trajectory because it uses the exact gradient over the full training set. Mini-batch SGD has noisy, zig-zag updates. Momentum replaces the raw noisy gradient with a moving average (velocity), which reduces high-frequency oscillation. Adam uses a first-moment moving average to smooth direction and a second-moment moving average to rescale each parameter update. The exact Momentum/Adam path depends on the loss surface, learning rate, momentum coefficients, and gradient noise; it can overshoot when these are poorly tuned.<br>
+        <strong>中文：</strong>当数据集很大时，full-batch GD 使用完整数据的精确梯度，因此路径最平滑；mini-batch SGD 的梯度带噪声，所以会曲折抖动。Momentum 用梯度的移动平均（velocity）替代原始噪声梯度，从而降低高频振荡。Adam 用一阶矩移动平均平滑方向、用二阶矩移动平均缩放每个参数的更新。Momentum/Adam 的精确路径取决于损失曲面、学习率、动量系数和梯度噪声；若超参数设置不当，它们也可能 overshoot（越过最优点）。
+      </div>
+      <p class="note">Source: <code>files-from-teacher/BagOfQuestions/BagOfQuestions-session-5-ag.md</code></p>
+    </main>
+  </body>
+</html>

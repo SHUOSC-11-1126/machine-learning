@@ -1,0 +1,36 @@
+<h2>Logistic regression: one code path</h2>
+<p class="subtitle">Session 2 — the final exam's only programming focus</p>
+
+<div class="section">
+  <svg viewBox="0 0 1000 245" width="100%" role="img" aria-label="Logistic regression prediction flow">
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#53606f"/></marker>
+    </defs>
+    <rect x="25" y="58" width="220" height="128" rx="16" fill="#e9f2ff" stroke="#5287c8" stroke-width="2"/>
+    <text x="135" y="99" text-anchor="middle" font-size="25" font-weight="700" fill="#183a64">Input features</text>
+    <text x="135" y="135" text-anchor="middle" font-size="22" fill="#183a64">X</text>
+    <text x="135" y="163" text-anchor="middle" font-size="16" fill="#486889">n_samples × n_features</text>
+    <line x1="250" y1="122" x2="365" y2="122" stroke="#53606f" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="380" y="58" width="240" height="128" rx="16" fill="#f7f0ff" stroke="#9266c7" stroke-width="2"/>
+    <text x="500" y="99" text-anchor="middle" font-size="24" font-weight="700" fill="#4f287a">Linear score</text>
+    <text x="500" y="135" text-anchor="middle" font-size="23" fill="#4f287a">z = XW + b</text>
+    <text x="500" y="163" text-anchor="middle" font-size="16" fill="#72538e">linear_model</text>
+    <line x1="625" y1="122" x2="740" y2="122" stroke="#53606f" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="755" y="58" width="220" height="128" rx="16" fill="#edf8ef" stroke="#549365" stroke-width="2"/>
+    <text x="865" y="99" text-anchor="middle" font-size="24" font-weight="700" fill="#285c37">Probability</text>
+    <text x="865" y="135" text-anchor="middle" font-size="22" fill="#285c37">σ(z) ∈ (0, 1)</text>
+    <text x="865" y="163" text-anchor="middle" font-size="16" fill="#477553">y_predicted</text>
+    <text x="500" y="224" text-anchor="middle" font-size="18" fill="#53606f">In <code>predict</code>: probability &gt; 0.5 → class 1; otherwise → class 0.</text>
+  </svg>
+</div>
+
+<div class="options">
+  <div class="option" data-choice="understand-flow" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content"><h3>I can explain this flow</h3><p>Proceed to the first code blank: why <code>n_features</code> determines the number of weights.</p></div>
+  </div>
+  <div class="option" data-choice="need-explanation" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content"><h3>I need an explanation first</h3><p>Explain each box in Chinese, then give the English exam wording.</p></div>
+  </div>
+</div>
